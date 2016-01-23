@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chronos CRM</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+	<script>
+		//* hide all elements & show preloader
+			document.documentElement.className += 'js';
+	</script>
+</head>
+<body class="login_page">
+	<div class="login_box">
+	<div class="top_b">Chronos CRM</div>
+		<%= yield %>
+	</div>
+</body>
+<%= javascript_include_tag "application" %>
+</html>

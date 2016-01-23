@@ -1,0 +1,42 @@
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for( [:admin, @standard_exchange] , html:  {:multipart => true, class: "form-horizontal"})  do |f| %>
+      <% if @standard_exchange.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@standard_exchange.errors.count, "error") %> prohibited this standard_exchange from being saved:</h2>
+
+          <ul>
+          <% @standard_exchange.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">NOVO PADRÃO COMPRA/VENDA </h3>
+      <div class="control-group formSep">
+      <table>
+        <tr>
+          <td align="right">Tenho:</td>
+          <td><%= f.collection_select :currency_have, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Quero:</td>
+          <td><%= f.collection_select :currency_want, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Operação:</td>
+          <td>
+            <%= f.radio_button :operation, 0, checked: 'checked' %>Compra
+            <%= f.radio_button :operation, 1 %>Venda
+          </td>
+        </tr>
+    
+      </table>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+        <%= link_to 'Voltar', admin_standard_exchanges_path, :class => "btn" %> 
+      </div>
+    <% end %>
+  </div>
+</div>

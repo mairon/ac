@@ -1,0 +1,53 @@
+<%= form_for( [:admin, @currency] , html:  {:multipart => true, class: "form-horizontal"})  do |f| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <% if @currency.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
+
+          <ul>
+          <% @currency.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">NOVA MOEDA</h3>
+      <div class="control-group formSep">  
+      <table>
+        <tr>
+          <td align="right">Nome:</td>
+          <td colspan="4"><%= f.text_field :name, size: 30, placeholder: 'Nome da moeda' %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Sigla:</td>
+          <td><%= f.text_field :short, size: 10, placeholder: 'Nome da moeda' %><span class="f_req">*</span></td>
+          <td align="right">Casas Decimais:</td>
+          <td><%= f.number_field :dec, size: 10, style:"width: 25px"%></td>
+        </tr>
+        <tr>            
+          <td align="right">Icone:</td>                    
+          <td colspan="4">
+            <fieldset>
+              <div data-fileupload="image" class="fileupload fileupload-new">
+                <div style="width: 50px; height: 50px;" class="fileupload-new thumbnail">
+                  <% unless @currency.icon.blank? %>
+                    <%= image_tag @currency.icon.url(:thumb) %>
+                  <% else %>
+                    <img src="http://www.placehold.it/50x50/EFEFEF/AAAAAA" alt="" />
+                  <% end %>
+                </div>
+                <%= f.file_field :icon, :style => "width: 80px; height: 80px; line-height: 80px;" %>                
+              </div>     
+            </fieldset>
+          </td>
+        </tr>          
+      </table>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+      <%= link_to 'Voltar', admin_currencies_path, :class => "btn" %> 
+    </div>
+  </div>
+<% end %>

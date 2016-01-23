@@ -1,0 +1,46 @@
+<%= form_for( [:pcompany, @exchange] , html:  {:multipart => true, class: "form-horizontal"})  do |f| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <% if @exchange.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@exchange.errors.count, "error") %> prohibited this exchange from being saved:</h2>
+
+          <ul>
+          <% @exchange.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">NOVA COTAÇÃO</h3>
+      <div class="control-group formSep">  
+      <%= f.hidden_field :company_id, value: current_user.company.id %>
+      <table>
+        <tr>
+          <td align="right">Moeda Base:</td>
+          <td><%= f.collection_select :currency_id, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px', autofocus: true} %><span class="f_req">*</span></td>
+        </tr>
+
+        <tr>
+          <td align="right">Para:</td>
+          <td><%= f.collection_select :for, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px', autofocus: true} %><span class="f_req">*</span></td>
+        </tr>
+
+
+        <tr>
+          <td align="right">Compra:</td>
+          <td><%= f.text_field :buy, size: '30', placeholder: 'Compra' %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Venda:</td>
+          <td><%= f.text_field :sale, size: '30', placeholder: 'Venda' %><span class="f_req">*</span></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+      <%= link_to 'Voltar', pcompany_exchanges_path, :class => "btn" %> 
+    </div>
+  </div>
+<% end %>

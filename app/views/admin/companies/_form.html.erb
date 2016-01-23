@@ -1,0 +1,127 @@
+<%= form_for( [:admin, @company] , html:  {:multipart => true, class: "form-horizontal"})  do |f| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <% if @company.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+          <ul>
+          <% @company.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">NOVA EMPRESA</h3>
+      <div class="control-group formSep">  
+      <table>
+      <tr>
+        <td align="right">Usuario:</td>
+        <td><%= f.collection_select :user_id, User.select('id,email').order('2'), :id, :email, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+      </tr>
+      <tr>
+        <td align="right">Moeda Base:</td>
+        <td><%= f.collection_select :currency_id, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+      </tr>
+        <tr>
+          <td align="right">Nome:</td>
+          <td colspan="4"><%= f.text_field :name, size: 57, placeholder: 'Nome da Empresa', autofocus: true %><span class="f_req">*</span></td>
+          <td rowspan="3"  align="center" width="300" valign="top" style="padding-left: 80px">            
+            <fieldset>
+              <legend>Avatar</legend>
+              <div data-fileupload="image" class="fileupload fileupload-new">
+                <div style="width: 60px; height: 60px;" class="fileupload-new thumbnail thumb-circle">
+                  <% unless @company.avatar.blank? %>
+                    <%= image_tag @company.avatar.url(:medium) %>
+                  <% else %>
+                    <img src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="" />
+                  <% end %>
+                </div>
+                <br/>
+                <%= f.file_field :avatar, :style => "width: 80px; height: 30px; line-height: 30px;" %>                
+              </div>     
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Telefone 01:</td>
+          <td><%= f.telephone_field :telephone, size: 22 %></td>
+          <td align="right">Telefone 02:</td>
+          <td><%= f.telephone_field :telephone02, size: 22 %></td>
+        </tr>
+        <tr>
+          <td align="right">Web Site:</td>
+          <td colspan="4"><%= f.url_field :website, size: 57, placeholder: 'https://' %></td>
+
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="4"> 
+          <fieldset>
+             <legend>Horário de Atendimento</legend>           
+            <%= render 'schedules', f: f %>
+          </fieldset> 
+          </td>
+          <td colspan="4" rowspan="1" align="center" valign="top" style="padding-left: 80px; padding-top: 10px">
+            <%= f.text_area :about, cols: 39, rows: 13, placeholder: 'Um pouco sobre a Empresa' %>
+            </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <h5 class="heading">Endereço:</h5>
+    <div class="control-group formSep">
+      <table>
+        <tr>
+          <td align="right">País:</td>
+          <td><%= f.collection_select :country_id, Country.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Estados:</td>
+          <td><%= f.collection_select :state_id, State.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Cidades:</td>
+          <td><%= f.collection_select :city_id, City.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Endereço:</td>
+          <td>
+            <%= f.text_field :address, size: 60, placeholder: 'Ex. Rua x bairro X nº 00', class: 'txtEndereco' %><span class="f_req">*</span>
+            <input type="button" id="btnEndereco" name="btnEndereco" value="Mostrar no mapa" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Latitude:</td>
+          <td><%= f.text_field :latitude, class: 'txtLatitude' %></td>
+          <td align="right">Longitude:</td>
+          <td><%= f.text_field :longitude, class: 'txtLongitude' %></td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <div id="mapa"></div>
+          </td>
+        </tr>        
+      </table>
+      <div class="control-group formSep">
+        <h5 class="heading">MOEDAS</h5>
+          <table>
+            <tr>
+              <% @currencies.each do |c| %>
+                <td>
+                  <label class="checkbox" >
+                    <%= check_box_tag "company[currency_ids][]", c.id, @company.currencies.include?(c), class: "id#{c.id}" %> 
+                    <%= image_tag c.icon.url(:thumb) %> <%= c.short %>
+                  </label>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+      <%= link_to 'Voltar', admin_companies_path, :class => "btn" %> 
+    </div>
+  </div>
+<% end %>

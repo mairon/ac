@@ -1,0 +1,35 @@
+<table>
+<% if params[:action] == 'new' %>
+  <% days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
+  <% days.each do |d| %>  
+    <%= f.fields_for :schedules do |schedule| %>
+      <%= schedule.hidden_field :weekday, value: d %>
+      <tr>
+        <td align="right"><%= l d.to_date, :format => :week %>:</td>
+        <td>
+          <%= schedule.time_field :in %>
+          até
+          <%= schedule.time_field :to %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+<% else %>
+  <% @company.schedules.each do |company| %>
+    <%= f.fields_for :schedules, company do |schedule| %>
+      <tr>
+        <td align="right"><%= l company.weekday.to_date, :format => :week  %>:</td>
+        <td>
+
+          <%= schedule.time_field :in %>
+          até
+          <%= schedule.time_field :to %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+<% end %>
+</table>
+
+
+

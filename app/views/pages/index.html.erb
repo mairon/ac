@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-8">
+    <img src="assets/pages/text-facil.png" alt="" class="img-responsive text-facil">
+  </div>
+  <div class="col-md-4 social">
+    <h5 align="center">ACOMPANHE-NOS NAS MÍDIAS</h5>
+    <div class="icons-social" align="center">
+      <p><a href="" title=""><img src="assets/pages/icon-skype.png" width="60" alt="" class="img-responsive"></a></p>
+      <p><a href="" title=""><img src="assets/pages/icon-fb.png" width="60" alt="" class="img-responsive"></a></p>
+      <p><a href="" title=""><img src="assets/pages/icon-tw.png" width="60" alt="" class="img-responsive"></a></p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <%= form_tag search_path, :method => :get do %>
+    <div class="col-md-12 box-cambio">
+      <div class="row">
+        <div class="col-md-4 box-left">
+          <label>EU TENHO <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
+          <%= select_tag :have, options_from_collection_for_select(Currency.all, :id, :name), prompt: 'MOEDAS', id: "quero" %>
+        </div>
+
+        <div class="col-md-5 box-left">
+          <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-left">
+          <div class="select-right">
+          <label>EU QUERO <img src="assets/pages/icon-dinheiro2.png" height="25" alt="" class="icon-dinheiro"></label><br>
+            <%= select_tag :want, options_from_collection_for_select(Currency.all, :id, :name), prompt: 'MOEDAS', id: "tenho" %>
+          </div>
+          <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
+        </div>
+        <div class="col-md-3 pais">
+          <h5 align="center">EM QUAL PÁIS</h5>     
+          <div class="icons-pais" align="center">
+            <p><a href="" title=""><img src="assets/pages/icon-br.png" width="60" alt="" class="img-responsive"></a></p>
+            <p><a href="" title=""><img src="assets/pages/icon-ar.png" width="60" alt="" class="img-responsive"></a></p>
+            <p><a href="" title=""><img src="assets/pages/icon-py.png" width="60" alt="" class="img-responsive"></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" align="center">
+        <button type="submit" class="submit-cambio">
+          <img src="assets/pages/lupa.png" height="32" alt="procurar"> PROCURAR*
+        </button>
+      </div>
+    </div>
+  <% end %>
+  <div class="row newsletter">
+    <div class="col-md-6 newsletter-left">
+      <img src="assets/pages/icon-newsletter.png" height="120" alt="">
+      <p>Receba por e-mail as cotações de nossas casas <br>
+      de câmbio, e as <span>nossas novidades</span> do site!</p>
+    </div>
+    <div class="col-md-6 form-email">
+        <p align="right"><input type="text" name="" value="" placeholder="Digite seu e-mail"></p>
+        <p align="right"><button type="submit"><img src="assets/pages/icon-email.png" height="16" alt=""> ENVIAR</button></p>
+        <p align="right"> <input type="checkbox" name="" value="0"> Aceito receber e-mails do <strong>4Moedas.</strong></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  currency_id: 1
+  date: 2016-01-10
+  buy: 9.99
+  sale: 9.99
+
+two:
+  company_id: 1
+  currency_id: 1
+  date: 2016-01-10
+  buy: 9.99
+  sale: 9.99

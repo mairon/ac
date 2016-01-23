@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  in: 2016-01-10 16:17:56
+  to: 2016-01-10 16:17:56
+  weekday: 
+
+two:
+  in: 2016-01-10 16:17:56
+  to: 2016-01-10 16:17:56
+  weekday: 

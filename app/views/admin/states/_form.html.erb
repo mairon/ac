@@ -1,0 +1,34 @@
+<%= form_for( [:admin, @state] , html:  {:multipart => true, class: "form-horizontal"})  do |f| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <% if @state.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@state.errors.count, "error") %> prohibited this state from being saved:</h2>
+
+          <ul>
+          <% @state.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">NOVO ESTADO</h3>
+      <div class="control-group formSep">  
+      <table>
+        <tr>
+          <td align="right">País:</td>
+          <td><%= f.collection_select :country_id, Country.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px', autofocus: true} %><span class="f_req">*</span></td>
+        </tr>
+        <tr>
+          <td align="right">Estados:</td>
+          <td><%= f.text_field :name, size: '30', placeholder: 'Nome do Estado' %><span class="f_req">*</span></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+      <%= link_to 'Voltar', admin_states_path, :class => "btn" %> 
+    </div>
+  </div>
+<% end %>

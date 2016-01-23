@@ -1,0 +1,28 @@
+<%= form_tag(multiple_records_assign_pcompany_exchanges_path, method: 'get') do |f| %>
+	<div class="row-fluid">
+	  <div class="span12">
+	  	<h3 class="heading">MULTIPLOS LANÇAMENTOS</h3>
+	  	<div class="control-group formSep">
+	  		<h5 class="heading">MOEDA BASE: <%= current_user.company.currency.name %> (<%= current_user.company.currency.short %>)</h5>
+	  		<table>
+				<% @currencies.each do |c| %>
+	  			<tr>
+						<%= fields_for "currencies[]", c do |cm| %>
+							<%= cm.hidden_field :date, value: Time.now %>
+							<%= cm.hidden_field :company_id, value: current_user.company.id %>
+							<%= cm.hidden_field :currency_id, value: current_user.company.currency_id %>
+
+							<td><%= image_tag c.currency.icon.url(:thumb) %> <%= c.currency.short %></td>
+							<td><%= cm.hidden_field :for, value: c.currency_id %></td>
+							<td>Compra:<%= cm.text_field :buy, value: '', size: 15 %></td>
+							<td>Venda: <%= cm.text_field :sale, value: '', size: 15 %></td>
+
+						<% end %>
+					</tr>
+				<% end %>	
+  		</table>
+			</div>
+		</div>
+	</div>
+	<%= submit_tag 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+<% end %>

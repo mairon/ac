@@ -1,0 +1,148 @@
+
+
+/* ==========================================================================
+   Author's Mairon Brasil
+   ========================================================================== */
+.text-facil{
+	margin-top: 15px; 
+}
+.box-cambio{
+	background-color: #302f2f;
+	border-radius: 5px;
+	height: 200px;
+	color: #ecb31a;
+	padding: 40px; 
+}
+.box-cambio label{
+	font-weight: 200;
+	font-size: 18px;
+}
+
+.box-cambio img.icon-dinheiro{
+	margin-top: -7px;
+}
+.box-left .flexa-right{
+	margin-top: -65px;
+	margin-right: -18px;
+	float: right;
+}
+
+.box-left .flexa-left{
+	margin-top: 22px;
+	margin-left: -25px;
+	float: left;
+}
+
+.pais p{
+  float: left;
+  text-align: center;
+  padding: 5px; 
+}
+
+.icons-pais{
+  display: table;
+  margin: 0 auto;
+}
+
+.select-right{
+	margin-left: 55px !important;
+}
+
+.submit-cambio{
+	margin: 0 auto;
+  height: 50px;
+  width: 280px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 0;
+  font-size: 21px;
+  background-color: #ecb31a;
+  margin-top: 25px;
+}
+
+.newsletter{
+	margin-top: 60px;
+	border: 2px solid #e3e1df;
+	border-radius: 3px;
+	margin-bottom: 60px;
+}
+
+.newsletter-left{
+	background-color: #f5f5f5;
+	border-radius: 3px;
+	padding: 35px;
+
+}
+
+.newsletter-left img{
+	float: left;
+}
+.newsletter-left p{
+	margin-top: 40px;
+	font-weight: bold;
+}
+
+.newsletter-left span{
+	color: #ecb31a;
+}
+.form-email{
+	padding: 35px 35px 0px 35px;	
+	float: right !important;
+	background-color: #fff;
+}
+
+.form-email input[type="text"]{
+	width: 350px;	
+	padding: 12px;
+	border-radius: 5px;
+	border: 2px solid #d3d3d4;
+
+}
+.form-email button{
+	width: 350px;	
+	padding: 6px;
+	border-radius: 5px;
+	background-color: #000; 
+	font-size: 18px;
+	color: #ecb31a;
+}
+
+footer{
+	border-top: 2px solid #dbd9db;
+	background-color: #2a2f32;
+	display: table;
+	color: #fff;
+	padding: 40px;
+	font-size: 12px;
+}
+
+footer .rows{
+	margin:0px;
+	margin-top: 30px;
+	padding: 0;
+
+}
+
+footer div.sugira{
+	margin-top: 15px;
+}
+footer a.sugira{
+	border: 1px solid #c9c8c8;
+	display: table;
+	color: #ecb31a;
+	padding: 10px 85px 10px 85px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+#map-canvas {
+	height: 600px;
+	width: 100%;
+}
+#iw_container .iw_title {
+	font-size: 16px;
+	font-weight: bold;
+}
+.iw_content {
+	padding: 15px 15px 15px 0;
+}

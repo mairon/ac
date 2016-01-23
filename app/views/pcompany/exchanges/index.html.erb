@@ -1,0 +1,63 @@
+<nav>
+  <div class="breadCrumb module">
+      <ul>
+          <li>
+              Cotação
+          </li>
+      </ul>
+  </div>
+</nav>
+<style type="text/css">
+  form{ float: left;}
+  select{  width: 250px; margin:0px !important; }
+</style>
+
+<div style="color:red;">
+<%= flash[:error] %>
+</div>
+  <div class="search_breadCrumb search">
+    <div class="bts_grid">
+    </div>
+    <div class="row-fluid">
+      <div class="span12">            
+        <div data-fileupload="file" class="fileupload fileupload-new"><input type="hidden" />
+          <div class="input-append">
+            <%= link_to 'Novo', new_pcompany_exchange_path, :class => "btn" %>
+            <%= link_to 'Multiplos Lançamentos', multiple_records_pcompany_exchanges_path, :class => "btn" %>
+          </div>
+        </div>
+        <table class="table table-bordered dTableR" id="dt_a">
+            <thead>
+              <tr>
+                <th width="30">Codigo</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Moeda Base</th>
+                <th>Para</th>
+                <th>Compra</th>
+                <th>Venda</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @exchanges.each do |c| %>
+                <% cur = Currency.find_by_id(c.for)%>
+                <tr>
+                  <td><%= c.id.to_s.rjust(6,'0') %></td>
+                  <td><%= c.date.strftime("%d/%m/%y") unless c.date.blank? %></td>
+                  <td><%= c.created_at.strftime("%H:%M") %></td>
+                  <td><%= image_tag c.currency.icon.url(:thumb) %> <%= c.currency.short %></td>
+                  <td><%= image_tag cur.icon.url(:thumb) %> <%= cur.short %></td>
+                  <td><%= c.buy %></td>
+                  <td><%= c.sale %></td>
+                  <td>
+                    <%= link_to '', edit_pcompany_exchange_path(c), class: "icon-pencil" %>
+                    <%= link_to '', [:pcompany, c], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

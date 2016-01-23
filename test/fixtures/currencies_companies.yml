@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  currency_id: 1
+  companies: MyString
+  currencies: MyString
+
+two:
+  company_id: 1
+  currency_id: 1
+  companies: MyString
+  currencies: MyString

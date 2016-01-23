@@ -1,0 +1,105 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap/css/bootstrap
+ *= require bootstrap/css/bootstrap-responsive
+ *= require css/dark
+ *= require lib/jBreadcrumbs/css/BreadCrumb
+ *= require lib/sticky/sticky
+ *= require lib/datatables/css/TableTools
+ *= require LiveSearchGridPanel
+ *= require css/style
+ *= require splashy 
+ *= require lib/multiselect/css/multi-select
+ *= require lib/antiscroll/antiscroll
+ *= require lib/chosen/chosen
+ *= require_self
+ *= require lib/fullcalendar/fullcalendar_gebo
+ *= require colorpicker
+ *= require admin/search-map
+
+
+ */
+
+label.error{ color:#FF0000; width:250px; }
+
+.search:after{clear:both;content:".";display:block;height:0;visibility:hidden}
+* html .search{height:1%;overflow:visible}
+* + html .search{min-height:1%}
+.search_breadCrumb{display:block;overflow:hidden;border:solid 1px #e9e9e9;background:#fff;margin:0 0 5px;padding:5px;background: red;
+background: -moz-linear-gradient(top,  #ffffff 0%, #f5f5f5 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f5f5f5));
+background: -webkit-linear-gradient(top,  #ffffff 0%,#f5f5f5 100%);
+background: -o-linear-gradient(top,  #ffffff 0%,#f5f5f5 100%);
+background: -ms-linear-gradient(top,  #ffffff 0%,#f5f5f5 100%);
+background: linear-gradient(top,  #ffffff 0%,#f5f5f5 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 );
+
+-webkit-border-radius: 4px 4px 0 0;
+-moz-border-radius: 4px 4px 0 0;
+-ms-border-radius: 4px 4px 0 0;
+border-radius: 4px 4px 0 0;}
+
+fieldset{ padding: 10px;}
+
+legend{ font-weight: bold;}
+
+
+.selc_mini{
+  width: 450px;
+}
+
+
+.formSep{
+	background: #f5f5f5;
+	padding: 5px;
+}
+
+
+
+.thumb-circle, .thumb-circle img {
+  border-radius: 50%;
+  width: 100%;
+  border-radius: 50%;
+  z-index: -10;
+}
+  
+
+
+    .ativ{
+    float:left !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: 26px !important;
+    width: 2px !important;
+  }
+  .funil-nav {
+    background-color: #f9f9f9;
+    border:1px solid #e2e2e2;
+  }
+  .funil-nav ul img:last-child {
+    display:none;
+        }
+ .funil-nav .breadCrumb{
+
+  border-radius: 0;
+  border:0px;
+  border-bottom:1px solid #e2e2e2;
+
+}        
+.span12{
+  margin: 15px 0px 0px 0px !important;
+}
+
+.none {
+	display: none;
+}
+
+
