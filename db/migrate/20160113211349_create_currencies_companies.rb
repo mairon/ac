@@ -5,6 +5,5 @@ class CreateCurrenciesCompanies < ActiveRecord::Migration
       t.integer :currency_id
       t.timestamps null: false
     end
-    add_foreign_key :companies, :currencies
   end
 end

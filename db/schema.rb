@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160121024725) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cities", force: :cascade do |t|
     t.integer  "country_id"
     t.integer  "state_id"
@@ -58,8 +61,17 @@ ActiveRecord::Schema.define(version: 20160121024725) do
     t.datetime "updated_at",            null: false
   end
 
-# Could not dump table "currencies" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "currencies", force: :cascade do |t|
+    t.string   "name",              limit: 20
+    t.string   "short",             limit: 5
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "icon_file_name",    limit: 50
+    t.string   "icon_content_type", limit: 20
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.integer  "dec",                          default: 0
+  end
 
   create_table "exchange_operations", force: :cascade do |t|
     t.integer  "exchange_id"
@@ -126,8 +138,8 @@ ActiveRecord::Schema.define(version: 20160121024725) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
