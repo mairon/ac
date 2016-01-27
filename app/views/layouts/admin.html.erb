@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aqui Cambio</title>
+  <title>Aqui Cambio Admin</title>
   <%= stylesheet_link_tag    "application", media: 'all' %>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans" />
   <%= csrf_meta_tags %>
@@ -13,7 +13,7 @@
                 <div class="navbar navbar-fixed-top">
                     <div class="navbar-inner">
                         <div class="container-fluid">
-                        		<%= link_to 'Aqui Cambio', '#', class: 'brand' %>
+                        		<%= link_to 'Aqui Cambio Admin', '#', class: 'brand' %>
                             <ul class="nav user_menu pull-right">
 															<li class="hidden-phone hidden-tablet">
                               </li>
@@ -70,6 +70,7 @@
                           <li><%= link_to 'Cidades', admin_cities_path %></li>
                           <li><%= link_to 'Moedas', admin_currencies_path %></li>
                           <li><%= link_to 'Empresas', admin_companies_path %></li>
+                          <li><%= link_to 'Usuários', admin_users_path %></li>
                           <li><%= link_to 'Configuração Compra/Venda', admin_standard_exchanges_path %></li>
                         </ul>
                       </div>

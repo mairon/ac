@@ -4,14 +4,14 @@
    Author's Mairon Brasil
    ========================================================================== */
 .text-facil{
-	margin-top: 15px; 
+	margin-top: -10px; 
 }
 .box-cambio{
-	background-color: #302f2f;
-	border-radius: 5px;
-	height: 200px;
-	color: #ecb31a;
-	padding: 40px; 
+    background-color: #302f2f;
+    border-radius: 10px;
+    height: 148px;
+    color: #ecb31a;
+    padding: 27px 30px 20px 30px;
 }
 .box-cambio label{
 	font-weight: 200;
@@ -22,13 +22,13 @@
 	margin-top: -7px;
 }
 .box-left .flexa-right{
-	margin-top: -65px;
-	margin-right: -18px;
-	float: right;
+	margin-top: -53px;
+    margin-right: 12px;
+    float: right;
 }
 
 .box-left .flexa-left{
-	margin-top: 22px;
+	margin-top: 36px;
 	margin-left: -25px;
 	float: left;
 }
@@ -61,7 +61,7 @@
 }
 
 .newsletter{
-	margin-top: 60px;
+	margin-top: 40px;
 	border: 2px solid #e3e1df;
 	border-radius: 3px;
 	margin-bottom: 60px;
@@ -118,7 +118,7 @@ footer{
 
 footer .rows{
 	margin:0px;
-	margin-top: 30px;
+	margin-top: 15px;
 	padding: 0;
 
 }
@@ -130,10 +130,14 @@ footer a.sugira{
 	border: 1px solid #c9c8c8;
 	display: table;
 	color: #ecb31a;
-	padding: 10px 85px 10px 85px;
+	padding: 10px 85px 10px 80px;
 	border-radius: 5px;
-	font-size: 20px;
+	font-size: 19px;
 }
+footer a.sugira:hover{
+	background:#3a3d40;
+}
+
 
 #map-canvas {
 	height: 600px;
@@ -145,4 +149,40 @@ footer a.sugira{
 }
 .iw_content {
 	padding: 15px 15px 15px 0;
+}
+.logo-rodape{
+	top:30px;
+}
+.aviso-botao-procurar{
+	color:#bbb;
+	font-size:11px;
+}
+.animar {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.espaco{
+	margin-left:10px;
+}
+.active-color{
+	color:#ecb31a;
+}
+.barra-footer{
+	background-color:#ecb31a;
+	height:18px;
+}
+.social{
+	top:-13px;
+}
+.menu-topo{
+	font-size:11px;
+}
+.taxa-corretora{	
+	font-size:35px;
+}
+.termos-de-uso a{
+	font-size:12px;
+	color:white;
 }

@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   has_one :company
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+ ROLES = %w[admin empresa cliente]
 end

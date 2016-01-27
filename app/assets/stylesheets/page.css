@@ -35,8 +35,13 @@
 }
 
 .result-search li{
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #EAEAEA;
   list-style: none;
+  padding: 10px 10px 10px 10px;
+  margin-left: -35px;
+}
+.result-search li:hover{
+	background:#f8f8f8;
 }
 .result-content{
   display: table;
@@ -50,19 +55,20 @@
   font-size: 20px;
   margin-top: 50px;
   margin-left: 30px;
-  width: 300px;
+  width: 175px;
 }
 
 .result-content .result-content-amount{
   float: left;
   font-size: 20px;
   margin-top: 20px;
-  margin-left: 30px;
-  width: 300px;
+  margin-left: 0px;
+  width: 203px;
 }
 .result-content-status{
   color: green;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: bold;
 }
 .result-content-timer{
   font-size: 12px;

@@ -1,0 +1,56 @@
+<nav>
+  <div class="breadCrumb module">
+      <ul>
+          <li>
+              Cadastros
+          </li>
+          <li>&#187;</li>
+          <li>
+              Usuários
+          </li>
+      </ul>
+  </div>
+</nav>
+<div style="color:red;">
+<%= flash[:error] %>
+</div>
+  <div class="search_breadCrumb search">
+    <div class="bts_grid">
+    </div>
+    <div class="row-fluid">
+      <div class="span12">            
+        <div data-fileupload="file" class="fileupload fileupload-new"><input type="hidden" />
+          <div class="input-append">
+            <%= link_to 'Novo', new_admin_user_path, :class => "btn" %>
+          </div>
+        </div>
+        <table class="table table-bordered dTableR" id="dt_a">
+            <thead>
+              <tr>
+                <th width="30">Codigo</th>
+                <th>Email</th>
+                <th>Permissão</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |s| %>
+                <tr>
+                  <td><%= s.id.to_s.rjust(6,'0') %></td>
+                  <td><%= s.email %></td>
+                  <td>
+                    <strong>
+                      <%= s.role %>
+                    </strong>
+                    </td>
+                  <td>
+                    <%= link_to '', edit_admin_user_path(s), class: "icon-pencil" %>
+                    <%= link_to '', [:admin, s], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
