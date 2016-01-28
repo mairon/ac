@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.roles_mask == 1     
+    if current_user.role == 'admin'
       admin_painel_path
-    elsif current_user.roles_mask == 2
+    elsif current_user.role == 'empresa'
       pcompany_painel_path
-    elsif current_user.roles_mask == 4
+    elsif current_user.role == 'cliente'
       pclient_painel_path
     end    
   end

@@ -186,3 +186,19 @@ footer a.sugira:hover{
 	font-size:12px;
 	color:white;
 }
+
+.login{
+	margin: 30px;
+}
+
+.login input[type="email"],input[type="password"]{
+	padding: 5px;
+	height: 50px !important;
+  width: 280px;
+  font-size: 16px;
+}
+
+.login a{
+	color: #000;
+	text-decoration: underline;
+}

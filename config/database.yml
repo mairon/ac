@@ -9,7 +9,7 @@ development:
   pool: 5
   username: postgres
   password: w@789789
-  host:   localhost
+  host: 162.243.6.58
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -25,5 +25,5 @@ production:
   pool: 5
   username: postgres
   password: w@789789
-  host:   localhost
+  host: 162.243.6.58
   port: 5432
