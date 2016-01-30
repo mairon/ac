@@ -6,9 +6,14 @@
 	font-weight: normal;
 	height: 60px;
 	position: relative;
-	width: 300px;
+	width: 250px;
 	border-radius: 6px;
 }
+
+.where .sbHolder{
+	margin-top: 7px;
+}
+
 .sbHolder:focus .sbSelector{
 	
 }
@@ -22,10 +27,11 @@
 	position: absolute;
 	text-indent: 10px;
 	top: 0;
-	width: 300px;
+	width: 250px;
+	background: no-repeat right url(/assets/pages/icon-flecha.png);
 }
 .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
-	color: #c9c8c8;
+	color: #DCDCDC;
 	outline: none;
 	text-decoration: none;
 }
@@ -52,10 +58,11 @@
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	margin-top: -5px;
-	width: 300px;
+	margin-top:2px;
+	width: 250px;
 	z-index: 1;
 	overflow-y: auto;
+	border-radius: 6px;
 }
 .sbOptions li{
 	padding: 0 7px;
@@ -63,17 +70,21 @@
 .sbOptions a{
 	display: block;
 	outline: none;
-	padding: 7px 0 7px 3px;
+	padding: 7px 0 7px 5px;
 }
 .sbOptions a:link, .sbOptions a:visited{
-	color: #ddd;
+	color: #777;
 	text-decoration: none;
 }
 .sbOptions a:hover,
 .sbOptions a:focus,
 .sbOptions a.sbFocus{
-	color: #EBB52D;	
+	color: #777;	
 }
 .sbOptions li.last a{
 	border-bottom: none;
+}
+
+span.sbGroup{
+	color: #DCDCDC;
 }

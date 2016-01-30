@@ -63,8 +63,9 @@
                 <td width="45">
                   <%= link_to '', edit_admin_company_path(c), class: "icon-pencil", title: 'Editar' %>
                   <%= link_to '', [:admin, c], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash", title: 'Eliminar' %>
-                  <%= link_to '', affiliates_admin_company_path(c), class: "icon-th-list", title: 'Filiais' %>
-
+                  <% if c.unit.to_i == 0 %>
+                    <%= link_to '', affiliates_admin_company_path(c), class: "icon-th-list", title: 'Filiais' %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

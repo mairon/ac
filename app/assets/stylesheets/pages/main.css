@@ -22,14 +22,14 @@
 	margin-top: -7px;
 }
 .box-left .flexa-right{
-	margin-top: -53px;
-    margin-right: 12px;
+	margin-top: -65px;
+    margin-right: -68px;
     float: right;
 }
 
 .box-left .flexa-left{
-	margin-top: 36px;
-	margin-left: -25px;
+	margin-top: 25px;
+	margin-left: -110px;
 	float: left;
 }
 
@@ -201,4 +201,12 @@ footer a.sugira:hover{
 .login a{
 	color: #000;
 	text-decoration: underline;
+}
+
+.want{
+	padding-left: 65px;
+}
+
+.where{
+	padding-left: 115px;
 }

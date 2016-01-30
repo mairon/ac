@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="navbar-brand">
+          <div class="navbar-brand menu-topo">
             <% if user_signed_in? %>
               <a href="#"><img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= current_user.email %></a> |
               <i class="fa fa-sign-out"></i><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
@@ -43,13 +43,13 @@
           </div>
         </div>
 
-        <div id="navbar" class="navbar-collapse collapse navbar-right localize">
+        <div id="navbar" class="navbar-collapse collapse navbar-right localize menu-topo">
           <a href="" title="">PT</a>
           <a href="" title="">EN</a>
           <a href="" title="">ES</a>
         </div>
 
-        <div id="navbar" class="navbar-collapse collapse navbar-right">
+        <div id="navbar" class="navbar-collapse collapse navbar-right menu-topo">
           <a href="" title="">FALE CONOSCO </a> |
           <a href="" title="">ANUNCÍE AQUI</a>
         </div>
@@ -65,8 +65,6 @@
           <input type="text" name="" value="" placeholder="Digite o nome da casa de Câmbio que procura">
           <button type="submit">PROCURAR</button>
         </div>
-        <img src="../assets/pages/icon-googleplay.png" width="200" height="72" alt="" class="icon-gp">
-        <img src="../assets/pages/icon-appstore.png" width="200" alt="" class="icon-as">
       </div>
     </div>
 
@@ -104,13 +102,16 @@
         <script type="text/javascript">
 
           $(function () {
-            $("#quero").selectbox();
+            $("#have").selectbox();
           });
 
           $(function () {
-            $("#tenho").selectbox();
+            $("#want").selectbox();
           });
 
+          $(function () {
+            $("#where").selectbox();
+          });
         </script>        
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
