@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127021858) do
+ActiveRecord::Schema.define(version: 20160130141631) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
     t.integer  "country_id"
@@ -30,19 +33,24 @@ ActiveRecord::Schema.define(version: 20160127021858) do
     t.integer  "country_id"
     t.integer  "state_id"
     t.text     "about"
-    t.string   "address",             limit: 50
+    t.string   "address",             limit: 150
     t.string   "website",             limit: 150
     t.integer  "schedule_id"
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "avatar_file_name",    limit: 50
     t.string   "avatar_content_type", limit: 20
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "telephone02",         limit: 20
     t.integer  "currency_id"
-    t.integer  "unit"
+    t.integer  "unit",                      default: 0
+    t.integer  "company_id"
+    t.string   "pin_file_name"
+    t.string   "pin_content_type"
+    t.integer  "pin_file_size"
+    t.datetime "pin_updated_at"
   end
 
   create_table "companies_currencies", force: :cascade do |t|
@@ -58,8 +66,17 @@ ActiveRecord::Schema.define(version: 20160127021858) do
     t.datetime "updated_at",            null: false
   end
 
-# Could not dump table "currencies" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "currencies", force: :cascade do |t|
+    t.string   "name",              limit: 20
+    t.string   "short",             limit: 5
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "icon_file_name",    limit: 50
+    t.string   "icon_content_type", limit: 20
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.integer  "dec",                          default: 0
+  end
 
   create_table "exchange_operations", force: :cascade do |t|
     t.integer  "exchange_id"
@@ -128,8 +145,8 @@ ActiveRecord::Schema.define(version: 20160127021858) do
     t.string   "role"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

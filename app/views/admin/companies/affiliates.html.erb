@@ -1,0 +1,46 @@
+<div class="form-horizontal">
+  <div class="row-fluid">
+    <div class="span12">
+      <h3 class="heading">
+      <div style="width: 40px; height: 40px;" class="fileupload-new thumbnail thumb-circle">
+        <%= image_tag @company.avatar.url(:thumb) %>
+      </div>
+        Central: <%= @company.name %>
+      </h3>
+      <div class="control-group formSep">
+        <table class="table table-bordered dTableR">
+            <thead>
+              <tr>
+                <th width="30">Codigo</th>
+                <th width="40">Avatar</th>
+                <th width="200">Empresa</th>
+                <th width="200">Endereço</th>
+                <th width="100">Telefone</th>
+                <th width="40"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @affiliates.each do |c| %>
+                <tr>
+                  <td width="30"><%= c.id.to_s.rjust(6,'0') %></td>
+                  <td width="40">
+                    <div style="width: 40px; height: 40px;" class="fileupload-new thumbnail thumb-circle">
+                      <%= image_tag c.avatar.url(:thumb) %>
+                    </div>
+                  </td>
+                  <td width="200"><%= c.name %></td>
+                  <td width="150"><%= c.address %></td>
+                  <td width="100"><%= c.telephone %></td>
+                  <td><%= link_to '', edit_admin_company_path(c), class: "icon-pencil", title: 'Editar' %></td>
+                  
+                </tr>
+              <% end %>
+            </tbody>    
+          </table>
+      </div>    
+    </div>
+  </div>
+  <div class="actions">
+    <%= link_to 'Voltar', admin_companies_path, :class => "btn" %> 
+  </div>
+</div>

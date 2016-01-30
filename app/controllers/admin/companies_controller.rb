@@ -2,10 +2,16 @@ class Admin::CompaniesController < AdminController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_filter :load_resources, only: %w(new create edit update)
 
+
+  def affiliates
+    @company = Company.find(params[:id])
+    @affiliates = Company.where(company_id: @company.id)
+  end
+
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.includes(:currency,:user).select("id,unit,currency_id,name,user_id,telephone")
   end
 
   # GET /companies/1
@@ -71,6 +77,6 @@ class Admin::CompaniesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:currency_id, :unit, :name, :avatar, :telephone, :longitude, :latitude, :city_id, :country_id, :state_id, :about, :address, :website, :schedule_id, :user_id, :telephone02, schedules_attributes: [:id, :weekday, :in, :to ], currency_ids: [])
+      params.require(:company).permit(:unit, :company_id, :pin, :currency_id, :unit, :name, :avatar, :telephone, :longitude, :latitude, :city_id, :country_id, :state_id, :about, :address, :website, :schedule_id, :user_id, :telephone02, schedules_attributes: [:id, :weekday, :in, :to ], currency_ids: [])
     end
 end

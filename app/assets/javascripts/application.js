@@ -40,6 +40,15 @@
 
 
 $(document).ready(function() {
+
+  if (this.id == "company_unit_1") {
+    $("#company_label").show('slow');
+    $("#company_field").show('slow');
+  } else {
+    $("#company_label").hide('slow');
+    $("#company_field").hide('slow');
+  }
+
   $(".cep").mask("99999-999");
   $(".cnpj").mask("99.999.999/9999-99");
   $(".cpf").mask("999.999.999-99");
@@ -119,3 +128,14 @@ $(function () {
     });
 
 });
+
+$('.filter_unit').click(function() {
+  if (this.id == "company_unit_1") {
+    $("#company_label").show('slow');
+    $("#company_field").show('slow');
+  } else {
+    $("#company_label").hide('slow');
+    $("#company_field").hide('slow');
+  }
+});
+

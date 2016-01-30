@@ -14,10 +14,57 @@
       <h3 class="heading">NOVA EMPRESA</h3>
       <div class="control-group formSep">  
       <table>
+
       <tr>
-        <td align="right">Usuario:</td>
+        <td align="right">Unidade:</td>
+        <td colspan="4"><%= f.radio_button :unit, 0, class: 'filter_unit' %> Central <%= f.radio_button :unit, 1, class: 'filter_unit' %> Filial<span class="f_req">*</span></td>
+
+        <td rowspan="7"  align="center" width="300" valign="top" style="padding-left: 80px">            
+          <fieldset>
+            <legend>Avatar</legend>
+            <div data-fileupload="image" class="fileupload fileupload-new">
+              <div style="width: 60px; height: 60px;" class="fileupload-new thumbnail thumb-circle">
+                <% unless @company.avatar.blank? %>
+                  <%= image_tag @company.avatar.url(:medium) %>
+                <% else %>
+                  <img src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="" />
+                <% end %>
+              </div>
+              <br/>
+              <%= f.file_field :avatar, :style => "width: 80px; height: 15px; line-height: 15px;" %>                
+            </div>     
+          </fieldset>
+          <fieldset>
+            <legend>PIN</legend>
+            <div data-fileupload="image" class="fileupload fileupload-new">
+              <div style="width: 50px; height: 50px;" class="fileupload-new thumbnail thumb-circle">
+                <% unless @company.pin.blank? %>
+                  <%= image_tag @company.pin.url(:medium) %>
+                <% else %>
+                  <img src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="" />
+                <% end %>
+              </div>
+              <br/>
+              <%= f.file_field :pin, :style => "width: 80px; height: 15px; line-height: 15px;" %>                
+            </div>     
+          </fieldset>          
+        </td>        
+      </tr>
+
+      <tr>
+        <td align="right"><div id="company_label" style="display:none">Central:</div></td>
+        <td>
+          <div id="company_field" style="display:none">
+            <%= f.collection_select :company_id, Company.select('id,name').where(unit: 0).order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td align="right">Usuário:</td>
         <td><%= f.collection_select :user_id, User.select('id,email').order('2'), :id, :email, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
       </tr>
+
       <tr>
         <td align="right">Moeda Base:</td>
         <td><%= f.collection_select :currency_id, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
@@ -25,28 +72,12 @@
         <tr>
           <td align="right">Nome:</td>
           <td colspan="4"><%= f.text_field :name, size: 57, placeholder: 'Nome da Empresa', autofocus: true %><span class="f_req">*</span></td>
-          <td rowspan="3"  align="center" width="300" valign="top" style="padding-left: 80px">            
-            <fieldset>
-              <legend>Avatar</legend>
-              <div data-fileupload="image" class="fileupload fileupload-new">
-                <div style="width: 60px; height: 60px;" class="fileupload-new thumbnail thumb-circle">
-                  <% unless @company.avatar.blank? %>
-                    <%= image_tag @company.avatar.url(:medium) %>
-                  <% else %>
-                    <img src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="" />
-                  <% end %>
-                </div>
-                <br/>
-                <%= f.file_field :avatar, :style => "width: 80px; height: 30px; line-height: 30px;" %>                
-              </div>     
-            </fieldset>
-          </td>
         </tr>
         <tr>
           <td align="right">Telefone 01:</td>
-          <td><%= f.telephone_field :telephone, size: 22 %></td>
+          <td><%= f.telephone_field :telephone, size: 13 %></td>
           <td align="right">Telefone 02:</td>
-          <td><%= f.telephone_field :telephone02, size: 22 %></td>
+          <td><%= f.telephone_field :telephone02, size: 13 %></td>
         </tr>
         <tr>
           <td align="right">Web Site:</td>

@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :exchanges
     resources :currencies
     resources :schedules
-    resources :companies
+    resources :companies do
+      member do 
+        get 'affiliates'
+      end
+    end
     resources :cities
     resources :states
     resources :countries
