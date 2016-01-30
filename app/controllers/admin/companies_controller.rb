@@ -11,7 +11,7 @@ class Admin::CompaniesController < AdminController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.includes(:currency,:user).select("id,unit,currency_id,name,user_id,telephone")
+    @companies = Company.includes(:currency,:user).select("id,unit,currency_id,name,user_id,telephone,avatar_file_name")
   end
 
   # GET /companies/1
