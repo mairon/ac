@@ -20,9 +20,9 @@ class Exchange < ActiveRecord::Base
 			reverse_amount = self.sale
 		end
 
-		ExchangeOperation.create(exchange_id: self.id, company_id: self.company_id, 
+		ExchangeOperation.create(active: true, exchange_id: self.id, company_id: self.company_id, 
 			have_id: self.currency_id, want_id: self.for, operation: current_search.operation, amount: current_amount.to_f )
-		ExchangeOperation.create(exchange_id: self.id, company_id: self.company_id, 
+		ExchangeOperation.create(active: true, exchange_id: self.id, company_id: self.company_id, 
 			have_id: self.for, want_id: self.currency_id, operation: reverse_search.operation, amount: reverse_amount.to_f )
 	end
 end

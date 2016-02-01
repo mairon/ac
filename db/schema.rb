@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130141631) do
+ActiveRecord::Schema.define(version: 20160131200802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160130141631) do
     t.datetime "avatar_updated_at"
     t.string   "telephone02",         limit: 20
     t.integer  "currency_id"
-    t.integer  "unit",                      default: 0
+    t.integer  "unit",                            default: 0
     t.integer  "company_id"
     t.string   "pin_file_name"
     t.string   "pin_content_type"
@@ -85,8 +85,9 @@ ActiveRecord::Schema.define(version: 20160130141631) do
     t.integer  "want_id"
     t.integer  "operation"
     t.decimal  "amount",      precision: 15, scale: 4, default: 0.0
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.boolean  "active",                               default: false
   end
 
   create_table "exchanges", force: :cascade do |t|
@@ -99,6 +100,8 @@ ActiveRecord::Schema.define(version: 20160130141631) do
     t.datetime "updated_at",                                         null: false
     t.integer  "for"
   end
+
+  add_index "exchanges", ["company_id"], name: "filter_company", using: :hash
 
   create_table "schedules", force: :cascade do |t|
     t.time     "in"
@@ -113,8 +116,9 @@ ActiveRecord::Schema.define(version: 20160130141631) do
     t.integer  "currency_want"
     t.integer  "currency_have"
     t.integer  "operation"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "def_format",    default: 0
   end
 
   create_table "states", force: :cascade do |t|

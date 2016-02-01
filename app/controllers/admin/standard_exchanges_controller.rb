@@ -64,6 +64,6 @@ class Admin::StandardExchangesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_exchange_params
-      params.require(:standard_exchange).permit(:currency_want, :currency_have, :operation)
+      params.require(:standard_exchange).permit(:currency_want, :currency_have, :operation, :def_format)
     end
 end

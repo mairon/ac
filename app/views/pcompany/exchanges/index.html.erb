@@ -51,8 +51,9 @@
                   <td><%= c.buy %></td>
                   <td><%= c.sale %></td>
                   <td>
-                    <%= link_to '', edit_pcompany_exchange_path(c), class: "icon-pencil" %>
+                  <% if c.exchange_operations.last.active == true %>                    
                     <%= link_to '', [:pcompany, c], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash" %>
+                  <% end %>
                   </td>
                 </tr>
               <% end %>

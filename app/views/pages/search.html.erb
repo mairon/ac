@@ -1,11 +1,11 @@
 <div id="meuMenu">
-  <%= form_tag search_path, :method => :get do %>
+  <%= form_tag search_path, :method => :get, name: "search" do %>
     <div class="col-md-12 box-cambio">
       <div class="row">
         <div class="col-md-4 box-left have">
           <label>EU TENHO 
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :have, options_from_collection_for_select(Currency.all, :id, :name, params[:have]), prompt: 'Escolha sua moeda', id: "have" %>
+          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:have]), id: "have", :required => true %>
         </div>
 
         <div class="col-md-4 box-left want">
@@ -14,19 +14,19 @@
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :want, options_from_collection_for_select(Currency.all, :id, :name, params[:want]), prompt: 'Escolha sua moeda', id: "want" %>
+          <%= select_tag :want, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:want]), id: "want", :required => true %>
           <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
         </div>
         <div class="col-md-4 box-left where">
           <label>AONDE? 
           <img src="assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
-          <%= select_tag :where, option_groups_from_collection_for_select(Country.all, :cities, :name, :id, :name, params[:where]), prompt: 'Escolha a cidade', id: "where" %>
+          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name'), :cities, :name, :id, :name, params[:where]), id: "where", :required => true %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12" align="center">
-        <button type="submit" class="submit-cambio">
+        <button type="submit" class="submit-cambio" ng-disabled="search.$invalid">
           <img src="assets/pages/lupa.png" height="32" alt="procurar"> PROCURAR*
         </button>
         <br>
@@ -38,88 +38,38 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="result-search">
-      <ul>
-        <% @companies.each do |c| %>
-          <li class="title ccBranchOfficeMap" data-coordenada="<%= c.company.latitude %>,<%= c.company.longitude %>,<%= c.company.id %>">
-            <div class="result-content">
-              <div class="thumbnail thumb-circle">
-                <%= image_tag c.company.avatar.url(:medium) %>
+    <% if @companies.present? %>
+      <div class="result-search">
+        <ul>
+          <% @companies.each do |c| %>
+            <li class="title ccBranchOfficeMap" data-coordenada="<%= c.company.latitude %>,<%= c.company.longitude %>,<%= c.company.id %>">
+              <div class="result-content">
+                <div class="thumbnail thumb-circle">
+                  <%= image_tag c.company.avatar.url(:medium) %>
+                </div>
+                <div class="result-content-name" align="center">
+                  <%= c.company.name %>
+                  <br>
+                  <span class="result-content-status">Aberto</span>
+                </div>
+                <div class="result-content-amount" align="center">
+                  <strong><%= number_to_currency(c.amount, :format=>' %n ', :precision => c.def_format ) %></strong>
+                  <br>
+                  <img src="assets/pages/timer.png" height="15" alt="procurar">
+                  <span class="result-content-timer">Atualizado há <b><%= time_ago_in_words(c.created_at) %></b></span>
+                  <br>
+                  <%= link_to 'Veja Mais', '#', class: 'result-content-veja-mais' %>
+                </div>
               </div>
-              <div class="result-content-name" align="center">
-                <%= c.company.name %>
-                <br>
-                <span class="result-content-status">Aberto</span>
-              </div>
-              <div class="result-content-amount" align="center">
-                <strong><%= number_to_currency(c.amount, :format=>' %n ', :precision => 0 ) %></strong>
-                <br>
-                <img src="assets/pages/timer.png" height="15" alt="procurar">
-                <span class="result-content-timer">Atualizado há <b><%= time_ago_in_words(c.created_at) %></b></span>
-                <br>
-                <%= link_to 'Veja Mais', '#', class: 'result-content-veja-mais' %>
-
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>      
-    </div>
+            </li>
+          <% end %>
+        </ul>      
+      </div>
+    <% else %>
+      <h3 align="center">Nenhuma cotação encontrado :( </h3>
+    <% end %>
   </div>
 </div>
 </div>
 <input type="hidden" name="" value="" placeholder="" id="close-info">
 <div id="map-canvas"></div>
-<script type="text/javascript">
-  var infowindow;
-  $(function() {
-    map = new GMaps({
-      div: '#map-canvas',
-      lat: -23.501831,
-      lng: -57.771206,
-      zoom: 6,
-      scrollwheel: false
-
-    });
-
-    google.maps.Map.prototype.clearMarkers = function() {
-        if(infowindow) {
-          infowindow.close();
-        }
-        
-        for(var i=0; i<this.markers.length; i++){
-          this.markers[i].set_map(null);
-        }
-      };
-<% @companies.each do |c| %>
-  marck<%= c.company.id %> = map.addMarker({
-      lat: <%= c.company.latitude %>,
-      lng: <%= c.company.longitude %>,
-      icon: '/assets/pages/pin-aquicambio.png',
-      title: '<%= c.company.name %>',  
-      id: 1234,    
-      infoWindow: {
-        content: '<div class="map-content" align="center"><h3><%= c.company.name %></h3><p><div class="thumbnail infowin-thumb-circle"><%= image_tag c.company.avatar.url(:medium) %></div></p><p><%= c.company.address%><br/><a href="tel:<%= c.company.telephone %>"><%= c.company.telephone %></div>'
-      }
-    });
-  <% end %>
-    $('.ccBranchOfficeMap').click(function(){
-      coordenada = $(this).attr('data-coordenada').split(',');
-      var open_info  = eval('marck' + coordenada[2]);
-      var close_info  = eval($("#close-info").val());
-      map.setCenter(coordenada[0],coordenada[1]);
-      $('html, body').stop().animate({
-          scrollTop: ($("#map-canvas").offset().top - 50)
-      }, 1250, 'easeInOutExpo');
-
-      map.setZoom(19);
-      if ($("#close-info").val() != "") {
-        (close_info.infoWindow).close(close_info.map, close_info);  
-      };
-      
-      $("#close-info").val('marck' + coordenada[2]);
-      (open_info.infoWindow).open(open_info.map, open_info);
-    });
-  });
-  
-</script>

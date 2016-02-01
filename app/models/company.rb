@@ -18,22 +18,14 @@ class Company < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :pin, :styles => {
-         :medium => {:geometry => "100x100",
-               :convert_options => "-gravity center -extent 100x100  -quality 100"},
-
-         :large => {:geometry => "300x300",
-               :convert_options => "-gravity center -extent 300x300  -quality 100"},
-         :thumb => {:geometry => "50x50",
-              :convert_options => "-gravity center -extent 50x50  -quality 100"}}
+  has_attached_file :pin, :default_url => "/assets/pages/pin-aquicambio.png", :styles => {
+        medium: {geometry: "100x100",
+          convert_options: "-gravity center -extent 100x100  -quality 100 -background transparent"},
+        large: {geometry: "300x300",
+          convert_options: "-gravity center -extent 300x300  -quality 100 -background transparent"},
+        thumb: {geometry: "50x50",
+          convert_options: "-gravity center -extent 50x50  -quality 100 -background transparent"}}
 
   validates_attachment_content_type :pin, :content_type => /\Aimage\/.*\Z/
 
-  before_save :check_central!
-
-  def check_central!
-    if self.unit == 0
-      self.company_id = 0
-    end
-  end    
 end

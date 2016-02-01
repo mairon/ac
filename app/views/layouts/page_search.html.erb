@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -14,11 +14,16 @@
 
         <%= stylesheet_link_tag "page", media: 'all', 'data-turbolinks-track' => true %>
         <%= csrf_meta_tags %>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script>
+          //* hide all elements & show preloader
+          document.documentElement.className += 'js';
+        </script>
     </head>
-    <body>
-      <!--[if lt IE 8]>
-          <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
+    <body ng-app>
+    <div id="loading_layer" style="display:none"><%= image_tag "ajax_loader.gif" %></div>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -98,50 +103,39 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <%= javascript_include_tag "page", 'data-turbolinks-track' => true %>
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-
         <script type="text/javascript">
 
           var infowindow;
           $(function() {
             map = new GMaps({
               div: '#map-canvas',
-              lat: -23.501831,
-              lng: -57.771206,
-              zoom: 6,
+              lat: <%= @companies_map.first.latitude if @companies_map.present? %>,
+              lng:  <%= @companies_map.first.longitude if @companies_map.present? %>,
+              zoom: 12,
               scrollwheel: false
 
             });
 
             google.maps.Map.prototype.clearMarkers = function() {
-                if(infowindow) {
-                  infowindow.close();
-                }
+              if(infowindow) {
+                infowindow.close();
+              }
                 
-                for(var i=0; i<this.markers.length; i++){
-                  this.markers[i].set_map(null);
-                }
-              };
-        <% @companies.each do |c| %>
+              for(var i=0; i<this.markers.length; i++){
+                this.markers[i].set_map(null);
+              }
+            };
+        <% @companies_map.each do |c| %>
           marck<%= c.company.id %> = map.addMarker({
-              lat: <%= c.company.latitude %>,
-              lng: <%= c.company.longitude %>,
-              icon: '/assets/pages/pin-aquicambio.png',
-              title: '<%= c.company.name %>',  
-              id: 1234,    
+              lat: <%= c.latitude %>,
+              lng: <%= c.longitude %>,
+              icon: '<%= c.company.pin.url %>',
+              title: '<%= c.name %>',
               infoWindow: {
-                content: '<div class="map-content" align="center"><h3><%= c.company.name %></h3><p><div class="thumbnail infowin-thumb-circle"><%= image_tag c.company.avatar.url(:medium) %></div></p><p><%= c.company.address%><br/><a href="tel:<%= c.company.telephone %>"><%= c.company.telephone %></div>'
+                content: '<div class="map-content" align="center"><h3><%= c.company.name %></h3><p><div class="thumbnail infowin-thumb-circle"><%= image_tag c.company.avatar.url(:medium) %></div></p><p><%= c.address%><br/><a href="tel:<%= c.telephone %>"><%= c.telephone %></div>'
               }
             });
-          <% end %>
+        <% end %>
             $('.ccBranchOfficeMap').click(function(){
               coordenada = $(this).attr('data-coordenada').split(',');
               var open_info  = eval('marck' + coordenada[2]);
@@ -151,7 +145,7 @@
                   scrollTop: ($("#map-canvas").offset().top - 50)
               }, 1250, 'easeInOutExpo');
 
-              map.setZoom(19);
+              map.setZoom(15);
               if ($("#close-info").val() != "") {
                 (close_info.infoWindow).close(close_info.map, close_info);  
               };
@@ -159,22 +153,24 @@
               $("#close-info").val('marck' + coordenada[2]);
               (open_info.infoWindow).open(open_info.map, open_info);
             });
-          });
-          
+          });          
         </script>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script type="text/javascript">
+          $(document).ready(function() {
+            //* show all elements & remove preloader
+            setTimeout('$("html").removeClass("js")', 1000);
+            $('#where').val("2");
 
-          $(function () {
-            $("#have").selectbox();
-          });
-
-          $(function () {
-            $("#want").selectbox();
-          });
-
-          $(function () {
-            $("#where").selectbox();
           });
         </script>
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>        
     </body>
 </html>

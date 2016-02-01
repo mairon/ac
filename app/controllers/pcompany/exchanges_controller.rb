@@ -10,8 +10,7 @@ class Pcompany::ExchangesController < PcompanyController
     redirect_to pcompany_exchanges_url, notice: 'Multiplos registros Efetuado com Sucesso!'
   end
   def index
-    @exchanges = Exchange.where(company_id: current_user.company.id).order('date desc')
-    #ExchangeOperation.crawler_auto
+    @exchanges = Exchange.includes(:currency, :exchange_operations).where(company_id: current_user.company.id).order('id desc')
   end
 
   # GET /exchanges/new
