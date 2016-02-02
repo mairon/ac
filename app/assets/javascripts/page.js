@@ -7,7 +7,6 @@
 //= require pages/vendor/jquery.selectbox-0.2
 //= require pages/map
 
-
 $( ".submit-cambio" ).click(function() {
   document.documentElement.className += 'js';
 });          

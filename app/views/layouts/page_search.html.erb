@@ -23,7 +23,7 @@
         </script>
     </head>
     <body ng-app>
-    <div id="loading_layer" style="display:none"><%= image_tag "ajax_loader.gif" %></div>
+    <div id="loading_layer" style="display:none"> <div class='uil-facebook-css' style='-webkit-transform:scale(0.25)'><div></div><div></div><div></div></div></div>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -160,10 +160,14 @@
         <script type="text/javascript">
           $(document).ready(function() {
             //* show all elements & remove preloader
-            setTimeout('$("html").removeClass("js")', 1000);
-            $('#where').val("2");
-
+            setTimeout('$("html").removeClass("js")', 2000);
           });
+
+          window.onload=function(){
+            $('html, body').stop().animate({
+                scrollTop: ($("#search").offset().top - 60)
+            }, 2500, 'easeInOutExpo');
+          };
         </script>
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

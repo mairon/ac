@@ -14,8 +14,7 @@
 	margin-top: 7px;
 }
 
-.sbHolder:focus .sbSelector{
-	
+.sbHolder:focus .sbSelector{	
 }
 .sbSelector{
 	display: block;
@@ -31,7 +30,7 @@
 	background: no-repeat right url(/assets/pages/icon-flecha.png);
 }
 .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
-	color: #DCDCDC;
+	color: #c9c8c8;
 	outline: none;
 	text-decoration: none;
 }

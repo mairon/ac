@@ -18,16 +18,16 @@
           <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
         </div>
         <div class="col-md-4 box-left where">
-          <label>AONDE? 
+          <label>ONDE? 
           <img src="assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
-          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name'), :cities, :name, :id, :name, params[:where]), id: "where", :required => true %>
+          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name'), :cities, :name, :id, :name, params[:where]), id: "where", :required => true %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12" align="center">
         <button type="submit" class="submit-cambio" ng-disabled="search.$invalid">
-          <img src="assets/pages/lupa.png" height="32" alt="procurar"> PROCURAR*
+          <img src="assets/pages/lupa.png" height="32" alt="procurar"> ECONOMIZAR!
         </button>
         <br>
         <br>
@@ -39,7 +39,7 @@
 <div class="row">
   <div class="col-md-12">
     <% if @companies.present? %>
-      <div class="result-search">
+      <div class="result-search" id="search">
         <ul>
           <% @companies.each do |c| %>
             <li class="title ccBranchOfficeMap" data-coordenada="<%= c.company.latitude %>,<%= c.company.longitude %>,<%= c.company.id %>">
