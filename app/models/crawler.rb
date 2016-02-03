@@ -175,5 +175,118 @@ class Crawler < ActiveRecord::Base
     )
 	end
 
+	def self.get_website_mercosur_central
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.mercosurcambios.com/cotizaciones/1/matriz-centro')
+		get_val = page.search(".//td")
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		ps_rs_c = ''
+		ps_rs_v = ''
+
+		es_us_c = ''
+		es_us_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		es_rs_c = ''
+		es_rs_v = ''
+
+		count = 0
+		content = ''
+		@get_val.each do |c|
+			if c.to_s.gsub(/\s+/, "")[0..28] == '<tdwidth="65%"align="center">'
+			
+				<%= content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdwidth="65%"align="center">', "").gsub("</td>", "")
+
+				if content[0..2] == '{0}'
+					us_gs_c =content[3..7]
+				end
+
+				if content[0..2] == '{1}'
+					us_gs_v =content[3..7]
+				end
+
+				if content[0..2] == '{2}'
+					rs_gs_c =content[3..7]
+				end
+
+				if content[0..2] == '{3}'
+					rs_gs_v =content[3..7]
+				end
+
+				if content[0..2] == '{4}'
+					us_rs_c =content[3..7]
+				end
+
+				if content[0..2] == '{5}'
+					us_rs_v =content[3..7]
+				end
+
+				if content[0..2] == '{6}'
+					es_gs_c =content[3..7]
+				end
+
+				if content[0..2] == '{7}'
+					es_gs_v =content[3..7]
+				end
+
+				if content[0..2] == '{8}'
+					ps_gs_c =content[3..7]
+				end
+
+				if content[0..2] == '{9}'
+					ps_gs_v =content[3..7]
+				end
+
+				if content[0..3] == '{10}'
+					ps_rs_c =content[4..7]
+				end
+
+				if content[0..3] == '{11}'
+					ps_rs_v =content[4..7]
+				end
+
+				if content[0..3] == '{12}'
+					es_us_c =content[4..7]
+				end
+
+				if content[0..3] == '{13}'
+					es_us_v =content[4..7]
+				end
+
+				if content[0..3] == '{14}'
+					us_ps_c =content[4..7]
+				end
+
+				if content[0..3] == '{15}'
+					us_ps_v =content[4..7]
+				end
+
+				if content[0..3] == '{16}'
+					es_rs_c =content[4..7]
+				end
+
+				if content[0..3] == '{17}'
+					es_rs_v =content[4..7]
+				end
+			 	count += 1
+		 	end
+		end		
+	end
 
 end

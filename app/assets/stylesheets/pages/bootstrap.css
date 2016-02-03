@@ -12,12 +12,8 @@
   }
   body {
     margin: 0;	
-    background: url(/assets/pages/bg.png) no-repeat center center;    
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    top:-800px}
+    background: url(/assets/pages/bg.png) no-repeat top center;    
+    top:250px}
 
 
   article,
@@ -4646,21 +4642,17 @@
     margin-left: 3px;
   }
   .jumbotron {
-    padding: 30px 15px;
-    margin-bottom: 30px;
     color: inherit;
-    height: 172px;
     background-color: #fff;
     border-bottom: 2px solid #F7F7F7;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    margin-top: 40px;
   }
 
   .jumbotron img.logo{
-    margin-top: 15px;
-  }
-
-  .jumbotron img.logo{
-    top: 32px;
-    position: absolute;
+    margin-top: 22px;
   }
 
   .jumbotron img.icon-as{
@@ -4675,15 +4667,17 @@
   }
 
   .form-busca{
-    float: left;
+    float: right;
     display: table;
-    margin-left: 430px;
-    padding-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
   }
 
   .form-busca input{
     height: 50px;
     width: 566px;
+    margin: 0px;
     padding: 10px 10px 10px 48px;
     border: 2px solid #e3e1df;
     border-radius: 5px;
@@ -4703,7 +4697,7 @@
   }
 
   .principal{
-    padding-top: 10px;
+    padding-top: 170px;
   }
   .social p{
     float: left;
@@ -4736,7 +4730,6 @@
   }
   @media screen and (min-width: 768px) {
     .jumbotron {
-      padding: 48px 0;
     }
     .container .jumbotron,
     .container-fluid .jumbotron {
