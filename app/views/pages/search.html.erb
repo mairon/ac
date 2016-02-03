@@ -42,7 +42,6 @@
       <div class="result-search" id="search">
         <ul>
           <% @companies.each do |c| %>
-          <% 16.times do |t| %>            
             <li class="title ccBranchOfficeMap" data-coordenada="<%= c.company.latitude %>,<%= c.company.longitude %>,<%= c.company.id %>">
               <div class="result-content">
                 <div class="thumbnail thumb-circle">
@@ -63,12 +62,11 @@
                 </div>
               </div>
             </li>
-            <% end %>
           <% end %>
         </ul>      
       </div>
     <% else %>
-      <h3 align="center">Nenhuma cotação encontrado :( </h3>
+      <h3 align="center">Nenhuma cotação encontrada :( </h3>
     <% end %>
   </div>
 </div>
