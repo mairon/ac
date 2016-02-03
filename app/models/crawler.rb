@@ -211,7 +211,7 @@ class Crawler < ActiveRecord::Base
 		@get_val.each do |c|
 			if c.to_s.gsub(/\s+/, "")[0..28] == '<tdwidth="65%"align="center">'
 			
-				<%= content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdwidth="65%"align="center">', "").gsub("</td>", "")
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdwidth="65%"align="center">', "").gsub("</td>", "")
 
 				if content[0..2] == '{0}'
 					us_gs_c =content[3..7]
