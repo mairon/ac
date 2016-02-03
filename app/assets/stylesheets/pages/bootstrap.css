@@ -4166,19 +4166,15 @@
       padding: 9px 15px;
       font-size: 14px;
       line-height: 20px;
-      color: #fff !important;
+      color: #fff;
     }
 
     .localize{
       margin-left: 35px !important;
     }
     .navbar-right  a{
-      color: #fff !important;
+      color: #fff;
     }
-    a:hover{
-      color: #ecb31a !important;
-    }
-
     .navbar-right ~ .navbar-right {
       margin-right: 0;
     }

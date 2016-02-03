@@ -132,7 +132,7 @@
               icon: '<%= c.company.pin.url %>',
               title: '<%= c.name %>',
               infoWindow: {
-                content: '<div class="map-content" align="center"><h3><%= c.company.name %></h3><p><div class="thumbnail infowin-thumb-circle"><%= image_tag c.company.avatar.url(:medium) %></div></p><p><%= c.address%><br/><a href="tel:<%= c.telephone %>"><%= c.telephone %></div>'
+                content: '<div class="map-content" align="center"><div class="thumbnail infowin-thumb-circle" align="center"><%= image_tag c.company.avatar.url(:medium) %></div><h3><%= c.company.name %></h3><h2>Aberto ao público</h2><div class="valor"><img src="/assets/pages/icon-dinheiro.png" alt="" width="23" height="32" class="flexa-right" ><%= number_to_currency(c.amount, :format=>"%n", :precision => c.def_format ) %></div><div class="endereco"><%= c.address%></div><div class="telefone">Tel: <%= c.telephone %></div><div class="oferta"><a>Faça uma oferta!</a></div></div>'
               }
             });
         <% end %>

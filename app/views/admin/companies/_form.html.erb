@@ -98,7 +98,21 @@
         </tr>
       </table>
     </div>
-
+    <h5 class="heading">MOEDAS</h5>
+    <div class="control-group formSep">
+        <table>
+          <tr>
+            <% @currencies.each do |c| %>
+              <td>
+                <label class="checkbox" >
+                  <%= check_box_tag "company[currency_ids][]", c.id, @company.currencies.include?(c), class: "id#{c.id}" %> 
+                  <%= image_tag c.icon.url(:thumb) %> <%= c.short %>
+                </label>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
 
     <h5 class="heading">Endereço:</h5>
     <div class="control-group formSep">
@@ -134,22 +148,23 @@
           </td>
         </tr>        
       </table>
-      <div class="control-group formSep">
-        <h5 class="heading">MOEDAS</h5>
-          <table>
-            <tr>
-              <% @currencies.each do |c| %>
-                <td>
-                  <label class="checkbox" >
-                    <%= check_box_tag "company[currency_ids][]", c.id, @company.currencies.include?(c), class: "id#{c.id}" %> 
-                    <%= image_tag c.icon.url(:thumb) %> <%= c.short %>
-                  </label>
-                </td>
-              <% end %>
-            </tr>
-          </table>
-      </div>
     </div>
+
+    <h5 class="heading">CRAWLER</h5>
+    <div class="control-group formSep">
+        <table>
+          <tr>
+            <td align="right">Grupo:</td>
+            <td><%= f.collection_select :crawler_id, Crawler.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %></td>
+          </tr>
+          <tr>
+            <td align="right">Url:</td>
+            <td><%= f.url_field :crawler_url, size: 57, placeholder: 'https://' %></td>
+          </tr>
+
+        </table>
+      </div>
+
     <div class="actions">
       <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
       <%= link_to 'Voltar', admin_companies_path, :class => "btn" %> 

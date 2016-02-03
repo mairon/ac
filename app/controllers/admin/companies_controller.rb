@@ -77,6 +77,6 @@ class Admin::CompaniesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:unit, :company_id, :pin, :currency_id, :unit, :name, :avatar, :telephone, :longitude, :latitude, :city_id, :country_id, :state_id, :about, :address, :website, :schedule_id, :user_id, :telephone02, schedules_attributes: [:id, :weekday, :in, :to ], currency_ids: [])
+      params.require(:company).permit(:crawler_id, :crawler_url, :unit, :company_id, :pin, :currency_id, :unit, :name, :avatar, :telephone, :longitude, :latitude, :city_id, :country_id, :state_id, :about, :address, :website, :schedule_id, :user_id, :telephone02, schedules_attributes: [:id, :weekday, :in, :to ], currency_ids: [])
     end
 end

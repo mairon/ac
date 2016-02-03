@@ -26,7 +26,7 @@
     width: 1240px;
     z-index: 9;
     margin-top: 100px;
-    display: table;
+    display: table;    
 }
 
 .result-search
@@ -58,11 +58,15 @@
 {
   background: #f8f8f8;
 }
-.result-content
-{
+.result-content{
   border: solid 1px #F7F7F7;
   display: table;
   padding: 10px;
+}
+
+.result-content a:hover{
+  color: #333;
+  text-decoration: underline;
 }
 
 .result-content .result-content-name
@@ -113,8 +117,7 @@
 .infowin-thumb-circle,.infowin-thumb-circle img
 {
   border-radius: 50%;
-  width: 100%;
-  width: 100px;
+  width: 60px;
   z-index: -10;
 }
 
@@ -132,3 +135,62 @@
 .js #loading_layer .uil-facebook-css {position:fixed;top:50%;left:50%;width:64px;height:10px;margin:-5px 0 0 -32px}
 .js .tab-pane {display:block !important}
 .js .hide {display: inherit}
+
+
+
+/* pin */
+
+.map-content{
+  width: 220px;
+  height: 330px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.map-content h3{
+  text-align: center;
+    color: #344351;
+    font-size: 17px;
+    font-weight: 900; 
+}
+.map-content  h2{
+  color: green;
+    font-size: 13px;
+    font-weight: bold;
+  margin-top:0px;
+}
+.map-content .valor {
+    color: #333;
+    font-size: 28px;
+    font-weight: 900;
+}
+.map-content .valor img{
+  margin-right:10px;
+}
+.map-content .endereco{
+  text-align: center;
+  font-size:14px;
+  margin-top:10px;
+  text-align:justify;
+}
+.map-content .telefone{
+  font-size: 14px;
+    font-weight: 900;
+  margin-top:10px;
+}
+.map-content .oferta{
+  border-radius: 5px;
+    background: #ecb31a;
+  margin-top:20px;
+  padding: 10px 20px;
+}
+.map-content .oferta a{
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;  
+}
+
+.map-content .oferta a:hover{
+  color: #333;
+  text-decoration: underline;
+}
+

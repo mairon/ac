@@ -215,3 +215,9 @@ footer a.sugira:hover{
 .where{
 	padding-left: 115px;
 }
+
+.navbar a:hover{
+  color: #ecb31a;
+  text-decoration: underline;
+}
+

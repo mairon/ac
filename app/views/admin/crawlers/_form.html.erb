@@ -1,0 +1,30 @@
+<%= form_for( [:admin, @crawler] , html:  {:multipart => true, class: "form-horizontal"})  do |f| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <% if @crawler.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@crawler.errors.count, "error") %> prohibited this crawler from being saved:</h2>
+
+          <ul>
+          <% @crawler.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">NOVO Crawler</h3>
+      <div class="control-group formSep">  
+      <table>
+        <tr>
+          <td align="right">Empresa:</td>
+          <td><%= f.text_field :name, size: '30', placeholder: 'Nome do Estado' %><span class="f_req">*</span></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
+      <%= link_to 'Voltar', admin_crawlers_path, :class => "btn" %> 
+    </div>
+  </div>
+<% end %>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get  '/painel', to: 'painel#index'
+    resources :crawlers
     resources :exchanges
     resources :currencies
     resources :schedules

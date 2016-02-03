@@ -175,118 +175,211 @@ class Crawler < ActiveRecord::Base
     )
 	end
 
-	def self.get_website_mercosur_central
+	def self.get_website_mercosur
 		mechanize = Mechanize.new
-		page = mechanize.get('http://www.mercosurcambios.com/cotizaciones/1/matriz-centro')
-		get_val = page.search(".//td")
-		us_gs_c = ''
-		us_gs_v = ''
 
-		rs_gs_c = ''
-		rs_gs_v = ''
+		list_crawler = Company.where(crawler_id: 3) #mercosur
+		list_crawler.each do |lc|
+			page = mechanize.get(lc.crawler_url.to_s)
+			get_val = page.search(".//td")
+			us_gs_c = ''
+			us_gs_v = ''
 
-		us_rs_c = ''
-		us_rs_v = ''
+			rs_gs_c = ''
+			rs_gs_v = ''
 
-		es_gs_c = ''
-		es_gs_v = ''
+			us_rs_c = ''
+			us_rs_v = ''
 
-		ps_gs_c = ''
-		ps_gs_v = ''
+			es_gs_c = ''
+			es_gs_v = ''
 
-		ps_rs_c = ''
-		ps_rs_v = ''
+			ps_gs_c = ''
+			ps_gs_v = ''
 
-		es_us_c = ''
-		es_us_v = ''
+			ps_rs_c = ''
+			ps_rs_v = ''
 
-		us_ps_c = ''
-		us_ps_v = ''
+			es_us_c = ''
+			es_us_v = ''
 
-		es_rs_c = ''
-		es_rs_v = ''
+			us_ps_c = ''
+			us_ps_v = ''
 
-		count = 0
-		content = ''
-		@get_val.each do |c|
-			if c.to_s.gsub(/\s+/, "")[0..28] == '<tdwidth="65%"align="center">'
-			
-				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdwidth="65%"align="center">', "").gsub("</td>", "")
+			es_rs_c = ''
+			es_rs_v = ''
 
-				if content[0..2] == '{0}'
-					us_gs_c =content[3..7]
-				end
+			count = 0
+			content = ''
+			get_val.each do |c|
+				if c.to_s.gsub(/\s+/, "")[0..28] == '<tdwidth="65%"align="center">'
+				
+					content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdwidth="65%"align="center">', "").gsub("</td>", "")
 
-				if content[0..2] == '{1}'
-					us_gs_v =content[3..7]
-				end
+					if content[0..2] == '{0}'
+						us_gs_c =content[3..7]
+					end
 
-				if content[0..2] == '{2}'
-					rs_gs_c =content[3..7]
-				end
+					if content[0..2] == '{1}'
+						us_gs_v =content[3..7]
+					end
 
-				if content[0..2] == '{3}'
-					rs_gs_v =content[3..7]
-				end
+					if content[0..2] == '{2}'
+						rs_gs_c =content[3..7]
+					end
 
-				if content[0..2] == '{4}'
-					us_rs_c =content[3..7]
-				end
+					if content[0..2] == '{3}'
+						rs_gs_v =content[3..7]
+					end
 
-				if content[0..2] == '{5}'
-					us_rs_v =content[3..7]
-				end
+					if content[0..2] == '{4}'
+						us_rs_c =content[3..7]
+					end
 
-				if content[0..2] == '{6}'
-					es_gs_c =content[3..7]
-				end
+					if content[0..2] == '{5}'
+						us_rs_v =content[3..7]
+					end
 
-				if content[0..2] == '{7}'
-					es_gs_v =content[3..7]
-				end
+					if content[0..2] == '{6}'
+						es_gs_c =content[3..7]
+					end
 
-				if content[0..2] == '{8}'
-					ps_gs_c =content[3..7]
-				end
+					if content[0..2] == '{7}'
+						es_gs_v =content[3..7]
+					end
 
-				if content[0..2] == '{9}'
-					ps_gs_v =content[3..7]
-				end
+					if content[0..2] == '{8}'
+						ps_gs_c =content[3..7]
+					end
 
-				if content[0..3] == '{10}'
-					ps_rs_c =content[4..7]
-				end
+					if content[0..2] == '{9}'
+						ps_gs_v =content[3..7]
+					end
 
-				if content[0..3] == '{11}'
-					ps_rs_v =content[4..7]
-				end
+					if content[0..3] == '{10}'
+						ps_rs_c =content[4..7]
+					end
 
-				if content[0..3] == '{12}'
-					es_us_c =content[4..7]
-				end
+					if content[0..3] == '{11}'
+						ps_rs_v =content[4..7]
+					end
 
-				if content[0..3] == '{13}'
-					es_us_v =content[4..7]
-				end
+					if content[0..3] == '{12}'
+						es_us_c =content[4..7]
+					end
 
-				if content[0..3] == '{14}'
-					us_ps_c =content[4..7]
-				end
+					if content[0..3] == '{13}'
+						es_us_v =content[4..7]
+					end
 
-				if content[0..3] == '{15}'
-					us_ps_v =content[4..7]
-				end
+					if content[0..3] == '{14}'
+						us_ps_c =content[4..7]
+					end
 
-				if content[0..3] == '{16}'
-					es_rs_c =content[4..7]
-				end
+					if content[0..3] == '{15}'
+						us_ps_v =content[4..7]
+					end
 
-				if content[0..3] == '{17}'
-					es_rs_v =content[4..7]
-				end
-			 	count += 1
-		 	end
-		end		
+					if content[0..3] == '{16}'
+						es_rs_c =content[4..7]
+					end
+
+					if content[0..3] == '{17}'
+						es_rs_v =content[4..7]
+					end
+				 	count += 1
+			 	end
+			end
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      2,
+	    	buy:        us_gs_c.to_f,
+	    	sale:       us_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      3,
+	    	buy:        us_rs_c.to_f,
+	    	sale:       us_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      2,
+	    	buy:        es_gs_c.to_f,
+	    	sale:       es_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      2,
+	    	buy:        ps_gs_c.to_f,
+	    	sale:       ps_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      3,
+	    	buy:        ps_rs_c.to_f,
+	    	sale:       ps_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      1,
+	    	buy:        es_us_c.to_f,
+	    	sale:       es_us_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      4,
+	    	buy:        us_ps_c.to_f,
+	    	sale:       us_ps_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      3,
+	    	buy:        es_rs_c.to_f,
+	    	sale:       es_rs_v.to_f,
+	    )
+  	end #lista empresas
 	end
-
 end

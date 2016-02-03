@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201023215) do
+ActiveRecord::Schema.define(version: 20160203192320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20160201023215) do
     t.string   "pin_content_type"
     t.integer  "pin_file_size"
     t.datetime "pin_updated_at"
+    t.integer  "crawler_id"
+    t.string   "crawler_url"
   end
 
   create_table "companies_currencies", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160201023215) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "currencies", force: :cascade do |t|
