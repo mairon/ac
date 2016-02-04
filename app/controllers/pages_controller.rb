@@ -28,7 +28,7 @@ class PagesController < ApplicationController
 						AND E.WANT_ID = ?
 						ORDER BY 6 DESC"
 
-		sql_map = "SELECT C.ID,
+		sql_map = "SELECT C.ID AS COMPANY_ID,
 						      C.CITY_ID,
 						      C.NAME,
 						      C.LATITUDE,
