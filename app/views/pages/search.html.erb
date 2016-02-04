@@ -42,7 +42,7 @@
       <div class="result-search" id="search">
         <ul>
           <% @companies.each do |c| %>
-            <li class="title ccBranchOfficeMap" data-coordenada="<%= c.company.latitude %>,<%= c.company.longitude %>,<%= c.company.id %>">
+            <li class="title ccBranchOfficeMap" data-coordenada="<%= c.latitude %>,<%= c.longitude %>,<%= c.unit_id %>">
               <div class="result-content">
                 <div class="thumbnail thumb-circle">
                   <%= image_tag c.company.avatar.url(:medium) %>

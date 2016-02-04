@@ -382,4 +382,472 @@ class Crawler < ActiveRecord::Base
 	    )
   	end #lista empresas
 	end
+
+	def self.get_website_lamoneda
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.lamoneda.com.py/Cotizacionmatriz.php')
+		get_val = page.search(".//td")
+
+		 us_gs_c = ''
+		 us_gs_v = ''
+
+		 rs_gs_c = ''
+		 rs_gs_v = ''
+
+		 ps_gs_c = ''
+		 ps_gs_v = ''
+
+		 es_gs_c = ''
+		 es_gs_v = ''
+
+		 us_rs_c = ''
+		 us_rs_v = ''
+
+		 us_ps_c = ''
+		 us_ps_v = ''
+
+		 us_es_c = ''
+		 us_es_v = ''
+
+		 count = 0
+		 content = ''
+		 get_val.each do |c|
+			 if c.to_s.gsub(/\s+/, "")[0..16] == '<tdalign="right">'
+			
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdalign="right">', "").gsub("</td>", "")
+
+				 if content[0..2] == '{0}'
+					 us_gs_c =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{1}'
+					 us_gs_v =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{2}'
+					 rs_gs_c =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{3}'
+					 rs_gs_v =content[3..7].gsub(".","")
+				 end
+
+
+				 if content[0..2] == '{4}'
+					 ps_gs_c =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{5}'
+					 ps_gs_v =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{6}'
+					 es_gs_c =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{7}'
+					 es_gs_v =content[3..7].gsub(".","")
+				 end
+
+				 if content[0..2] == '{8}'
+					 us_rs_c =content[3..7]
+				 end
+
+				 if content[0..2] == '{9}'
+					 us_rs_v =content[3..7]
+				 end
+
+				 if content[0..3] == '{10}'
+					 us_ps_c =content[4..7]
+				 end
+
+				 if content[0..3] == '{11}'
+					 us_ps_v =content[4..7]
+				 end		
+
+				 if content[0..3] == '{12}'
+					 us_es_c =content[4..7]
+				 end
+
+				 if content[0..3] == '{13}'
+					 us_es_v =content[4..7]
+				 end		
+			 	 count += 1
+		 	 	end
+		 	end
+
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      2,
+	    	buy:        us_gs_c.to_f,
+	    	sale:       us_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      2,
+	    	buy:        ps_gs_c.to_f,
+	    	sale:       ps_gs_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      2,
+	    	buy:        es_gs_c.to_f,
+	    	sale:       es_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      3,
+	    	buy:        us_rs_c.to_f,
+	    	sale:       us_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      4,
+	    	buy:        us_ps_c.to_f,
+	    	sale:       us_ps_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: 11,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      5,
+	    	buy:        us_es_c.to_f,
+	    	sale:       us_es_v.to_f,
+	    )
+	end
+
+	def self.get_website_mundial
+
+		mechanize = Mechanize.new
+		page = mechanize.get('http://mundialcambios.com.py/cambios/display-cambios.php')
+		get_val = page.search(".//td")
+
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+ 		content = ''
+
+	get_val.each do |c|
+	 if c.to_s.gsub(/\s+/, "")[0..14] == '<tdclass="com">' or c.to_s.gsub(/\s+/, "")[0..14] == '<tdclass="ven">'
+	
+		content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdclass="com"><pclass="com">',"").gsub('</p></td>', "").gsub('<tdclass="ven"><pclass="ven">', "")
+
+		 if content[0..2] == '{0}'
+			 us_gs_c =content[3..9]
+		 end
+
+		 if content[0..2] == '{1}'
+			 us_gs_v =content[3..9]
+		 end
+
+		 if content[0..2] == '{2}'
+			 rs_gs_c =content[3..9]
+		 end
+
+		 if content[0..2] == '{3}'
+			 rs_gs_v =content[3..9]
+		 end
+
+
+		 if content[0..2] == '{4}'
+			 ps_gs_c =content[3..7]
+		 end
+
+		 if content[0..2] == '{5}'
+			 ps_gs_v =content[3..7]
+		 end
+
+		 if content[0..3] == '{12}'
+			 es_gs_c =content[4..9]
+		 end
+
+		 if content[0..3] == '{13}'
+			 es_gs_v =content[4..9]
+		 end
+
+		 if content[0..3] == '{20}'
+			 us_rs_c =content[4..9]
+		 end
+
+		 if content[0..3] == '{21}'
+			 us_rs_v =content[4..9]
+		 end
+
+		 if content[0..3] == '{22}'
+			 us_ps_c =content[4..9]
+		 end
+
+		 if content[0..3] == '{23}'
+			 us_ps_v =content[4..9]
+		 end		
+
+		 if content[0..3] == '{30}'
+			 us_es_c =content[4..7]
+		 end
+
+		 if content[0..3] == '{31}'
+			 us_es_v =content[4..7]
+		 end		
+	 	 count += 1
+	 	 end
+	 end
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      2,
+	    	buy:        us_gs_c.to_f,
+	    	sale:       us_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      2,
+	    	buy:        ps_gs_c.to_f,
+	    	sale:       ps_gs_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      2,
+	    	buy:        es_gs_c.to_f,
+	    	sale:       es_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      3,
+	    	buy:        us_rs_c.to_f,
+	    	sale:       us_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      4,
+	    	buy:        us_ps_c.to_f,
+	    	sale:       us_ps_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: 14,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      5,
+	    	buy:        us_es_c.to_f,
+	    	sale:       us_es_v.to_f,
+	    )
+	end
+
+	def self.get_website_fortuna
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.fortunacambios.com.py/informaciones-utiles.php')
+		get_val = page.search(".//p")
+
+
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+			if c.to_s.gsub(/\s+/, "")[0..19] == '<pclass="montocompra' or c.to_s.gsub(/\s+/, "")[0..18] == '<pclass="montoventa'
+			
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<pclass="montocompra',"").gsub('<pclass="montoventa', "").gsub('</p>',"").gsub('sube">', "").gsub('baja">',"")
+
+				if content[0..2] == '{6}'
+					us_gs_c =content[3..9]
+				end
+
+				if content[0..2] == '{7}'
+					us_gs_v =content[3..9]
+				end
+
+				if content[0..2] == '{4}'
+					rs_gs_c =content[3..9]
+				end
+
+				if content[0..2] == '{5}'
+					rs_gs_v =content[3..9]
+				end
+
+
+				if content[0..2] == '{2}'
+					ps_gs_c =content[3..7]
+				end
+
+				if content[0..2] == '{3}'
+					ps_gs_v =content[3..7]
+				end
+
+				if content[0..2] == '{0}'
+					es_gs_c =content[3..9]
+				end
+
+				if content[0..2] == '{1}'
+					es_gs_v =content[3..9]
+				end
+
+				if content[0..3] == '{10}'
+					us_rs_c =content[4..9]
+				end
+
+				if content[0..3] == '{11}'
+					us_rs_v =content[4..9]
+				end
+
+				if content[0..3] == '{12}'
+					us_ps_c =content[4..9]
+				end
+
+				if content[0..3] == '{13}'
+					us_ps_v =content[4..9]
+				end		
+
+				if content[0..2] == '{8}'
+					us_es_c =content[3..7]
+				end
+
+				if content[0..2] == '{9}'
+					us_es_v =content[3..7]
+				end		
+			 	count += 1
+		 	end
+		end		
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      2,
+	    	buy:        us_gs_c.to_f,
+	    	sale:       us_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      2,
+	    	buy:        ps_gs_c.to_f,
+	    	sale:       ps_gs_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      2,
+	    	buy:        es_gs_c.to_f,
+	    	sale:       es_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      3,
+	    	buy:        us_rs_c.to_f,
+	    	sale:       us_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      4,
+	    	buy:        us_ps_c.to_f,
+	    	sale:       us_ps_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: 15,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      5,
+	    	buy:        us_es_c.to_f,
+	    	sale:       us_es_v.to_f,
+	    )		
+	end
+
 end
