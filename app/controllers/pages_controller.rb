@@ -5,6 +5,8 @@ class PagesController < ApplicationController
 	end
 
 	def search
+		st = StandardExchange.select('operation').where(currency_have: params[:have], currency_want: params[:want]).last
+		order = "DESC" if st.operation == 0
 		sql = "SELECT C.COMPANY_ID,
 						      C.ID,
 						      C.UNIT,
@@ -26,7 +28,7 @@ class PagesController < ApplicationController
 						AND E.ACTIVE = TRUE
 						AND E.HAVE_ID = ?
 						AND E.WANT_ID = ?
-						ORDER BY 6 DESC"
+						ORDER BY 6 #{order}"
 
 		sql_map = "SELECT C.ID AS COMPANY_ID,
 						      C.CITY_ID,
@@ -35,8 +37,6 @@ class PagesController < ApplicationController
 						      C.LONGITUDE,
 						      C.ADDRESS,
 						      C.TELEPHONE,
-						      C.AVATAR_FILE_NAME,
-						      C.PIN_FILE_NAME,
 						      E.OPERATION,
 						      E.AMOUNT,
 						      E.ACTIVE,
@@ -53,7 +53,9 @@ class PagesController < ApplicationController
 						AND E.WANT_ID = ?
 						ORDER BY 6"						
 		@companies = ExchangeOperation.find_by_sql [sql, params[:where], params[:where], params[:where], params[:where], params[:have], params[:want]]
+		ActiveRecord::Associations::Preloader.new.preload(@companies, :company)
 		@companies_map = ExchangeOperation.find_by_sql [sql_map, params[:where], params[:have], params[:want]]
+		ActiveRecord::Associations::Preloader.new.preload(@companies_map, :company)
 		render layout: "page_search"	
 	end
 end

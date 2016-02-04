@@ -20,7 +20,7 @@
         <div class="col-md-4 box-left where">
           <label>ONDE? 
           <img src="assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
-          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name'), :cities, :name, :id, :name, params[:where]), id: "where", :required => true %>
+          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name').includes(:cities), :cities, :name, :id, :name, params[:where]), id: "where", :required => true %>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <ul>
           <% @companies.each do |c| %>
             <li class="title ccBranchOfficeMap" data-coordenada="<%= c.latitude %>,<%= c.longitude %>,<%= c.unit_id %>">
-              <div class="result-content">
+              <div class="result-content">              
                 <div class="thumbnail thumb-circle">
                   <%= image_tag c.company.avatar.url(:medium) %>
                 </div>
