@@ -850,4 +850,775 @@ class Crawler < ActiveRecord::Base
 	    )		
 	end
 
+	def self.get_website_bonanza
+
+		mechanize = Mechanize.new
+		page = mechanize.get('http://bonanzacambios.com.py/index.php')
+		get_val = page.search(".//h5")
+
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+			if c.to_s.gsub(/\s+/, "")[0..10] != '<h5class="p' 
+				if c.to_s.gsub(/\s+/, "")[0..10] != '<h5><spancl'
+					if c.to_s.gsub(/\s+/, "")[0..6] != '<h5styl'
+					
+					content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<h5>',"").gsub('</h5>',"").gsub(/([a-zA-Z])/,'').gsub('<="-"="-:12;"></>',"").gsub('<="--"="-:12;-:12;"></>',"").gsub('<="--"="-:12;"></>',"").gsub('<="-"="-:12;-:12;"></>',"")[0..124]
+
+						if content[0..2] == '{1}'
+							us_gs_c =content[3..9]
+						end
+
+						if content[0..2] == '{3}'
+							us_gs_v =content[3..9]
+						end
+
+						if content[0..2] == '{5}'
+							rs_gs_c =content[3..9]
+						end
+
+						if content[0..2] == '{7}'
+							rs_gs_v =content[3..9]
+						end
+
+
+						if content[0..3] == '{13}'
+							ps_gs_c =content[4..7]
+						end
+
+						if content[0..3] == '{15}'
+							ps_gs_v =content[4..7]
+						end
+
+						if content[0..2] == '{9}'
+							es_gs_c =content[3..9]
+						end
+
+						if content[0..3] == '{11}'
+							es_gs_v =content[4..9]
+						end
+
+						if content[0..3] == '{20}'
+							us_rs_c =content[4..9]
+						end
+
+						if content[0..3] == '{21}'
+							us_rs_v =content[4..9]
+						end
+
+						if content[0..3] == '{18}'
+							us_ps_c =content[4..9]
+						end
+
+						if content[0..3] == '{19}'
+							us_ps_v =content[4..9]
+						end		
+
+						if content[0..3] == '{16}'
+							us_es_c =content[4..7]
+						end
+
+						if content[0..3] == '{17}'
+							us_es_v =content[4..7]
+						end		
+					 	count += 1
+					end	
+				end
+			end
+		end	
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 17,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )					
+	end
+
+	def self.get_website_maxcambio
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.maxicambios.com.py/')
+		get_val = page.search(".//div")
+
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''	
+
+ 		get_val.each do |c|
+ 			if c.to_s.encode('UTF-8').gsub(/\s+/, "")[0..14] == '<divclass="subi' or c.to_s.encode('UTF-8').gsub(/\s+/, "")[0..14] ==  '<divclass="bajo'
+	
+			content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub(/([a-zA-Z])/,'').gsub('<="">', "").gsub('</>', "").gsub('<=""="-:13;">', "")[0..80]
+
+			 if content[0..2] == '{1}'
+				 us_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{0}'
+				 us_gs_v =content[3..9]
+			 end
+
+			 if content[0..2] == '{5}'
+				 rs_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{4}'
+				 rs_gs_v =content[3..9]
+			 end
+
+
+			 if content[0..2] == '{3}'
+				 ps_gs_c =content[2..7]
+			 end
+
+			 if content[0..2] == '{2}'
+				 ps_gs_v =content[3..7]
+			 end
+
+			 if content[0..2] == '{9}'
+				 es_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{8}'
+				 es_gs_v =content[3..9]
+			 end
+
+			 if content[0..3] == '{34}'
+				 us_rs_c =content[4..9]
+			 end
+
+			 if content[0..3] == '{35}'
+				 us_rs_v =content[4..9]
+			 end
+
+			 if content[0..3] == '{36}'
+				 us_ps_c =content[4..9]
+			 end
+
+			 if content[0..3] == '{37}'
+				 us_ps_v =content[4..9]
+			 end		
+
+			 if content[0..3] == '{32}'
+				 us_es_c =content[4..7]
+			 end
+
+			 if content[0..3] == '{33}'
+				 us_es_v =content[4..7]
+			 end		
+		 	 count += 1
+		 end	 	
+	 end
+
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 22,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )					
+	end
+
+	def self.get_website_aberti_assuncion
+		mechanize = Mechanize.new
+		page = mechanize.get('http://cambiosalberdi.com/')
+		get_val = page.search(".//div")
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+			if c.to_s.encode('UTF-8').gsub(/\s+/, "")[0..36] == '<divclass="span2pagination-right"><p>'
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('</p></div>', "")[37..60]
+
+				if content[0..2] == '{0}'
+					us_gs_c =content[3..9]
+				end
+
+				if content[0..2] == '{1}'
+					us_gs_v =content[3..9]
+				end
+
+				if content[0..2] == '{4}'
+					rs_gs_c =content[3..9]
+				end
+
+				if content[0..2] == '{5}'
+					rs_gs_v =content[3..9]
+				end
+
+				if content[0..2] == '{2}'
+					ps_gs_c =content[3..7]
+				end
+
+				if content[0..2] == '{3}'
+					ps_gs_v =content[3..7]
+				end
+
+				if content[0..2] == '{6}'
+					es_gs_c =content[3..9]
+				end
+
+				if content[0..2] == '{7}'
+					es_gs_v =content[3..9]
+				end
+
+				if content[0..3] == '{10}'
+					us_rs_c =content[4..9]
+				end
+
+				if content[0..3] == '{11}'
+					us_rs_v =content[4..9]
+				end
+
+				if content[0..2] == '{8}'
+					us_ps_c =content[3..9]
+				end
+
+				if content[0..2] == '{9}'
+					us_ps_v =content[3..9]
+				end		
+
+				if content[0..3] == '{12}'
+					us_es_c =content[4..7]
+				end
+
+				if content[0..3] == '{13}'
+					us_es_v =content[4..7]
+				end		
+			 	count += 1
+			 end
+		end		
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 60,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )				
+	end
+
+	def self.get_website_aberti_cde
+		mechanize = Mechanize.new
+		page = mechanize.get('http://cambiosalberdi.com/')
+		get_val = page.search(".//div")
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+			if c.to_s.encode('UTF-8').gsub(/\s+/, "")[0..36] == '<divclass="span2pagination-right"><p>'
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('</p></div>', "")[37..60]
+
+				 if content[0..3] == '{14}'
+					 us_gs_c =content[4..9]
+				 end
+
+				 if content[0..3] == '{15}'
+					 us_gs_v =content[4..9]
+				 end
+
+				 if content[0..3] == '{18}'
+					 rs_gs_c =content[4..9]
+				 end
+
+				 if content[0..3] == '{19}'
+					 rs_gs_v =content[4..9]
+				 end
+
+				 if content[0..3] == '{16}'
+					 ps_gs_c =content[4..7]
+				 end
+
+				 if content[0..3] == '{17}'
+					 ps_gs_v =content[4..7]
+				 end
+
+				 if content[0..3] == '{20}'
+					 es_gs_c =content[4..9]
+				 end
+
+				 if content[0..3] == '{21}'
+					 es_gs_v =content[4..9]
+				 end
+
+				 if content[0..3] == '{24}'
+					 us_rs_c =content[4..9]
+				 end
+
+				 if content[0..3] == '{25}'
+					 us_rs_v =content[4..9]
+				 end
+
+				 if content[0..3] == '{22}'
+					 us_ps_c =content[4..9]
+				 end
+
+				 if content[0..3] == '{23}'
+					 us_ps_v =content[4..9]
+				 end		
+
+				 if content[0..3] == '{26}'
+					 us_es_c =content[4..9]
+				 end
+
+				 if content[0..3] == '{27}'
+					 us_es_v =content[4..9]
+				 end
+			 	count += 1
+			 end
+		end		
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 9,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )				
+	end
+
+	def self.get_website_aberti_salto
+		mechanize = Mechanize.new
+		page = mechanize.get('http://cambiosalberdi.com/')
+		get_val = page.search(".//div")
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+			if c.to_s.encode('UTF-8').gsub(/\s+/, "")[0..36] == '<divclass="span2pagination-right"><p>'
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('</p></div>', "")[37..60]
+
+			if content[0..3] == '{28}'
+				us_gs_c =content[4..9]
+			end
+
+			if content[0..3] == '{29}'
+				us_gs_v =content[4..9]
+			end
+
+			if content[0..3] == '{32}'
+				rs_gs_c =content[4..9]
+			end
+
+			if content[0..3] == '{33}'
+				rs_gs_v =content[4..9]
+			end
+
+			if content[0..3] == '{30}'
+				ps_gs_c =content[4..7]
+			end
+
+			if content[0..3] == '{31}'
+				ps_gs_v =content[4..7]
+			end
+
+			if content[0..3] == '{34}'
+				es_gs_c =0
+			end
+
+			if content[0..3] == '{35}'
+				es_gs_v =0
+			end
+
+			if content[0..3] == '{36}'
+				us_rs_c =content[4..9]
+			end
+
+			if content[0..3] == '{37}'
+				us_rs_v =content[4..9]
+			end
+
+			if content[0..3] == '{34}'
+				us_ps_c =content[4..9]
+			end
+
+			if content[0..3] == '{35}'
+				us_ps_v =content[4..9]
+			end		
+
+			if content[0..3] == '{38}'
+				us_es_c =content[4..9]
+			end
+
+			if content[0..3] == '{39}'
+				us_es_v =content[4..9]
+			end	
+			 	count += 1
+			 end
+		end		
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 61,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )			
+	end
 end

@@ -4,7 +4,7 @@ class Admin::StandardExchangesController < AdminController
   # GET /standard_exchanges
   # GET /standard_exchanges.json
   def index
-    @standard_exchanges = StandardExchange.all
+    @standard_exchanges = StandardExchange.order('id')
   end
 
   # GET /standard_exchanges/1
@@ -64,6 +64,6 @@ class Admin::StandardExchangesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_exchange_params
-      params.require(:standard_exchange).permit(:currency_want, :currency_have, :operation, :def_format)
+      params.require(:standard_exchange).permit(:currency_want, :currency_have, :operation, :def_format, :od)
     end
 end

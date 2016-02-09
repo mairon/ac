@@ -34,6 +34,13 @@
           <td align="right">Format:</td>
           <td><%= f.number_field :def_format %></td>
         </tr>
+        <tr>
+          <td align="right">Ordenar por:</td>
+          <td>
+            <%= f.radio_button :od, 0, checked: 'checked' %> <strong>Maior</strong> > Menor
+            <%= f.radio_button :od, 1 %> Menor > <strong>Maior</strong>
+          </td>
+        </tr>
     
       </table>
       </div>

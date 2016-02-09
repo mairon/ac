@@ -31,6 +31,7 @@
                 <th width="200">Tenho</th>
                 <th width="200">Quero</th>
                 <th>Operação</th>
+                <th>Ordem</th>
                 <th ></th>
               </tr>
             </thead>
@@ -47,6 +48,13 @@
                       Compra
                     <% else %>
                       Venda
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if c.od == 0 %>
+                      <strong>Maior</strong> > Menor
+                    <% else %>
+                      Menor > <strong>Maior</strong>
                     <% end %>
                   </td>
                   <td>

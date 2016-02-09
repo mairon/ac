@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203192320) do
+ActiveRecord::Schema.define(version: 20160209034914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 20160203192320) do
     t.integer  "crawler_id"
     t.string   "crawler_url"
   end
+
+  add_index "companies", ["city_id"], name: "c_search_city_id", using: :hash
+  add_index "companies", ["company_id"], name: "c_search_company_id", using: :hash
 
   create_table "companies_currencies", force: :cascade do |t|
     t.integer  "company_id"
@@ -100,6 +103,11 @@ ActiveRecord::Schema.define(version: 20160203192320) do
     t.boolean  "active",                               default: false
   end
 
+  add_index "exchange_operations", ["active"], name: "eo_search_active", using: :hash
+  add_index "exchange_operations", ["company_id"], name: "eo_search_company_id", using: :hash
+  add_index "exchange_operations", ["have_id"], name: "eo_search_have_id", using: :hash
+  add_index "exchange_operations", ["want_id"], name: "eo_search_want_id", using: :hash
+
   create_table "exchanges", force: :cascade do |t|
     t.integer  "company_id"
     t.integer  "currency_id"
@@ -129,6 +137,7 @@ ActiveRecord::Schema.define(version: 20160203192320) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "def_format",    default: 0
+    t.integer  "od",            default: 0
   end
 
   create_table "states", force: :cascade do |t|

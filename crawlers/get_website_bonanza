@@ -1,0 +1,142 @@
+<%
+	mechanize = Mechanize.new
+	page = mechanize.get('http://bonanzacambios.com.py/index.php')
+	@get_val = page.search(".//h5")
+%>
+
+<% us_gs_c = '' %>
+<% us_gs_v = '' %>
+
+<% rs_gs_c = '' %>
+<% rs_gs_v = '' %>
+
+<% ps_gs_c = '' %>
+<% ps_gs_v = '' %>
+
+<% es_gs_c = '' %>
+<% es_gs_v = '' %>
+
+<% us_rs_c = '' %>
+<% us_rs_v = '' %>
+
+<% us_ps_c = '' %>
+<% us_ps_v = '' %>
+
+<% us_es_c = '' %>
+<% us_es_v = '' %>
+
+<% count = 0 %>
+<% content = '' %>
+
+<ul>
+	
+
+<% @get_val.each do |c| %>
+	<% if c.to_s.gsub(/\s+/, "")[0..10] != '<h5class="p'  %>
+	<% if c.to_s.gsub(/\s+/, "")[0..10] != '<h5><spancl' %>
+	<% if c.to_s.gsub(/\s+/, "")[0..6] != '<h5styl' %>
+	
+		<li><%= content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<h5>',"").gsub('</h5>',"").gsub(/([a-zA-Z])/,'').gsub('<="-"="-:12;"></>',"").gsub('<="--"="-:12;-:12;"></>',"").gsub('<="--"="-:12;"></>',"").gsub('<="-"="-:12;-:12;"></>',"")[0..124] %></li>
+
+		<% if content[0..2] == '{1}' %>
+			<% us_gs_c =content[3..9] %>
+		<% end %>
+
+		<% if content[0..2] == '{3}' %>
+			<% us_gs_v =content[3..9] %>
+		<% end %>
+
+		<% if content[0..2] == '{5}' %>
+			<% rs_gs_c =content[3..9] %>
+		<% end %>
+
+		<% if content[0..2] == '{7}' %>
+			<% rs_gs_v =content[3..9] %>
+		<% end %>
+
+
+		<% if content[0..3] == '{13}' %>
+			<% ps_gs_c =content[4..7] %>
+		<% end %>
+
+		<% if content[0..3] == '{15}' %>
+			<% ps_gs_v =content[4..7] %>
+		<% end %>
+
+		<% if content[0..2] == '{9}' %>
+			<% es_gs_c =content[3..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{11}' %>
+			<% es_gs_v =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{20}' %>
+			<% us_rs_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{21}' %>
+			<% us_rs_v =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{18}' %>
+			<% us_ps_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{19}' %>
+			<% us_ps_v =content[4..9] %>
+		<% end %>		
+
+		<% if content[0..3] == '{16}' %>
+			<% us_es_c =content[4..7] %>
+		<% end %>
+
+		<% if content[0..3] == '{17}' %>
+			<% us_es_v =content[4..7] %>
+		<% end %>		
+	 	<% count += 1 %>
+	<% end %>	
+	<% end %>
+	<% end %>
+
+
+<% end %>
+</ul>
+
+<table border="1">
+<tr>
+	<td><%= us_gs_c %></td>
+	<td><%= us_gs_v %></td>
+</tr>
+
+
+<tr>
+	<td><%= rs_gs_c %></td>
+	<td><%= rs_gs_v %></td>
+</tr>
+
+
+<tr>
+	<td><%= ps_gs_c %></td>
+	<td><%= ps_gs_v %></td>
+</tr>
+
+<tr>
+	<td><%= es_gs_c %></td>
+	<td><%= es_gs_v %></td>
+</tr>
+
+<tr>
+	<td><%= us_rs_c %></td>
+	<td><%= us_rs_v %></td>
+</tr>
+<tr>
+	<td><%= us_ps_c %></td>
+	<td><%= us_ps_v %></td>
+</tr>
+<tr>
+	<td><%= us_es_c %></td>
+	<td><%= us_es_v %></td>
+</tr>
+</table>
+

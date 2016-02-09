@@ -5,8 +5,8 @@ class PagesController < ApplicationController
 	end
 
 	def search
-		st = StandardExchange.select('operation').where(currency_have: params[:have], currency_want: params[:want]).last
-		order = "DESC" if st.operation == 0
+		st = StandardExchange.select('od').where(currency_have: params[:have], currency_want: params[:want]).last
+		order = "DESC" if st.od == 0
 		sql = "SELECT C.COMPANY_ID,
 						      C.ID,
 						      C.UNIT,
