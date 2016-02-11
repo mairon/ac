@@ -158,8 +158,8 @@
             <td><%= f.collection_select :crawler_id, Crawler.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %></td>
           </tr>
           <tr>
-            <td align="right">Url:</td>
-            <td><%= f.url_field :crawler_url, size: 57, placeholder: 'https://' %></td>
+            <td align="right">Url/Cod.empresa:</td>
+            <td><%= f.text_field :crawler_url, size: 57 %></td>
           </tr>
 
         </table>

@@ -1,5 +1,4 @@
 class Crawler < ActiveRecord::Base
-
 	def self.get_website_scapine
 		mechanize = Mechanize.new
 		page = mechanize.get('http://scappinicambio.com.br')
@@ -1622,6 +1621,617 @@ class Crawler < ActiveRecord::Base
     )			
 	end
 
+	def self.get_website_money_exchange
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.money.com.py/index.php')
+		get_val = page.search(".//td")
+
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdstyle="background-color:#cccccc;">', "").gsub('<td>', "").gsub('</td>', "")[0..60]
+
+				if content[0..3] == '{22}'
+					us_gs_c =content[4..9]
+				end
+
+				if content[0..3] == '{23}'
+					us_gs_v =content[4..9]
+				end
+
+				if content[0..3] == '{25}'
+					rs_gs_c =content[4..9]
+				end
+
+				if content[0..3] == '{26}'
+					rs_gs_v =content[4..9]
+				end
+
+				if content[0..3] == '{28}'
+					ps_gs_c =content[4..7]
+				end
+
+				if content[0..3] == '{29}'
+					ps_gs_v =content[4..7]
+				end
+
+				if content[0..3] == '{31}'
+					es_gs_c =content[4..9]
+				end
+
+				if content[0..3] == '{32}'
+					es_gs_v =content[4..9]
+				end
+
+				if content[0..3] == '{34}'
+					us_rs_c =content[4..9]
+				end
+
+				if content[0..3] == '{35}'
+					us_rs_v =content[4..9]
+				end
+
+				if content[0..3] == '{37}'
+					us_ps_c =content[4..9]
+				end
+
+				if content[0..3] == '{38}'
+					us_ps_v =content[4..9]
+				end		
+
+				if content[0..3] == '{40}'
+					us_es_c =content[4..9]
+				end
+
+				if content[0..3] == '{41}'
+					us_es_v =content[4..9]
+				end		
+			 	count += 1
+		end
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )			
+
+	end
+
+
+	def self.get_website_euro_cambio
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.eurocambios.com.py/final_web/html/graficas/cotiza1.php')
+		get_val = page.search(".//div")
+
+		 us_gs_c = ''
+		 us_gs_v = ''
+
+		 rs_gs_c = ''
+		 rs_gs_v = ''
+
+		 ps_gs_c = ''
+		 ps_gs_v = ''
+
+		 es_gs_c = ''
+		 es_gs_v = ''
+
+		 us_rs_c = ''
+		 us_rs_v = ''
+
+		 us_ps_c = ''
+		 us_ps_v = ''
+
+		 us_es_c = ''
+		 us_es_v = ''
+
+		 count = 0
+		 content = ''
+ 		get_val.each do |c|
+			content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<divalign="right"class="Estilo2">', "").gsub('</div>', "")[0..60]
+
+			 if content[0..2] == '{0}'
+				 us_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{1}'
+				 us_gs_v =content[3..9]
+			 end
+
+			 if content[0..2] == '{6}'
+				 rs_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{7}'
+				 rs_gs_v =content[3..9]
+			 end
+
+			 if content[0..2] == '{4}'
+				 ps_gs_c =content[3..7]
+			 end
+
+			 if content[0..2] == '{5}'
+				 ps_gs_v =content[3..7]
+			 end
+
+			 if content[0..2] == '{2}'
+				 es_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{3}'
+				 es_gs_v =content[3..9]
+			 end		
+		 	 count += 1
+ 		end
+
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+	end
+
+	def self.get_website_yrendague
+		list_crawler = Company.where(crawler_id: 4) #yrendague
+		list_crawler.each do |lc|
+		mechanize = Mechanize.new
+		page = mechanize.get("http://www.yrendague.com.py/modelos.php?cotizacion&id_sucursal=#{lc.crawler_url.to_s}&page=undefined")
+		get_val = page.search(".//strong")
+		page2 = mechanize.get("http://www.yrendague.com.py/modelos.php?arbitraje&id_sucursal=#{lc.crawler_url.to_s}&page=undefined")
+		get_val2 = page2.search(".//strong")
+
+
+		us_gs_c = '' 
+		us_gs_v = '' 
+
+		rs_gs_c = '' 
+		rs_gs_v = '' 
+
+		ps_gs_c = '' 
+		ps_gs_v = '' 
+
+		es_gs_c = '' 
+		es_gs_v = '' 
+
+		us_rs_c = '' 
+		us_rs_v = '' 
+
+		us_ps_c = '' 
+		us_ps_v = '' 
+
+		us_es_c = '' 
+		us_es_v = '' 
+
+		count = 0 
+		content = '' 
+		get_val.each do |c| 
+			content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub('<strong>',"").gsub(/([a-zA-Z])/,'').gsub('<="">=</></>',"").gsub('<="--"></></>', "").gsub(160.chr("UTF-8"),"")[0..60]
+
+		if content[0..2] == '{0}' 
+			us_gs_c =content[3..9] 
+		end 
+
+		if content[0..2] == '{1}' 
+			us_gs_v =content[3..9] 
+		end 
+
+		if content[0..2] == '{2}' 
+			rs_gs_c =content[3..9] 
+		end 
+
+		if content[0..2] == '{3}' 
+			rs_gs_v =content[3..9] 
+		end 
+
+		if content[0..2] == '{4}' 
+			ps_gs_c =content[3..7] 
+		end 
+
+		if content[0..2] == '{5}' 
+			ps_gs_v =content[3..7] 
+		end 
+
+		if content[0..2] == '{6}' 
+			es_gs_c =content[3..9] 
+		end 
+
+		if content[0..2] == '{7}' 
+			es_gs_v =content[3..9] 
+		end 		
+	 	count += 1 
+	end 
+
+	get_val2.each do |c| 
+		content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub('<strong>',"").gsub(/([a-zA-Z])/,'').gsub('<="">=</></>',"").gsub('<="--"></></>', "").gsub(160.chr("UTF-8"),"")[0..60]
+
+			if lc.crawler_url.to_s == '1' #arbitrario CDE
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+				if content[0..3] == '{10}' 
+					us_ps_c =content[4..9] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_ps_v =content[4..9] 
+				end 		
+
+				if content[0..3] == '{16}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{17}' 
+					us_es_v =content[4..7] 
+				end
+
+			elsif lc.crawler_url.to_s == '4' #arbitrario PJC
+
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+				if content[0..3] == '{10}' 
+					us_ps_c =content[4..9] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_ps_v =content[4..9] 
+				end 		
+
+				if content[0..3] == '{12}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{13}' 
+					us_es_v =content[4..7] 
+				end
+			elsif lc.crawler_url.to_s == '5' #arbitrario NE
+				
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+					us_ps_c = 0
+
+					us_ps_v = 0
+
+				if content[0..3] == '{10}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_es_v =content[4..7] 
+				end
+
+			elsif lc.crawler_url.to_s == '6' #arbitrario ASU
+
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+				if content[0..3] == '{10}' 
+					us_ps_c =content[4..9] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_ps_v =content[4..9] 
+				end 		
+
+				if content[0..3] == '{16}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{17}' 
+					us_es_v =content[4..7] 
+				end
+			end
+		 	count += 1 
+		end 
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )	
+	end
+
+	end
+	def self.get_website_chaco
+		list_crawler = Company.where(crawler_id: 5) #chaco
+		list_crawler.each do |lc|
+			url = lc.crawler_url.to_s
+			uri = URI(url)
+			response = Net::HTTP.get(uri)
+			par_json = JSON.parse(response)    
+			get_var =  par_json['items']
+
+			us_gs_c = ''
+			us_gs_v = ''
+
+			rs_gs_c = ''
+			rs_gs_v = ''
+
+			ps_gs_c = ''
+			ps_gs_v = ''
+
+			es_gs_c = ''
+			es_gs_v = ''
+
+			us_rs_c = ''
+			us_rs_v = ''
+
+			us_ps_c = ''
+			us_ps_v = ''
+
+			us_es_c = ''
+			us_es_v = ''
+			get_var.each do |g|
+				if g['isoCode'].to_s == 'USD'
+					us_gs_c = g['purchasePrice'].to_f 
+					us_gs_v = g['salePrice'].to_f
+				end
+				if g['isoCode'].to_s == 'BRL'
+					rs_gs_c = g['purchasePrice'].to_f 
+					rs_gs_v = g['salePrice'].to_f
+
+					us_rs_c = g['purchaseArbitrage'].to_f
+					us_rs_v = g['saleArbitrage'].to_f
+				end
+				if g['isoCode'].to_s == 'ARS'
+					ps_gs_c = g['purchasePrice'].to_f 
+					ps_gs_v = g['salePrice'].to_f
+
+					us_ps_c = g['purchaseArbitrage'].to_f
+					us_ps_v = g['saleArbitrage'].to_f
+				end
+				if g['isoCode'].to_s == 'EUR'
+					es_gs_c = g['purchasePrice'].to_f 
+					es_gs_v = g['salePrice'].to_f
+
+					us_es_c = g['purchaseArbitrage'].to_f
+					us_es_v = g['saleArbitrage'].to_f
+				end
+			end
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      2,
+	    	buy:        us_gs_c.to_f,
+	    	sale:       us_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      2,
+	    	buy:        ps_gs_c.to_f,
+	    	sale:       ps_gs_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      2,
+	    	buy:        es_gs_c.to_f,
+	    	sale:       es_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      3,
+	    	buy:        us_rs_c.to_f,
+	    	sale:       us_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      4,
+	    	buy:        us_ps_c.to_f,
+	    	sale:       us_ps_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      5,
+	    	buy:        us_es_c.to_f,
+	    	sale:       us_es_v.to_f,
+	    )	
+	  end
+	end
 	def self.get_website_all
 		mechanize = Mechanize.new
 		page = mechanize.get('http://scappinicambio.com.br')
@@ -3220,5 +3830,609 @@ class Crawler < ActiveRecord::Base
     	buy:        us_es_c.to_f,
     	sale:       us_es_v.to_f,
     )			
+
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.money.com.py/index.php')
+		get_val = page.search(".//td")
+
+		us_gs_c = ''
+		us_gs_v = ''
+
+		rs_gs_c = ''
+		rs_gs_v = ''
+
+		ps_gs_c = ''
+		ps_gs_v = ''
+
+		es_gs_c = ''
+		es_gs_v = ''
+
+		us_rs_c = ''
+		us_rs_v = ''
+
+		us_ps_c = ''
+		us_ps_v = ''
+
+		us_es_c = ''
+		us_es_v = ''
+
+		count = 0
+		content = ''
+
+		get_val.each do |c|
+				content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdstyle="background-color:#cccccc;">', "").gsub('<td>', "").gsub('</td>', "")[0..60]
+
+				if content[0..3] == '{22}'
+					us_gs_c =content[4..9]
+				end
+
+				if content[0..3] == '{23}'
+					us_gs_v =content[4..9]
+				end
+
+				if content[0..3] == '{25}'
+					rs_gs_c =content[4..9]
+				end
+
+				if content[0..3] == '{26}'
+					rs_gs_v =content[4..9]
+				end
+
+				if content[0..3] == '{28}'
+					ps_gs_c =content[4..7]
+				end
+
+				if content[0..3] == '{29}'
+					ps_gs_v =content[4..7]
+				end
+
+				if content[0..3] == '{31}'
+					es_gs_c =content[4..9]
+				end
+
+				if content[0..3] == '{32}'
+					es_gs_v =content[4..9]
+				end
+
+				if content[0..3] == '{34}'
+					us_rs_c =content[4..9]
+				end
+
+				if content[0..3] == '{35}'
+					us_rs_v =content[4..9]
+				end
+
+				if content[0..3] == '{37}'
+					us_ps_c =content[4..9]
+				end
+
+				if content[0..3] == '{38}'
+					us_ps_v =content[4..9]
+				end		
+
+				if content[0..3] == '{40}'
+					us_es_c =content[4..9]
+				end
+
+				if content[0..3] == '{41}'
+					us_es_v =content[4..9]
+				end		
+			 	count += 1
+		end
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 65,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )			
+
+
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.eurocambios.com.py/final_web/html/graficas/cotiza1.php')
+		get_val = page.search(".//div")
+
+		 us_gs_c = ''
+		 us_gs_v = ''
+
+		 rs_gs_c = ''
+		 rs_gs_v = ''
+
+		 ps_gs_c = ''
+		 ps_gs_v = ''
+
+		 es_gs_c = ''
+		 es_gs_v = ''
+
+		 us_rs_c = ''
+		 us_rs_v = ''
+
+		 us_ps_c = ''
+		 us_ps_v = ''
+
+		 us_es_c = ''
+		 us_es_v = ''
+
+		 count = 0
+		 content = ''
+ 		get_val.each do |c|
+			content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(".","").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<divalign="right"class="Estilo2">', "").gsub('</div>', "")[0..60]
+
+			 if content[0..2] == '{0}'
+				 us_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{1}'
+				 us_gs_v =content[3..9]
+			 end
+
+			 if content[0..2] == '{6}'
+				 rs_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{7}'
+				 rs_gs_v =content[3..9]
+			 end
+
+			 if content[0..2] == '{4}'
+				 ps_gs_c =content[3..7]
+			 end
+
+			 if content[0..2] == '{5}'
+				 ps_gs_v =content[3..7]
+			 end
+
+			 if content[0..2] == '{2}'
+				 es_gs_c =content[3..9]
+			 end
+
+			 if content[0..2] == '{3}'
+				 es_gs_v =content[3..9]
+			 end		
+		 	 count += 1
+ 		end
+
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: 68,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+		list_crawler = Company.where(crawler_id: 4) #yrendague
+		list_crawler.each do |lc|
+		mechanize = Mechanize.new
+		page = mechanize.get("http://www.yrendague.com.py/modelos.php?cotizacion&id_sucursal=#{lc.crawler_url.to_s}&page=undefined")
+		get_val = page.search(".//strong")
+		page2 = mechanize.get("http://www.yrendague.com.py/modelos.php?arbitraje&id_sucursal=#{lc.crawler_url.to_s}&page=undefined")
+		get_val2 = page2.search(".//strong")
+
+
+		us_gs_c = '' 
+		us_gs_v = '' 
+
+		rs_gs_c = '' 
+		rs_gs_v = '' 
+
+		ps_gs_c = '' 
+		ps_gs_v = '' 
+
+		es_gs_c = '' 
+		es_gs_v = '' 
+
+		us_rs_c = '' 
+		us_rs_v = '' 
+
+		us_ps_c = '' 
+		us_ps_v = '' 
+
+		us_es_c = '' 
+		us_es_v = '' 
+
+		count = 0 
+		content = '' 
+		get_val.each do |c| 
+			content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub('<strong>',"").gsub(/([a-zA-Z])/,'').gsub('<="">=</></>',"").gsub('<="--"></></>', "").gsub(160.chr("UTF-8"),"")[0..60]
+
+		if content[0..2] == '{0}' 
+			us_gs_c =content[3..9] 
+		end 
+
+		if content[0..2] == '{1}' 
+			us_gs_v =content[3..9] 
+		end 
+
+		if content[0..2] == '{2}' 
+			rs_gs_c =content[3..9] 
+		end 
+
+		if content[0..2] == '{3}' 
+			rs_gs_v =content[3..9] 
+		end 
+
+		if content[0..2] == '{4}' 
+			ps_gs_c =content[3..7] 
+		end 
+
+		if content[0..2] == '{5}' 
+			ps_gs_v =content[3..7] 
+		end 
+
+		if content[0..2] == '{6}' 
+			es_gs_c =content[3..9] 
+		end 
+
+		if content[0..2] == '{7}' 
+			es_gs_v =content[3..9] 
+		end 		
+	 	count += 1 
+	end 
+
+	get_val2.each do |c| 
+		content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub('<strong>',"").gsub(/([a-zA-Z])/,'').gsub('<="">=</></>',"").gsub('<="--"></></>', "").gsub(160.chr("UTF-8"),"")[0..60]
+
+			if lc.crawler_url.to_s == '1' #arbitrario CDE
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+				if content[0..3] == '{10}' 
+					us_ps_c =content[4..9] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_ps_v =content[4..9] 
+				end 		
+
+				if content[0..3] == '{16}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{17}' 
+					us_es_v =content[4..7] 
+				end
+
+			elsif lc.crawler_url.to_s == '4' #arbitrario PJC
+
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+				if content[0..3] == '{10}' 
+					us_ps_c =content[4..9] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_ps_v =content[4..9] 
+				end 		
+
+				if content[0..3] == '{12}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{13}' 
+					us_es_v =content[4..7] 
+				end
+			elsif lc.crawler_url.to_s == '5' #arbitrario NE
+				
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+					us_ps_c = 0
+
+					us_ps_v = 0
+
+				if content[0..3] == '{10}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_es_v =content[4..7] 
+				end
+
+			elsif lc.crawler_url.to_s == '6' #arbitrario ASU
+
+				if content[0..2] == '{8}' 
+					us_rs_c =content[3..9] 
+				end 
+
+				if content[0..2] == '{9}' 
+					us_rs_v =content[3..9] 
+				end 
+
+				if content[0..3] == '{10}' 
+					us_ps_c =content[4..9] 
+				end 
+
+				if content[0..3] == '{11}' 
+					us_ps_v =content[4..9] 
+				end 		
+
+				if content[0..3] == '{16}' 
+					us_es_c =content[4..7] 
+				end 
+
+				if content[0..3] == '{17}' 
+					us_es_v =content[4..7] 
+				end
+			end
+		 	count += 1 
+		end 
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      2,
+    	buy:        us_gs_c.to_f,
+    	sale:       us_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 3,
+    	:for =>      2,
+    	buy:        rs_gs_c.to_f,
+    	sale:       rs_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 4,
+    	:for =>      2,
+    	buy:        ps_gs_c.to_f,
+    	sale:       ps_gs_v.to_f,
+    )
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 5,
+    	:for =>      2,
+    	buy:        es_gs_c.to_f,
+    	sale:       es_gs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      3,
+    	buy:        us_rs_c.to_f,
+    	sale:       us_rs_v.to_f,
+    )
+
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      4,
+    	buy:        us_ps_c.to_f,
+    	sale:       us_ps_v.to_f,
+    )
+    Exchange.create(
+    	company_id: lc.id.to_i,
+    	date:    Time.now,
+    	currency_id: 1,
+    	:for =>      5,
+    	buy:        us_es_c.to_f,
+    	sale:       us_es_v.to_f,
+    )	
+	end
+
+		list_crawler = Company.where(crawler_id: 5) #chaco
+		list_crawler.each do |lc|
+			url = lc.crawler_url.to_s
+			uri = URI(url)
+			response = Net::HTTP.get(uri)
+			par_json = JSON.parse(response)    
+			get_var =  par_json['items']
+
+			us_gs_c = ''
+			us_gs_v = ''
+
+			rs_gs_c = ''
+			rs_gs_v = ''
+
+			ps_gs_c = ''
+			ps_gs_v = ''
+
+			es_gs_c = ''
+			es_gs_v = ''
+
+			us_rs_c = ''
+			us_rs_v = ''
+
+			us_ps_c = ''
+			us_ps_v = ''
+
+			us_es_c = ''
+			us_es_v = ''
+			get_var.each do |g|
+				if g['isoCode'].to_s == 'USD'
+					us_gs_c = g['purchasePrice'].to_f 
+					us_gs_v = g['salePrice'].to_f
+				end
+				if g['isoCode'].to_s == 'BRL'
+					rs_gs_c = g['purchasePrice'].to_f 
+					rs_gs_v = g['salePrice'].to_f
+
+					us_rs_c = g['purchaseArbitrage'].to_f
+					us_rs_v = g['saleArbitrage'].to_f
+				end
+				if g['isoCode'].to_s == 'ARS'
+					ps_gs_c = g['purchasePrice'].to_f 
+					ps_gs_v = g['salePrice'].to_f
+
+					us_ps_c = g['purchaseArbitrage'].to_f
+					us_ps_v = g['saleArbitrage'].to_f
+				end
+				if g['isoCode'].to_s == 'EUR'
+					es_gs_c = g['purchasePrice'].to_f 
+					es_gs_v = g['salePrice'].to_f
+
+					us_es_c = g['purchaseArbitrage'].to_f
+					us_es_v = g['saleArbitrage'].to_f
+				end
+			end
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      2,
+	    	buy:        us_gs_c.to_f,
+	    	sale:       us_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 3,
+	    	:for =>      2,
+	    	buy:        rs_gs_c.to_f,
+	    	sale:       rs_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 4,
+	    	:for =>      2,
+	    	buy:        ps_gs_c.to_f,
+	    	sale:       ps_gs_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 5,
+	    	:for =>      2,
+	    	buy:        es_gs_c.to_f,
+	    	sale:       es_gs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      3,
+	    	buy:        us_rs_c.to_f,
+	    	sale:       us_rs_v.to_f,
+	    )
+
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      4,
+	    	buy:        us_ps_c.to_f,
+	    	sale:       us_ps_v.to_f,
+	    )
+	    Exchange.create(
+	    	company_id: lc.id,
+	    	date:    Time.now,
+	    	currency_id: 1,
+	    	:for =>      5,
+	    	buy:        us_es_c.to_f,
+	    	sale:       us_es_v.to_f,
+	    )	
+	  end
+
+
 	end	
 end

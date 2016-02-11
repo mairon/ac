@@ -1,0 +1,101 @@
+<%
+		url = 'http://www.cambioschaco.com.py/api/branch_office/1/exchange'
+		uri = URI(url)
+		response = Net::HTTP.get(uri)
+		par_json = JSON.parse(response)    
+%>
+
+<% get_var =  par_json['items'] %>
+
+<% us_gs_c = '' %>
+<% us_gs_v = '' %>
+
+<% rs_gs_c = '' %>
+<% rs_gs_v = '' %>
+
+<% ps_gs_c = '' %>
+<% ps_gs_v = '' %>
+
+<% es_gs_c = '' %>
+<% es_gs_v = '' %>
+
+<% us_rs_c = '' %>
+<% us_rs_v = '' %>
+
+<% us_ps_c = '' %>
+<% us_ps_v = '' %>
+
+<% us_es_c = '' %>
+<% us_es_v = '' %>
+
+<% count = 0 %>
+<% content = '' %>
+
+<ul>
+<% get_var.each do |g| %>
+	<% if g['isoCode'].to_s == 'USD' %>
+		<% us_gs_c = g['purchasePrice'].to_f %> 
+		<% us_gs_v = g['salePrice'].to_f %>
+	<% end %>
+	<% if g['isoCode'].to_s == 'BRL' %>
+		<% rs_gs_c = g['purchasePrice'].to_f %> 
+		<% rs_gs_v = g['salePrice'].to_f %>
+
+		<% us_rs_c = g['purchaseArbitrage'].to_f %>
+		<% us_rs_v = g['saleArbitrage'].to_f %>
+	<% end %>
+	<% if g['isoCode'].to_s == 'ARS' %>
+		<% ps_gs_c = g['purchasePrice'].to_f %> 
+		<% ps_gs_v = g['salePrice'].to_f %>
+
+		<% us_ps_c = g['purchaseArbitrage'].to_f %>
+		<% us_ps_v = g['saleArbitrage'].to_f %>
+	<% end %>
+	<% if g['isoCode'].to_s == 'EUR' %>
+		<% es_gs_c = g['purchasePrice'].to_f %> 
+		<% es_gs_v = g['salePrice'].to_f %>
+
+		<% us_es_c = g['purchaseArbitrage'].to_f %>
+		<% us_es_v = g['saleArbitrage'].to_f %>
+	<% end %>
+
+<% end %>
+
+
+<table border="1">
+<tr>
+	<td><%= us_gs_c %></td>
+	<td><%= us_gs_v %></td>
+</tr>
+
+
+<tr>
+	<td><%= rs_gs_c %></td>
+	<td><%= rs_gs_v %></td>
+</tr>
+
+
+<tr>
+	<td><%= ps_gs_c %></td>
+	<td><%= ps_gs_v %></td>
+</tr>
+
+<tr>
+	<td><%= es_gs_c %></td>
+	<td><%= es_gs_v %></td>
+</tr>
+
+<tr>
+	<td><%= us_rs_c %></td>
+	<td><%= us_rs_v %></td>
+</tr>
+<tr>
+	<td><%= us_ps_c %></td>
+	<td><%= us_ps_v %></td>
+</tr>
+<tr>
+	<td><%= us_es_c %></td>
+	<td><%= us_es_v %></td>
+</tr>
+</table>
+

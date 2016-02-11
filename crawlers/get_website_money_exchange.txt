@@ -1,0 +1,136 @@
+<%
+
+		mechanize = Mechanize.new
+		page = mechanize.get('http://www.money.com.py/index.php')
+		get_val = page.search(".//td")
+
+
+
+%>
+
+<% us_gs_c = '' %>
+<% us_gs_v = '' %>
+
+<% rs_gs_c = '' %>
+<% rs_gs_v = '' %>
+
+<% ps_gs_c = '' %>
+<% ps_gs_v = '' %>
+
+<% es_gs_c = '' %>
+<% es_gs_v = '' %>
+
+<% us_rs_c = '' %>
+<% us_rs_v = '' %>
+
+<% us_ps_c = '' %>
+<% us_ps_v = '' %>
+
+<% us_es_c = '' %>
+<% us_es_v = '' %>
+
+<% count = 0 %>
+<% content = '' %>
+
+<ul>
+	
+
+<% get_val.each do |c| %>
+		<li><%= content =  "{#{count}}" + c.to_s.encode('UTF-8').gsub(/\s+/, "").gsub(",",".").gsub(160.chr("UTF-8"),"").gsub('<tdstyle="background-color:#cccccc;">', "").gsub('<td>', "").gsub('</td>', "")[0..60] %></li>
+
+		<% if content[0..3] == '{22}' %>
+			<% us_gs_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{23}' %>
+			<% us_gs_v =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{25}' %>
+			<% rs_gs_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{26}' %>
+			<% rs_gs_v =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{28}' %>
+			<% ps_gs_c =content[4..7] %>
+		<% end %>
+
+		<% if content[0..3] == '{29}' %>
+			<% ps_gs_v =content[4..7] %>
+		<% end %>
+
+		<% if content[0..3] == '{31}' %>
+			<% es_gs_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{32}' %>
+			<% es_gs_v =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{34}' %>
+			<% us_rs_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{35}' %>
+			<% us_rs_v =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{37}' %>
+			<% us_ps_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{38}' %>
+			<% us_ps_v =content[4..9] %>
+		<% end %>		
+
+		<% if content[0..3] == '{40}' %>
+			<% us_es_c =content[4..9] %>
+		<% end %>
+
+		<% if content[0..3] == '{41}' %>
+			<% us_es_v =content[4..9] %>
+		<% end %>		
+	 	<% count += 1 %>
+<% end %>
+</ul>
+
+<table border="1">
+<tr>
+	<td><%= us_gs_c %></td>
+	<td><%= us_gs_v %></td>
+</tr>
+
+
+<tr>
+	<td><%= rs_gs_c %></td>
+	<td><%= rs_gs_v %></td>
+</tr>
+
+
+<tr>
+	<td><%= ps_gs_c %></td>
+	<td><%= ps_gs_v %></td>
+</tr>
+
+<tr>
+	<td><%= es_gs_c %></td>
+	<td><%= es_gs_v %></td>
+</tr>
+
+<tr>
+	<td><%= us_rs_c %></td>
+	<td><%= us_rs_v %></td>
+</tr>
+<tr>
+	<td><%= us_ps_c %></td>
+	<td><%= us_ps_v %></td>
+</tr>
+<tr>
+	<td><%= us_es_c %></td>
+	<td><%= us_es_v %></td>
+</tr>
+</table>
+
