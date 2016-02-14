@@ -3,7 +3,7 @@
     <img src="assets/pages/text-facil.png" alt="" class="img-responsive text-facil">
   </div>
   <div class="col-md-4 social">
-    <h5 align="center">Acompanhe-nos nas mídias!</h5>
+    <h5 align="center"><%= t('follow') %></h5>
     <div class="icons-social" align="center">
       <p><a href="" title=""><img src="assets/pages/icon-skype.png" width="50" alt="" class="img-responsive"></a></p>
       <p><a href="" title=""><img src="assets/pages/icon-fb.png" width="50" alt="" class="img-responsive"></a></p>
@@ -17,35 +17,36 @@
     <div class="col-md-12 box-cambio">
       <div class="row">
         <div class="col-md-4 box-left have">
-          <label>EU TENHO 
+          <label><%= t('have') %>
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name), prompt: 'Escolha sua moeda', id: "have", data: { 'ng-model' => 'have' }, :required => true, autofocus: true %>
+          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name), {class: 'combobox form-control', prompt: "#{t('select_currency')}", autofocus: true} %>
         </div>
 
         <div class="col-md-4 box-left want">
           <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-left">
-          <label>EU QUERO
+          <label><%= t('want') %>
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :want, options_from_collection_for_select(Currency.select('id,name'), :id, :name), prompt: 'Escolha sua moeda', id: "want", data: { 'ng-model' => 'want' }, :required => true %>
+          <%= select_tag :want, options_from_collection_for_select(Currency.select('id,name'), :id, :name), {class: 'combobox input-large form-control', prompt: "#{t('select_currency')}"} %>
           <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
         </div>
         <div class="col-md-4 box-left where">
-          <label>ONDE? 
-          <img src="assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
-          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name').includes(:cities), :cities, :name, :id, :name), prompt: 'Escolha a cidade', id: "where", data: { 'ng-model' => 'where' }, :required => true %>
+          <label><%= t('where') %>
+            <img src="assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
+          </label>
+          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name').includes(:cities), :cities, :name, :id, :name) , {class: 'combobox input-large form-control', prompt: "#{t('select_city')}"}%>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12" align="center">
         <button type="submit" class="submit-cambio" ng-disabled="search.$invalid">
-          <img src="assets/pages/lupa.png" height="32" alt="procurar"> ECONOMIZAR!
+          <img src="assets/pages/lupa.png" height="32" alt="procurar">  <%= t('spare') %>!
         </button>
         <br>
         <br>
-        <p class="aviso-botao-procurar">Os valores são atualizados <strong>exclusivamente pelas Casa de Câmbio</strong> e estão sujeitos à alterações a qualquer momento pelas mesmas.</p>        
+        <p class="aviso-botao-procurar"><%= t('obs1')%></p>        
       </div>
     </div>
   <% end %>
@@ -62,5 +63,3 @@
     </div>
   </div>
 </div>
-
-

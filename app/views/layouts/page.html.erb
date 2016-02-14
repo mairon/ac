@@ -40,24 +40,24 @@
               <i class="fa fa-sign-out"></i><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
             <% else %>
                 <%= link_to new_user_session_path do %>
-                  <img src="../assets/pages/icon-user.png" height="16" alt="entrar">ENTRAR |
+                  <img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= t('sign_in') %> |
                 <% end %>
                 <%= link_to new_user_registration_path do %>
-                  Cadastre-se
+                  <%= t('sign_up') %>
                 <% end %>
             <% end %>
           </div>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right localize menu-topo">
-          <a href="" title="">PT</a>
-          <a href="" title="">EN</a>
-          <a href="" title="">ES</a>
+          <%= link_to_unless_current "PT", locale: 'pt' %>
+          <%= link_to_unless_current "EN", locale: 'en' %>
+          <%= link_to_unless_current "ES", locale: 'es' %>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right menu-topo">
-          <a href="" title="">FALE CONOSCO </a> |
-          <a href="" title="">ANUNCÍE AQUI</a>
+          <a href="" title=""><%= t('contact_us') %></a> |
+          <a href="" title=""><%= t('advertise_here') %></a>
         </div>
 
       </div>
@@ -68,8 +68,8 @@
       <div class="container">
         <%= link_to image_tag("pages/logo.png", class: 'logo', width: '300'), root_path %>
         <div class="form-busca">
-          <input type="text" id="search_companies" placeholder="Digite o nome da casa de Câmbio que procura">
-          <button type="submit">PROCURAR</button>
+          <input type="text" id="search_companies" placeholder='<%= t("placeholder_search")%>'>
+          <button type="submit"><%= t('search') %></button>
         </div>
       </div>
     </div>

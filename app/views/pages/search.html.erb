@@ -3,31 +3,32 @@
     <div class="col-md-12 box-cambio">
       <div class="row">
         <div class="col-md-4 box-left have">
-          <label>EU TENHO 
-          <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:have]), id: "have", :required => true %>
+          <label><%= t('have') %>
+          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
+          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:have]), {class: 'combobox form-control', prompt: "#{t('select_currency')}", autofocus: true} %>
         </div>
 
         <div class="col-md-4 box-left want">
-          <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-left">
-          <label>EU QUERO
-          <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
-          <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
-          <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :want, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:want]), id: "want", :required => true %>
-          <img src="assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
+          <img src="/assets/pages/flexa-left.png" height="70" alt=""  class="flexa-left">
+          <label><%= t('want') %>
+          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
+          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
+          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
+          <%= select_tag :want, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:want]), {class: 'combobox input-large form-control', prompt: "#{t('select_currency')}"} %>
+          <img src="/assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
         </div>
         <div class="col-md-4 box-left where">
-          <label>ONDE? 
-          <img src="assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
-          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name').includes(:cities), :cities, :name, :id, :name, params[:where]), id: "where", :required => true %>
+          <label><%= t('where') %>
+            <img src="/assets/pages/icon-pin.png" height="25" alt="" class="icon-dinheiro"><br>
+          </label>
+          <%= select_tag :where, option_groups_from_collection_for_select(Country.select('id,name').order('name').includes(:cities), :cities, :name, :id, :name, params[:where]) , {class: 'combobox input-large form-control', prompt: "#{t('select_city')}"}%>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12" align="center">
         <button type="submit" class="submit-cambio" ng-disabled="search.$invalid">
-          <img src="assets/pages/lupa.png" height="32" alt="procurar"> ECONOMIZAR!
+          <img src="/assets/pages/lupa.png" height="32" alt="procurar"> <%= t('spare') %>!
         </button>
         <br>
         <br>
@@ -55,7 +56,7 @@
                 <div class="result-content-amount" align="center">
                   <strong><%= number_to_currency(c.amount, :format=>' %n ', :precision => c.def_format ) %></strong>
                   <br>
-                  <img src="assets/pages/timer.png" height="15" alt="procurar">
+                  <img src="/assets/pages/timer.png" height="15" alt="procurar">
                   <span class="result-content-timer">Atualizado há <b><%= time_ago_in_words(c.created_at) %></b></span>
                   <br>
                   <%= link_to 'Veja Mais', '#', class: 'result-content-veja-mais' %>

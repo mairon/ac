@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  resources :exchange_operations
-  root 'pages#index'  
-  get "search_companies" => "pages#search_companies"
-  get "search" => "pages#search", :as => :search
-  devise_for :users 
-  devise_scope :user do
-    get  '/users/sign_out', to: 'devise/sessions#destroy'
-    post '/sessions/user', to: 'devise/sessions#create'
-  end  
+  scope "(:locale)", locale: /en|es|pt/ do
+    root 'pages#index'  
+    get "search_companies" => "pages#search_companies"
+    get "search" => "pages#search"
+    devise_for :users 
+    devise_scope :user do
+      get  '/users/sign_out', to: 'devise/sessions#destroy'
+      post '/sessions/user', to: 'devise/sessions#create'
+    end  
+  end
+  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), :via => [:get]
+  match '', to: redirect("/#{I18n.default_locale}"), :via => [:get]
   
   namespace :admin do
     get  '/painel', to: 'painel#index'
@@ -25,7 +28,9 @@ Rails.application.routes.draw do
     resources :countries
     resources :standard_exchanges
     resources :users
+    resources :exchange_operations
   end
+
   namespace :pcompany do
     get  '/painel', to: 'painel#index'
 
@@ -37,8 +42,8 @@ Rails.application.routes.draw do
     end
     resources :companies, only: [:edit, :update]
   end
+
   namespace :pclient do
     get  '/painel', to: 'painel#index'
   end
-
 end

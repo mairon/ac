@@ -1,10 +1,26 @@
 es:
-  will_paginate:
-    previous_label: "&#8592; Volver"
-    next_label: "Seguir &#8594;"
-    page_gap: "&hellip;"
+  sign_in: 'Entrar'
+  sign_up: 'Cadastre-se'
+  contact_us: 'HABLE CON NOSOTROS'  
+  advertise_here: 'PUBLICIDAD CON NOSOTROS'
+  search: 'BUSCAR'
+  placeholder_search: 'Introduce el nombre de la casa de cambio buscando'
+  follow: 'Siga con nosotros en los medios'
+  have: 'YO TENGO'
+  want: 'YO QUIERO'
+  where: 'DONDE?'    
+  spare:   'ECONOMIZAR'
+  select_currency: 'Selecione la moneda'
+  select_city: 'Selecione la ciudad'
+  obs1: 'Los valores se actualizan sólo por la casa de cambio y están sujetas a cambio en cualquier momento para ellos.'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "La validación falló: %{errors}"
+        restrict_dependent_destroy:
+          has_one: No se puede eliminar el registro porque existe un %{record} dependiente
+          has_many: No se puede eliminar el registro porque existen %{record} dependientes
   date:
-  
     abbr_day_names:
     - dom
     - lun
@@ -28,19 +44,17 @@ es:
     - nov
     - dic
     day_names:
-    - Domingo
-    - Segunda-Feira
-    - Terça-Feira
-    - Quarta-Feira
-    - Quinta-Feira
-    - Sexta-Feira
-    - Sábado
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
     formats:
-      default: ! '%d/%m/%Y'
-      long: ! '%A, %d de %B de %Y'
-      short: ! '%d de %b'
-      mes: ! '%B'
-      week: ! '%A'
+      default: "%d/%m/%Y"
+      long: "%A, %d de %B de %Y"
+      short: "%d de %b"
     month_names:
     -
     - enero
@@ -85,16 +99,16 @@ es:
         other: más de %{count} años
       x_days:
         one: 1 día
-        other: ! '%{count} días'
+        other: "%{count} días"
       x_minutes:
         one: 1 minuto
-        other: ! '%{count} minutos'
+        other: "%{count} minutos"
       x_months:
         one: 1 mes
-        other: ! '%{count} meses'
+        other: "%{count} meses"
       x_seconds:
         one: 1 segundo
-        other: ! '%{count} segundos'
+        other: "%{count} segundos"
     prompts:
       day: Día
       hour: Hora
@@ -103,11 +117,12 @@ es:
       second: Segundos
       year: Año
   errors:
-    format: ! '%{attribute} %{message}'
+    format: "%{attribute} %{message}"
     messages:
       accepted: debe ser aceptado
       blank: no puede estar en blanco
-      confirmation: no coincide con la confirmación
+      present: debe estar en blanco
+      confirmation: no coincide
       empty: no puede estar vacío
       equal_to: debe ser igual a %{count}
       even: debe ser un número par
@@ -118,10 +133,11 @@ es:
       invalid: es inválido
       less_than: debe ser menor que %{count}
       less_than_or_equal_to: debe ser menor o igual que %{count}
+      model_invalid: "La validación falló: %{errors}"
       not_a_number: no es un número
       not_an_integer: debe ser un entero
       odd: debe ser un número non
-      record_invalid: ! 'La validación falló: %{errors}'
+      required: debe existir
       taken: ya ha sido tomado
       too_long:
         one: es demasiado largo (máximo 1 caracter)
@@ -132,11 +148,12 @@ es:
       wrong_length:
         one: longitud errónea (debe ser de 1 caracter)
         other: longitud errónea (debe ser de %{count} caracteres)
+      other_than: debe ser distinto de %{count}
     template:
-      body: ! 'Revise que los siguientes campos sean válidos:'
+      body: 'Revise que los siguientes campos sean válidos:'
       header:
-        one: ! '%{model} no pudo guardarse debido a 1 error'
-        other: ! '%{model} no pudo guardarse debido a %{count} errores'
+        one: "%{model} no pudo guardarse debido a 1 error"
+        other: "%{model} no pudo guardarse debido a %{count} errores"
   helpers:
     select:
       prompt: Por favor selecciona
@@ -147,36 +164,40 @@ es:
   number:
     currency:
       format:
-        delimiter: .
-        format: ! '%u%n'
+        delimiter: "."
+        format: "%u%n"
         precision: 2
-        separator: ! ','
+        separator: ","
         significant: false
         strip_insignificant_zeros: false
-        unit: $
+        unit: "$"
     format:
-      delimiter: .
+      delimiter: "."
       precision: 2
-      separator: ! ','
+      separator: ","
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: "%n %u"
         units:
           billion: mil millones
-          million: millón
+          million:
+            one: millón
+            other: millones
           quadrillion: mil billones
           thousand: mil
-          trillion: billón
+          trillion:
+            one: billón
+            other: billones
           unit: ''
       format:
-        delimiter: ! ','
+        delimiter: ","
         precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: ! '%n %u'
+        format: "%n %u"
         units:
           byte:
             one: Byte
@@ -187,20 +208,20 @@ es:
           tb: TB
     percentage:
       format:
-        delimiter: ! ','
+        delimiter: ","
+        format: "%n%"
     precision:
       format:
-        delimiter: ! ','
+        delimiter: ","
   support:
     array:
-      last_word_connector: ! ' y '
-      two_words_connector: ! ' y '
-      words_connector: ! ', '
+      last_word_connector: " y "
+      two_words_connector: " y "
+      words_connector: ", "
   time:
     am: am
     formats:
-      default: ! '%a, %d de %b de %Y a las %H:%M:%S %Z'
-      long: ! '%A, %d de %B de %Y a las %I:%M %p'
-      short: ! '%d de %b a las %H:%M hrs'
-      mes: ! '%B'
-    pm: pm
+      default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
+      long: "%A, %d de %B de %Y a las %I:%M %p"
+      short: "%d de %b a las %H:%M hrs"
+    pm: pm  

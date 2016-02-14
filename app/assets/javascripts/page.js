@@ -5,8 +5,8 @@
 //= require pages/vendor/angular.min
 //= require pages/main
 //= require pages/map
-//= require select2
 //= require pages/vendor/jquery.easy-autocomplete.min
+//= require pages/vendor/bootstrap-combobox
 
 $( ".submit-cambio" ).click(function() {
   document.documentElement.className += 'js';
@@ -45,7 +45,7 @@ $("#search_companies").easyAutocomplete(options);
 
 
 $(document).ready(function() {
-	$("#have").select2({});
-	$("#want").select2({});
-	$("#where").select2({});
+	$("#have").combobox();
+	$("#want").combobox();
+	$("#where").combobox();
 });
