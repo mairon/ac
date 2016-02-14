@@ -4,7 +4,6 @@
 //= require pages/vendor/jquery.easing.min
 //= require pages/vendor/angular.min
 //= require pages/main
-//= require pages/vendor/jquery.selectbox-0.2
 //= require pages/map
 //= require select2
 //= require pages/vendor/jquery.easy-autocomplete.min

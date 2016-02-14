@@ -2,7 +2,6 @@
  	*= require pages/bootstrap
   *= require pages/bootstrap-theme
   *= require pages/main
-  *= require pages/jquery.selectbox.css
   *= require pages/pre-load
   *= require select2
   *= require pages/easy-autocomplete
