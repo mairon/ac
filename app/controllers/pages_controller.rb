@@ -4,6 +4,11 @@ class PagesController < ApplicationController
 		render layout: "page"	
 	end
 
+	def search_companies
+		companies = Company.select("id,name,avatar_file_name").where("name ILIKE ?", "%#{params[:name]}%").limit('10')
+  	render json: companies.as_json(:methods => [:avatar_url])
+  end
+
 	def search
 		st = StandardExchange.select('od').where(currency_have: params[:have], currency_want: params[:want]).last
 		order = "DESC" if st.od == 0

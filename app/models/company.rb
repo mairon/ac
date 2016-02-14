@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
 
 	accepts_nested_attributes_for :schedules
 
-  has_attached_file :avatar, :styles => {
+  has_attached_file :avatar, :default_url => "http://www.placehold.it/50x50/EFEFEF/AAAAAA", :styles => {
   			 :medium => {:geometry => "100x100",
   			 			 :convert_options => "-gravity center -extent 100x100  -quality 100"},
 
@@ -28,4 +28,7 @@ class Company < ActiveRecord::Base
 
   validates_attachment_content_type :pin, :content_type => /\Aimage\/.*\Z/
 
+  def avatar_url
+    avatar.url(:thumb)
+  end
 end

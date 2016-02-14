@@ -19,7 +19,7 @@
         <div class="col-md-4 box-left have">
           <label>EU TENHO 
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name), prompt: 'Escolha sua moeda', id: "have", data: { 'ng-model' => 'have' }, :required => true %>
+          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name), prompt: 'Escolha sua moeda', id: "have", data: { 'ng-model' => 'have' }, :required => true, autofocus: true %>
         </div>
 
         <div class="col-md-4 box-left want">

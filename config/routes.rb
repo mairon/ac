@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :exchange_operations
   root 'pages#index'  
+  get "search_companies" => "pages#search_companies"
   get "search" => "pages#search", :as => :search
   devise_for :users 
   devise_scope :user do

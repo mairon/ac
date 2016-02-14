@@ -4,9 +4,16 @@
   *= require pages/main
   *= require pages/jquery.selectbox.css
   *= require pages/pre-load
-
+  *= require select2
+  *= require pages/easy-autocomplete
+  *= require pages/easy-autocomplete.themes
  */
 
+#have, #where, #want{
+  width: 250px;
+  height: 200px !important;
+  padding: 20px;
+}
 
 .thumb-circle,.thumb-circle img
 {

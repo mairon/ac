@@ -9,8 +9,8 @@ gem 'friendly_id'
 gem 'paperclip'
 gem 'devise'
 gem 'mechanize'
-gem 'whenever', :require => false
 gem 'unicorn'
+gem "select2-rails"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
