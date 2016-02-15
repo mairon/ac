@@ -53,6 +53,8 @@
           <%= link_to_unless_current "PT", locale: 'pt' %>
           <%= link_to_unless_current "EN", locale: 'en' %>
           <%= link_to_unless_current "ES", locale: 'es' %>
+          |
+          <%= request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/) %>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right menu-topo">
