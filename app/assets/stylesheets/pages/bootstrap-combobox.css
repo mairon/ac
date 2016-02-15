@@ -48,14 +48,15 @@
 .combobox{
 
   background-color: #FFF;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    height: 60px;
-    position: relative;
-    width: 215px !important;
-    border-radius: 6px;
-    z-index: 888;
-
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  height: 60px;
+  position: relative;
+  width: 215px !important;
+  border-radius: 6px;
 }
 
+.dropdown-menu{
+  width: 250px;
+}
