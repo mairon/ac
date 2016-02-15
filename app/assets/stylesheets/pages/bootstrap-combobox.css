@@ -16,7 +16,6 @@
   display: none;
 }
 .typeahead-long {
-  max-height: 300px;
   overflow-y: auto;
 }
 .control-group.error .combobox-container .add-on {

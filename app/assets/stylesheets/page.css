@@ -207,3 +207,49 @@
   text-decoration: underline;
 }
 
+
+ @media (max-width: 768px) {
+    .form-busca{
+      display: none;
+    }
+    .jumbotron .container{
+        margin: 0 auto;
+      display:table;
+      padding: 15px;
+    }
+    .text-facil{
+      display: none;
+    }
+    .box-cambio{
+      display: table;
+      width: 100%;
+      border-radius: 0px;
+    }
+    .box-left{
+      margin: 0 auto;
+      width: 100% !important;
+      padding: 5px 0px 5px 0px;
+    }
+    .flexa-left{
+      display: none;
+    }
+    .flexa-right{
+      display: none;
+    }
+    .input-group,.form-control, .combobox{
+      width: 100% !important;
+    }
+    .espaco{
+      margin: 0;
+      padding: 15px;
+    }
+    .logo-rodape{
+      margin-bottom: 35px;
+    }
+    .sugira{
+      margin: 0;
+    }
+    .result-search{
+      margin: 0;
+    }
+  }
