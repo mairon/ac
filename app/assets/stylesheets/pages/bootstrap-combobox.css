@@ -40,3 +40,22 @@
 .control-group.success .combobox-container .caret {
   border-top-color: #468847;
 }
+
+
+.input-group-addon, .input-group-btn{
+  width: 0px !important;
+}
+.combobox{
+
+  background-color: #FFF;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    height: 60px;
+    position: relative;
+    width: 215px !important;
+    border-radius: 6px;
+    z-index: 888;
+
+}
+

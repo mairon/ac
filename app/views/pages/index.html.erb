@@ -19,7 +19,7 @@
         <div class="col-md-4 box-left have">
           <label><%= t('have') %>
           <img src="assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
-          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name), {class: 'combobox form-control', prompt: "#{t('select_currency')}", autofocus: true} %>
+          <%= select_tag :have, options_from_collection_for_select(Currency.select('id,name'), :id, :name), {class: 'combobox form-control c_have', prompt: "#{t('select_currency')}", autofocus: true} %>
         </div>
 
         <div class="col-md-4 box-left want">
