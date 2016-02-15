@@ -1,5 +1,17 @@
 class PagesController < ApplicationController
-	
+	before_action :set_locale	
+  def set_locale
+    I18n.locale = if params[:locale].present?
+                    params[:locale] # Here you might want to do some checking to allow only your desired locales
+                  else
+                    extract_locale_from_accept_language_header
+                  end    
+  end
+
+  def default_url_options(options = {})
+    {locale: I18n.locale}
+  end
+
 	def index
 		render layout: "page"	
 	end
@@ -63,4 +75,17 @@ class PagesController < ApplicationController
 		ActiveRecord::Associations::Preloader.new.preload(@companies_map, :company)
 		render layout: "page_search"	
 	end
+
+  protected
+
+  def extract_locale_from_accept_language_header
+    preferred_language = request.env['HTTP_ACCEPT_LANGUAGE'] || ''
+    preferred_language = preferred_language.scan(/^[a-z]{2}/).first
+    available_locales= ("en" "es" "pt")
+    if available_locales.include?(preferred_language)
+      preferred_language
+    else
+      "en"
+    end
+  end	
 end

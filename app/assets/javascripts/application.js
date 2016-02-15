@@ -24,7 +24,6 @@
 //= require lib/datatables/ZeroClipboard
 //= require lib/datatables/TableTools.min
 //= require lib/datatables/jquery.dataTables.sorting
-//= require lib/datatables/extras/Scroller/media/js/Scroller.min
 //= require js/gebo_datatables
 //= require jquery.maskMoney
 //= require jquery.maskedinput

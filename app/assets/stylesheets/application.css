@@ -22,7 +22,6 @@
  *= require lib/chosen/chosen
  *= require_self
  *= require lib/fullcalendar/fullcalendar_gebo
- *= require colorpicker
  *= require admin/search-map
 
 
