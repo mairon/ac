@@ -50,16 +50,24 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right localize menu-topo">
-          <%= link_to_unless_current "PT", locale: 'pt' %>
-          <%= link_to_unless_current "EN", locale: 'en' %>
-          <%= link_to_unless_current "ES", locale: 'es' %>
-          |
-          <%= request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/) %>
+          <% if locale.to_s == 'pt' %>
+            PT
+            <%= link_to "ES", locale: 'es' %>
+            <%= link_to "EN", locale: 'en' %>
+          <% elsif locale.to_s == 'es' %>
+            <%= link_to "PT", locale: 'pt' %>
+            ES
+            <%= link_to "EN", locale: 'en' %>
+          <% else %>
+            <%= link_to "PT", locale: 'pt' %>
+            <%= link_to "ES", locale: 'es' %>
+            EN         
+          <% end %>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right menu-topo">
-          <a href="" title=""><%= t('contact_us') %></a> |
-          <a href="" title=""><%= t('advertise_here') %></a>
+          <a href="" title="fale conosco"  data-toggle="modal" data-target="#adshere" data-whatever="getcontact"><%= t('contact_us') %></a> |
+          <a href="" title="anuncie aqui" data-toggle="modal" data-target="#adshere" data-whatever="getads"><%= t('advertise_here') %></a>
         </div>
 
       </div>

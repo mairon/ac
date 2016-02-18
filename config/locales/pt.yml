@@ -12,6 +12,7 @@ pt:
   spare:   'ECONOMIZAR'
   select_currency: 'Selecione a moeda'
   select_city: 'Selecione a cidade'
+  thank_newsletters: 'Obrigado por se cadastrar!'
   obs1: 'Os valores são atualizados exclusivamente pelas Casa de Câmbio e estão sujeitos à alterações a qualquer momento pelas mesmas.'
   obs_nl: 'Receba por e-mail as cotações de nossas casas de câmbio, e as nossas novidades do site!'
   activerecord:

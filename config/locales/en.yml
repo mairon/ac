@@ -12,6 +12,7 @@ en:
   spare:   'SPARE'
   select_currency: 'Select the currency'
   select_city: 'Select the city'
+  thank_newsletters: 'Thank you for registering!'
   obs1: 'The values are updated only by the Exchange House and are subject to change at any time for them.'
   activerecord:
     errors:

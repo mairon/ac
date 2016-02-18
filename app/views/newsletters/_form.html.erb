@@ -1,0 +1,10 @@
+<%= form_for(newsletter, remote: true) do |f| %>  
+  <div id="error_explanation_newslatters"></div>
+  <p align="right">
+    <%= f.text_field :email, placeholder: 'Digite seu e-mail', autocomplete: 'off' %>
+  </p>
+  <p align="right"> <input type="checkbox" name="" value="0" id="newsletters_accept"> Aceito receber e-mails do <strong>AquiCambio.</strong></p>
+  <p align="right">
+    <button type="submit" id="newsletter_submit"><img src="assets/pages/icon-email.png" height="16" alt=""> ENVIAR</button>
+  </p>
+<% end %>

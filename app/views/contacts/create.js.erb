@@ -1,0 +1,7 @@
+<% if @contact.errors.any? %>
+	$('#error_explanation_contacts').html("<ul><% @contact.errors.full_messages.each do |msg| %><li class='alert alert-danger'><%= escape_javascript ( msg ) %></li> <% end %></ul>");
+	$("#error_explanation_contacts").show(300);
+<% else %>
+  $("#contacts").css("display","none");
+  $("#contacts_mensagem").css("display","block");
+<% end %>

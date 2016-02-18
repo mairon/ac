@@ -12,6 +12,7 @@ es:
   spare:   'ECONOMIZAR'
   select_currency: 'Selecione la moneda'
   select_city: 'Selecione la ciudad'
+  thank_newsletters: 'Gracias por registrarse!'
   obs1: 'Los valores se actualizan sólo por la casa de cambio y están sujetas a cambio en cualquier momento para ellos.'
   activerecord:
     errors:

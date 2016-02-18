@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-md-8">
-    <img src="assets/pages/text-facil.png" alt="" class="img-responsive text-facil">
+  <% if locale.to_s == 'pt' %>
+    <%= image_tag('welcome-pt.png', class: "img-responsive text-facil") %>
+  <% elsif locale.to_s == 'es' %>
+    <%= image_tag('welcome-es.png', class: "img-responsive text-facil") %>
+  <% else %>
+    <%= image_tag('welcome-en.png', class: "img-responsive text-facil") %>
+  <% end %>
   </div>
   <div class="col-md-4 social">
     <h5 align="center"><%= t('follow') %></h5>
@@ -57,9 +63,28 @@
       de câmbio, e as <span>nossas novidades</span> do site!</p>
     </div>
     <div class="col-md-6 form-email">
-        <p align="right"><input type="text" name="" value="" placeholder="Digite seu e-mail"></p>
-        <p align="right"><button type="submit"><img src="assets/pages/icon-email.png" height="16" alt=""> ENVIAR</button></p>
-        <p align="right"> <input type="checkbox" name="" value="0"> Aceito receber e-mails do <strong>AquiCambio.</strong></p>
+      <div id="newsletters">
+        <%= render partial: "/newsletters/form", locals: {newsletter: Newsletter.new} %>
+      </div>      
+      <div id="newsletters_mensagem" class="alert alert-success" style="display:none" align="center">
+        <%= t('thank_newsletters') %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="adshere" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel"></h4>
+      </div>      
+      <div id="contacts">
+        <%= render partial: "/contacts/form", locals: {contact: Contact.new} %>
+      </div>
+      <div id="contacts_mensagem" class="modal-body alert alert-success" style="display:none; margin: 10px;" align="center">
+        Obrigado!
+      </div>
     </div>
   </div>
 </div>

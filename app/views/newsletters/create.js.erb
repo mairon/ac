@@ -1,0 +1,7 @@
+<% if @newsletter.errors.any? %>
+	$('#error_explanation_newslatters').html("<ul><% @newsletter.errors.full_messages.each do |msg| %><li class='alert alert-danger'><%= escape_javascript ( msg ) %></li> <% end %></ul>");
+	$("#error_explanation_newslatters").show(300);
+<% else %>
+  $("#newsletters").css("display","none");
+  $("#newsletters_mensagem").css("display","block");
+<% end %>

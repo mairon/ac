@@ -1,0 +1,51 @@
+<nav>
+  <div class="breadCrumb module">
+      <ul>
+          <li>
+              Newsletters
+          </li>
+      </ul>
+  </div>
+</nav>
+<style type="text/css">
+  form{ float: left;}
+  select{  width: 250px; margin:0px !important; }
+</style>
+
+<div style="color:red;">
+<%= flash[:error] %>
+</div>
+  <div class="search_breadCrumb search">
+    <div class="bts_grid">
+    </div>
+    <div class="row-fluid">
+      <div class="span12">            
+        <div data-fileupload="file" class="fileupload fileupload-new"><input type="hidden" />
+          <div class="input-append">
+            <%= link_to 'Novo', new_admin_newsletter_path, :class => "btn" %>
+          </div>
+        </div>
+        <table class="table table-bordered dTableR" id="dt_a">
+            <thead>
+              <tr>
+                <th width="30">Codigo</th>
+                <th>Email</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @newsletters.each do |n| %>
+                <tr>
+                  <td><%= n.id.to_s.rjust(6,'0') %></td>
+                  <td><%= n.email %></td>
+                  <td>
+                    <%= link_to '', edit_admin_newsletter_path(n), class: "icon-pencil" %>
+                    <%= link_to '', [:admin, n], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

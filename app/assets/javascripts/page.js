@@ -48,4 +48,5 @@ $(document).ready(function() {
 	$("#have").combobox();
 	$("#want").combobox();
 	$("#where").combobox();
+	$('#newsletter_submit').prop('disabled', 'disabled');
 });

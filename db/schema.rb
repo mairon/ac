@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209034914) do
+ActiveRecord::Schema.define(version: 20160218030842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 20160209034914) do
     t.integer  "currency_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name",       limit: 40
+    t.integer  "set_type"
+    t.string   "email",      limit: 50
+    t.string   "telephone",  limit: 20
+    t.text     "mensagem"
+    t.boolean  "status",                default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "countries", force: :cascade do |t|
@@ -120,6 +131,12 @@ ActiveRecord::Schema.define(version: 20160209034914) do
   end
 
   add_index "exchanges", ["company_id"], name: "filter_company", using: :hash
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email",      limit: 40
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "schedules", force: :cascade do |t|
     t.time     "in"

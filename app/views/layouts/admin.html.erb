@@ -75,7 +75,9 @@
                           <li><%= link_to 'Empresas', admin_companies_path %></li>
                           <li><%= link_to 'Usuários', admin_users_path %></li>
                           <li><%= link_to 'Configuração Compra/Venda', admin_standard_exchanges_path %></li>
-                        </ul>
+                          <li><%= link_to 'Newsletters', admin_newsletters_path %></li>
+                          <li><%= link_to "Contatos(#{Contact.where(status: false).count(:id)})", admin_contacts_path %></li>
+                        </ul>                        
                       </div>
                     </div>
                   </div>

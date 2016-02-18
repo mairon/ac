@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  scope "(:locale)", locale: /en|es|pt/ do
+  scope "(:locale)" do
+
     root 'pages#index'  
     get "search_companies" => "pages#search_companies"
     get "search" => "pages#search"
@@ -8,7 +9,9 @@ Rails.application.routes.draw do
       get  '/users/sign_out', to: 'devise/sessions#destroy'
       post '/sessions/user', to: 'devise/sessions#create'
     end  
-  
+    resources :newsletters, only: [:new, :create]
+    resources :contacts, only: [:new, :create]
+    
     namespace :admin do
       get  '/painel', to: 'painel#index'
       resources :crawlers
@@ -26,6 +29,8 @@ Rails.application.routes.draw do
       resources :standard_exchanges
       resources :users
       resources :exchange_operations
+      resources :newsletters
+      resources :contacts
     end
 
     namespace :pcompany do
