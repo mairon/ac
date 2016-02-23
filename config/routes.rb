@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
+  get "search_companies" => "pages#search_companies"
+  get "search" => "pages#search"
+
   scope "(:locale)" do
 
     root 'pages#index'  
-    get "search_companies" => "pages#search_companies"
-    get "search" => "pages#search"
     devise_for :users 
     devise_scope :user do
       get  '/users/sign_out', to: 'devise/sessions#destroy'

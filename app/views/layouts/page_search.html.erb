@@ -38,25 +38,35 @@
               <a href="#"><img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= current_user.email %></a> |
               <i class="fa fa-sign-out"></i><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
             <% else %>
-                <%= link_to new_user_session_path do %>
-                  <img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= t('sign_in') %> |
-                <% end %>
-                <%= link_to new_user_registration_path do %>
-                  <%= t('sign_up') %>
-                <% end %>
+              <%= link_to new_user_session_path do %>
+                <img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= t('sign_in') %> |
+              <% end %>
+              <%= link_to new_user_registration_path do %>
+                <%= t('sign_up') %>
+              <% end %>
             <% end %>
           </div>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right localize menu-topo">
-          <%= link_to_unless_current "PT", locale: 'pt' %>
-          <%= link_to_unless_current "EN", locale: 'en' %>
-          <%= link_to_unless_current "ES", locale: 'es' %>
+          <% if locale.to_s == 'pt' %>
+            PT
+            <%= link_to "ES", locale: 'es', have: params[:have], want: params[:want], where: params[:where] %>
+            <%= link_to "EN", locale: 'en', have: params[:have], want: params[:want], where: params[:where] %>
+          <% elsif locale.to_s == 'es' %>
+            <%= link_to "PT", locale: 'pt', have: params[:have], want: params[:want], where: params[:where] %>
+            ES
+            <%= link_to "EN", locale: 'en', have: params[:have], want: params[:want], where: params[:where] %>
+          <% else %>
+            <%= link_to "PT", locale: 'pt', have: params[:have], want: params[:want], where: params[:where] %>
+            <%= link_to "ES", locale: 'es', have: params[:have], want: params[:want], where: params[:where] %>
+            EN         
+          <% end %>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse navbar-right menu-topo">
-          <a href="" title=""><%= t('contact_us') %></a> |
-          <a href="" title=""><%= t('advertise_here') %></a>
+          <a href="" title="fale conosco"  data-toggle="modal" data-target="#adshere" data-whatever="getcontact"><%= t('contact_us') %></a> |
+          <a href="" title="anuncie aqui" data-toggle="modal" data-target="#adshere" data-whatever="getads"><%= t('advertise_here') %></a>
         </div>
 
       </div>
@@ -131,7 +141,7 @@
               icon: '<%= c.company.pin.url %>',
               title: '<%= c.name %>',
               infoWindow: {
-                content: '<div class="map-content" align="center"><div class="thumbnail infowin-thumb-circle" align="center"><%= image_tag c.company.avatar.url(:medium) %></div><h3><%= c.company.name %></h3><h2>Aberto ao público</h2><div class="valor"><img src="/assets/pages/icon-dinheiro.png" alt="" width="23" height="32" class="flexa-right" ><%= number_to_currency(c.amount, :format=>"%n", :precision => c.def_format ) %></div><div class="endereco"><%= c.address%></div><div class="telefone">Tel: <%= c.telephone %></div><div class="oferta"><a>Faça uma oferta!</a></div></div>'
+                content: '<div class="map-content" align="center"><div class="thumbnail infowin-thumb-circle" align="center"><%= image_tag c.company.avatar.url(:medium) %></div><h3><%= c.company.name %></h3><h2>Aberto ao público</h2><div class="valor"><img src="/assets/pages/icon-dinheiro.png" alt="" width="23" height="32" class="flexa-right" ><%= number_to_currency(c.amount, :format=>"%n", :precision => c.def_format ) %></div><div class="endereco"><%= c.address_view %></div><div class="telefone">Tel: <%= c.telephone %></div><% if c.status_ofert == true %><div class="oferta"><a title="Fazer uma Oferta" data-toggle="modal" data-target="#ofert" data-whatever="getads">Faça uma oferta!</a></div><% end %></div>'
               }
             });
         <% end %>

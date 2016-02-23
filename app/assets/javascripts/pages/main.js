@@ -20,6 +20,91 @@ $('#adshere').on('show.bs.modal', function (event) {
 
   	}else{
   		$('#contact_set_type').val('1');
-  			modal.find('.modal-title').text('Olá gostia de ser nosso parceiro?')
+  			modal.find('.modal-title').text('Olá gostaria de ser nosso parceiro?')
   	};
 })
+
+
+$( ".submit-cambio" ).click(function() {
+  document.documentElement.className += 'js';
+});
+
+//busca casa de cambio
+var options = {
+
+  url: function(phrase) {
+    return "/search_companies?name=" + phrase;
+  },  
+  
+  getValue: "name",
+
+  list: {
+    maxNumberOfElements: 10,
+    match: {
+      enabled: true
+    },
+    showAnimation: {
+      type: "fade", //normal|slide|fade
+      time: 400,
+      callback: function() {}
+    },    
+  },
+  template: {
+      type: "iconLeft",
+      fields: {
+        iconSrc: "avatar_url"
+      }
+    }
+};
+
+$("#search_companies").easyAutocomplete(options);
+
+
+$(document).ready(function() {
+  $("#have").combobox();
+  $("#want").combobox();
+  $("#where").combobox();
+  $('#newsletter_submit').prop('disabled', 'disabled');
+  if ($("#have option:selected").val() != '' && $("#want option:selected").val() != '' && $("#where option:selected").val() != ''){
+    $('.submit-cambio').prop('disabled', false);
+  }else{
+    $('.submit-cambio').prop('disabled', 'disabled');
+  };
+});
+
+$('#have').bind('change', function () {
+  if ($("#have option:selected").val() != '' && $("#want option:selected").val() != '' && $("#where option:selected").val() != ''){
+    $('.submit-cambio').prop('disabled', false);
+  }else{
+    $('.submit-cambio').prop('disabled', 'disabled');
+  };
+
+  if ($("#have option:selected").val() == $("#want option:selected").val() ){
+    alert('Ops! Moedas Iguais');
+  };
+});
+
+$('#want').bind('change', function () {
+  if ($("#have option:selected").val() != '' && $("#want option:selected").val() != '' && $("#where option:selected").val() != ''){
+    $('.submit-cambio').prop('disabled', false);
+  }else{
+    $('.submit-cambio').prop('disabled', 'disabled');
+  };
+
+  if ($("#have option:selected").val() == $("#want option:selected").val() ){
+    alert('Ops! Moedas Iguais');
+  };
+
+});
+
+$('#where').bind('change', function () {
+  if ($("#have option:selected").val() != '' && $("#want option:selected").val() != '' && $("#where option:selected").val() != ''){
+    $('.submit-cambio').prop('disabled', false);
+  }else{
+    $('.submit-cambio').prop('disabled', 'disabled');
+  };
+
+  if ($("#have option:selected").val() == $("#want option:selected").val() ){
+    alert('Ops! Moedas Iguais');
+  };
+});

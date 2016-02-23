@@ -156,6 +156,8 @@ footer a.sugira{
 }
 footer a.sugira:hover{
 	background:#3a3d40;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 

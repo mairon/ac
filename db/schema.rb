@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218030842) do
+ActiveRecord::Schema.define(version: 20160223023308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20160218030842) do
     t.string   "website",             limit: 150
     t.integer  "schedule_id"
     t.integer  "user_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "avatar_file_name",    limit: 50
     t.string   "avatar_content_type", limit: 20
     t.integer  "avatar_file_size"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20160218030842) do
     t.datetime "pin_updated_at"
     t.integer  "crawler_id"
     t.string   "crawler_url"
+    t.boolean  "status_ofert",                    default: false
+    t.string   "address_view",        limit: 80
   end
 
   add_index "companies", ["city_id"], name: "c_search_city_id", using: :hash

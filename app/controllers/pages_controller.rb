@@ -1,17 +1,4 @@
 class PagesController < ApplicationController
-	before_action :set_locale	
-  def set_locale
-    I18n.locale = if params[:locale].present?
-                    params[:locale] # Here you might want to do some checking to allow only your desired locales
-                  else
-                    extract_locale_from_accept_language_header
-                  end    
-  end
-
-  def default_url_options(options = {})
-    {locale: I18n.locale}
-  end
-
 	def index
 		render layout: "page"	
 	end
@@ -33,6 +20,7 @@ class PagesController < ApplicationController
 						      E.ACTIVE,
 						      E.CREATED_AT,
 						      SC.DEF_FORMAT,
+						      C.STATUS_OFERT,
 						      (SELECT CC.ID FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ? LIMIT 1 ) AS UNIT_ID,
 						      (SELECT CC.LATITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ? LIMIT 1 ),
 						      (SELECT CC.LONGITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ?  LIMIT 1 )
@@ -52,13 +40,14 @@ class PagesController < ApplicationController
 						      C.NAME,
 						      C.LATITUDE,
 						      C.LONGITUDE,
-						      C.ADDRESS,
+						      C.ADDRESS_VIEW,
 						      C.TELEPHONE,
 						      E.OPERATION,
 						      E.AMOUNT,
 						      E.ACTIVE,
 						      E.CREATED_AT,
-						      SC.DEF_FORMAT
+						      SC.DEF_FORMAT,
+						      C.STATUS_OFERT
 						FROM EXCHANGE_OPERATIONS E
 						INNER JOIN COMPANIES C
 						ON C.COMPANY_ID = E.COMPANY_ID

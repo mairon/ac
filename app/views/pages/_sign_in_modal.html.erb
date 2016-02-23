@@ -1,0 +1,7 @@
+<%= form_for("user", :url => user_session_path,
+           :html => {:id => "sign_in_user"},
+           :remote => true ) do |f| %>
+  <%= f.text_field :email, autocomplete: "off", placeholder: 'E-mail' %>
+  <%= f.password_field :password , autocomplete: "off", placeholder: 'Senha' %>
+  <%= f.submit 'Entrar', class: 'sign_in', data: { disable_with: "Aguarde..." } %>
+<% end %>

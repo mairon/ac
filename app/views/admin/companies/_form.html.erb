@@ -63,11 +63,12 @@
       <tr>
         <td align="right">Usuário:</td>
         <td><%= f.collection_select :user_id, User.select('id,email').order('2'), :id, :email, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        <td colspan="2" align="right"> <%= f.check_box :status_ofert %> <strong>Habilitar p/ receber Oferta</strong></td>
       </tr>
 
       <tr>
         <td align="right">Moeda Base:</td>
-        <td><%= f.collection_select :currency_id, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
+        <td><%= f.collection_select :currency_id, Currency.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>        
       </tr>
         <tr>
           <td align="right">Nome:</td>
@@ -130,7 +131,14 @@
           <td><%= f.collection_select :city_id, City.select('id,name').order('2'), :id, :name, {prompt: 'Selecione'},{style: 'width: 225px'} %><span class="f_req">*</span></td>
         </tr>
         <tr>
-          <td align="right">Endereço:</td>
+          <td align="right">Endereço Visivel:</td>
+          <td>
+            <%= f.text_field :address_view, size: 60, placeholder: 'Ex. Rua x bairro X nº 00', class: 'txtEndereco' %><span class="f_req">*</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="right">Endereço Google Maps:</td>
           <td>
             <%= f.text_field :address, size: 60, placeholder: 'Ex. Rua x bairro X nº 00', class: 'txtEndereco' %><span class="f_req">*</span>
             <input type="button" id="btnEndereco" name="btnEndereco" value="Mostrar no mapa" />
