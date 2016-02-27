@@ -55,7 +55,7 @@
                 </div>
                 <div class="result-content-amount" align="center">
                     <strong>
-                    <% if (c.created_at + 3600) <= Time.now %>
+                    <% if (c.created_at + 3600) <= Time.now  %>
                       <%= number_to_currency(c.amount, :format=>' %n ', :precision => c.def_format ) %>
                     <% else %>
                       <div style="font-size: 14px; margin-top: 30px">
@@ -65,11 +65,9 @@
                     </strong>
                   <br>
                   <img src="/assets/pages/timer.png" height="15" alt="procurar">
-                  <span class="result-content-timer">
-                    <% if (c.created_at + 3600) <= Time.now %>
-                      Atualizado há <b><%= time_ago_in_words(c.created_at) %></b>
-                    <% end %>
-                  </span>
+                      <span class="result-content-timer">
+                        Atualizado há <b><%= c.created_at %> | <%= Time.now %></b>
+                      </span>
                 </div>
                 <div align="right">
                   <a href="" title="Ver no Mapa" data-coordenada="<%= c.latitude %>,<%= c.longitude %>,<%= c.unit_id %>" class='result-content-veja-mais ccBranchOfficeMap'>Ver no Mapa</a>
