@@ -4396,9 +4396,6 @@ class Crawler < ActiveRecord::Base
 
 		list_crawler = Company.where(crawler_id: 5) #chaco
 		list_crawler.each do |lc|
-			begin
-				open(lc.crawler_url.to_s)
-
 			url = lc.crawler_url.to_s
 			uri = URI(url)
 			response = Net::HTTP.get(uri)
@@ -4512,11 +4509,6 @@ class Crawler < ActiveRecord::Base
 	    	buy:        us_es_c.to_f,
 	    	sale:       us_es_v.to_f,
 	    )	
-
- 		rescue
-			
-		end
-
 	  end
 
 
