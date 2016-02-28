@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  have: 9.99
+  exchange: 9.99
+  status: 1
+  user_id: 1
+  obs: MyText
+
+two:
+  company_id: 1
+  have: 9.99
+  exchange: 9.99
+  status: 1
+  user_id: 1
+  obs: MyText

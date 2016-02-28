@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @offert.company_id %>
+</p>
+
+<p>
+  <strong>Have:</strong>
+  <%= @offert.have %>
+</p>
+
+<p>
+  <strong>Exchange:</strong>
+  <%= @offert.exchange %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @offert.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @offert.user_id %>
+</p>
+
+<p>
+  <strong>Obs:</strong>
+  <%= @offert.obs %>
+</p>
+
+<%= link_to 'Edit', edit_offert_path(@offert) %> |
+<%= link_to 'Back', offerts_path %>

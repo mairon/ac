@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223023308) do
+ActiveRecord::Schema.define(version: 20160228144109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,9 +117,6 @@ ActiveRecord::Schema.define(version: 20160223023308) do
   end
 
   add_index "exchange_operations", ["active"], name: "eo_search_active", using: :hash
-  add_index "exchange_operations", ["company_id"], name: "eo_search_company_id", using: :hash
-  add_index "exchange_operations", ["have_id"], name: "eo_search_have_id", using: :hash
-  add_index "exchange_operations", ["want_id"], name: "eo_search_want_id", using: :hash
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "company_id"
@@ -138,6 +135,17 @@ ActiveRecord::Schema.define(version: 20160223023308) do
     t.string   "email",      limit: 40
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "offerts", force: :cascade do |t|
+    t.integer  "company_id"
+    t.decimal  "have",       precision: 15, scale: 4, default: 0.0
+    t.decimal  "exchange",   precision: 15, scale: 4, default: 0.0
+    t.integer  "status",                              default: 0
+    t.integer  "user_id"
+    t.text     "obs"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "schedules", force: :cascade do |t|

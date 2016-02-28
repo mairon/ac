@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :offerts
   get "search_companies" => "pages#search_companies"
   get "search" => "pages#search"
 
