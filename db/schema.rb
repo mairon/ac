@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228144109) do
+ActiveRecord::Schema.define(version: 20160229045315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160228144109) do
     t.string   "crawler_url"
     t.boolean  "status_ofert",                    default: false
     t.string   "address_view",        limit: 80
+    t.boolean  "status",                          default: true
   end
 
   add_index "companies", ["city_id"], name: "c_search_city_id", using: :hash

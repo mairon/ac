@@ -23,7 +23,8 @@ class PagesController < ApplicationController
 						      C.STATUS_OFERT,
 						      (SELECT CC.ID FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ? LIMIT 1 ) AS UNIT_ID,
 						      (SELECT CC.LATITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ? LIMIT 1 ),
-						      (SELECT CC.LONGITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ?  LIMIT 1 )
+						      (SELECT CC.LONGITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ?  LIMIT 1 ),
+						      C.STATUS
 						FROM EXCHANGE_OPERATIONS E
 						INNER JOIN COMPANIES C
 						ON C.ID = E.COMPANY_ID
@@ -33,7 +34,7 @@ class PagesController < ApplicationController
 						AND E.ACTIVE = TRUE
 						AND E.HAVE_ID = ?
 						AND E.WANT_ID = ?
-						ORDER BY 6 #{order}"
+						ORDER BY 14 DESC, 6 #{order}"
 
 		sql_map = "SELECT C.ID AS COMPANY_ID,
 						      C.CITY_ID,

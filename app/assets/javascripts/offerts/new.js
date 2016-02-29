@@ -1,4 +1,4 @@
-jQuery.noConflict();
+
 (function( $ ) {
 
     var el = {

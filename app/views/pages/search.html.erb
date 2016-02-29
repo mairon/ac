@@ -72,6 +72,8 @@
                   <% if Time.zone.now < (c.created_at + 3600) %>
                     <img src="/assets/pages/timer.png" height="15" alt="procurar">
                     <span class="result-content-timer">Atualizado há <b><%= time_ago_in_words(c.created_at) %></b></span>
+                  <% else %>
+                    <div style="height: 15px;"></div>
                   <% end %>
                 </div>
                 <div align="right">

@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: ac
+  database: aquicambio
   pool: 5
-  username: rodrigop
-  password: 181619
-  host: 127.0.0.1
+  username: postgres
+  password: w@789789
+  host: 162.243.6.58
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
