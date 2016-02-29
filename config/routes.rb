@@ -3,18 +3,19 @@ Rails.application.routes.draw do
   resources :offerts
   get "search_companies" => "pages#search_companies"
   get "search" => "pages#search"
+  get "offerts/new" => "offerts#new"
 
   scope "(:locale)" do
 
-    root 'pages#index'  
-    devise_for :users 
+    root 'pages#index'
+    devise_for :users
     devise_scope :user do
       get  '/users/sign_out', to: 'devise/sessions#destroy'
-      post '/sessions/user', to: 'devise/sessions#create'
-    end  
+      # post '/sessions/user', to: 'devise/sessions#create'
+    end
     resources :newsletters, only: [:new, :create]
     resources :contacts, only: [:new, :create]
-    
+
     namespace :admin do
       get  '/painel', to: 'painel#index'
       resources :crawlers
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
       resources :currencies
       resources :schedules
       resources :companies do
-        member do 
+        member do
           get 'affiliates'
         end
       end
@@ -51,5 +52,5 @@ Rails.application.routes.draw do
     namespace :pclient do
       get  '/painel', to: 'painel#index'
     end
-  end  
+  end
 end

@@ -1,4 +1,4 @@
-//= require jquery 
+//= require jquery
 //= require jquery_ujs
 //= require pages/vendor/bootstrap.min
 //= require pages/vendor/jquery.easing.min
@@ -7,6 +7,7 @@
 //= require pages/vendor/jquery.easy-autocomplete.min
 //= require pages/vendor/bootstrap-combobox
 //= require pages/main
+//= require offerts/new
 
 
 $("#partial_sign_in").click(function(){

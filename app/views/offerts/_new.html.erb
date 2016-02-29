@@ -1,0 +1,49 @@
+<%= form_for(@offert, remote: true, format: :json) do |f| %>
+  <%= f.hidden_field :company_id %>
+  <%= f.hidden_field :user_id, value: current_user.id if user_signed_in? %>
+
+<div class="row">
+
+  <!-- LOGO -->
+  <div id="js-thumbnail-offert" class="col-md-2"></div>
+
+  <div class="col-md-4">
+    <form>
+      <div class="form-group">
+        <label for="have-money">Quantos Dólares você precisa?</label>
+        <div class="input-group">
+          <div class="input-group-addon">USD</div>
+          <%= f.text_field :have,
+            :type => "number",
+            :step => "1",
+            :min => "100",
+            :value => 100,
+            :placeholder => '100',
+            :class => "form-control",
+            :id => "haveInput" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exchange">Qual taxa você quer pagar?</label>
+        <div class="input-group">
+          <div class="input-group-addon"> R$</div>
+          <%= f.text_field :exchange,
+            :type => "number",
+            :step => "0.01",
+            :min => "0",
+            :value => "4.15",
+            :class => "form-control",
+            :id => "exchangeInput" %>
+        </div>
+      </div>
+
+      <p id="offert-solicitation"></p>
+
+      <div class="form-group">
+        <%= f.submit "FAZER OFERTA", class: 'btn' %>
+      </div>
+    </form>
+  </div>
+</div>
+
+<% end %>

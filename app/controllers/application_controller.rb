@@ -3,12 +3,14 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 	layout :layout_by_resource
 
+  after_filter :store_location
+
   def set_locale
     I18n.locale = if params[:locale].present?
                     params[:locale] # Here you might want to do some checking to allow only your desired locales
                   else
                     extract_locale_from_accept_language_header
-                  end    
+                  end
   end
 
   def default_url_options(options = {})
@@ -41,13 +43,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def store_location
+    if (!request.fullpath.match("/users") &&
+      !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath
+    end
+  end
+
   def after_sign_in_path_for(resource)
-    if current_user.role == 'admin'
-      admin_painel_path
-    elsif current_user.role == 'empresa'
-      pcompany_painel_path
-    elsif current_user.role == 'cliente'
-      pclient_painel_path
-    end    
+    session[:previous_url]
+
+  #   if current_user.role == 'admin'
+  #     admin_painel_path
+  #   elsif current_user.role == 'empresa'
+  #     pcompany_painel_path
+  #   elsif current_user.role == 'cliente'
+  #     pclient_painel_path
+  #   end
   end
 end

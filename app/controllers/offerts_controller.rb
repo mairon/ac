@@ -1,5 +1,8 @@
 class OffertsController < ApplicationController
   before_action :set_offert, only: [:show, :edit, :update, :destroy]
+  skip_filter :store_location
+
+  layout "page"
 
   # GET /offerts
   # GET /offerts.json
@@ -28,6 +31,7 @@ class OffertsController < ApplicationController
 
     respond_to do |format|
       if @offert.save
+
         format.html { redirect_to @offert, notice: 'Offert was successfully created.' }
         format.json { render :show, status: :created, location: @offert }
       else

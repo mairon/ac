@@ -6,6 +6,7 @@
   *= require pages/easy-autocomplete
   *= require pages/easy-autocomplete.themes
   *= require pages/bootstrap-combobox
+  *= require sass/offerts/_index
  */
 
 
@@ -31,7 +32,7 @@
     width: 1240px;
     z-index: 9;
     margin-top: 100px;
-    display: table;    
+    display: table;
 }
 
 .result-search{
@@ -163,7 +164,7 @@
   text-align: center;
     color: #344351;
     font-size: 17px;
-    font-weight: 900; 
+    font-weight: 900;
 }
 .map-content  h2{
   color: green;
@@ -199,7 +200,7 @@
 .map-content .oferta a{
   color: #333;
   text-transform: uppercase;
-  font-weight: bold;  
+  font-weight: bold;
 }
 
 .map-content .oferta a:hover{
@@ -253,3 +254,8 @@
       margin: 0;
     }
   }
+
+
+.none {
+  display: none;
+}

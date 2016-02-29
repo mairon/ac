@@ -11,8 +11,8 @@
         <div class="col-md-4 box-left want">
           <img src="/assets/pages/flexa-left.png" height="70" alt=""  class="flexa-left">
           <label><%= t('want') %>
-          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
-          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"> 
+          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro">
+          <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro">
           <img src="/assets/pages/icon-dinheiro.png" height="25" alt="" class="icon-dinheiro"></label><br>
           <%= select_tag :want, options_from_collection_for_select(Currency.select('id,name'), :id, :name, params[:want]), {class: 'combobox input-large form-control', prompt: "#{t('select_currency')}"} %>
           <img src="/assets/pages/flexa-left.png" height="70" alt=""  class="flexa-right">
@@ -32,20 +32,25 @@
         </button>
         <br>
         <br>
-        <p class="aviso-botao-procurar">Os valores são atualizados <strong>exclusivamente pelas Casa de Câmbio</strong> e estão sujeitos à alterações a qualquer momento pelas mesmas.</p>        
+        <p class="aviso-botao-procurar">Os valores são atualizados <strong>exclusivamente pelas Casa de Câmbio</strong> e estão sujeitos à alterações a qualquer momento pelas mesmas.</p>
       </div>
     </div>
   <% end %>
 </div>
+
+<div id="offert-container" class="none">
+  <%= render 'offerts/new' %>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <% if @companies.present? %>
-      <div class="result-search" id="search">
+      <div class="result-search" id="search" data-user_signed_in="<%= user_signed_in? %>">
         <ul>
           <% @companies.each do |c| %>
             <li class="title">
-              <div class="result-content">              
-                <div class="thumbnail thumb-circle">
+              <div class="result-content">
+                <div class="thumbnail thumb-circle <%= c.id %>">
                   <%= image_tag c.company.avatar.url(:medium) %>
                 </div>
                 <div class="result-content-name" align="center">
@@ -59,7 +64,7 @@
                       <div style="font-size: 14px; margin-left:20px">
                         Sob Consulta
                       </div>
-                    </strong>            
+                    </strong>
                   <% else %>
                     <strong><%= number_to_currency(c.amount, :format=>' %n ', :precision => c.def_format ) %></strong>
                   <% end %>
@@ -72,13 +77,16 @@
                 <div align="right">
                   <a href="" title="Ver no Mapa" data-coordenada="<%= c.latitude %>,<%= c.longitude %>,<%= c.unit_id %>" class='result-content-veja-mais ccBranchOfficeMap'>Ver no Mapa</a>
                   <% if c.status_ofert == true %>
-                    <a href="" title="Fazer uma Oferta" data-toggle="modal" data-target="#ofert" data-whatever="getads" class='result-content-veja-mais'>Fazer Oferta</a>
+                    <!-- <a href="" title="Fazer uma Oferta" data-toggle="modal" data-target="#ofert" data-whatever="getads" class='result-content-veja-mais'>Fazer Oferta</a> -->
+                    <a href="" title="Fazer uma Oferta"
+                      data-company_id="<%= c.id %>"
+                      class='result-content-veja-mais make-offert'>Fazer Oferta</a>
                   <% end %>
                 </div>
               </div>
             </li>
           <% end %>
-        </ul>      
+        </ul>
       </div>
     <% else %>
       <h3 align="center">Nenhuma cotação encontrada :( </h3>
@@ -89,27 +97,27 @@
 <input type="hidden" name="" value="" placeholder="" id="close-info">
 <div id="map-canvas"></div>
 
-<div class="modal fade" id="ofert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<!-- <div class="modal fade modal__ofert" id="ofert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">Oferta</h4>
         <div id="sign_in">
-          <% if user_signed_in? %>
-            <%= current_user.email %>
+          <%# if user_signed_in? %>
+            <%#= current_user.email %>
             fazer Oferta!
-          <% else %>
+          <%# else %>
             <a href="" title="" id="partial_sign_in">Entrar</a> | <a href="" id="partial_sign_up" title="">Cadastrar</a>
             <div class="sign_in">
-              <%= render 'sign_in_modal' %>
+              <%#= render 'sign_in_modal' %>
             </div>
             <div class="sign_up" style="display:none">
-              <%= render 'sign_up_modal' %>
+              <%##= render 'sign_up_modal' %>
             </div>
-          <% end %>
-        </div>        
+          <%# end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+ --></div>

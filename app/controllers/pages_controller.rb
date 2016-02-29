@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 	def index
-		render layout: "page"	
+		render layout: "page"
 	end
 
 	def search_companies
@@ -57,12 +57,15 @@ class PagesController < ApplicationController
 						AND E.ACTIVE = TRUE
 						AND E.HAVE_ID = ?
 						AND E.WANT_ID = ?
-						ORDER BY 6"						
+						ORDER BY 6"
 		@companies = ExchangeOperation.find_by_sql [sql, params[:where], params[:where], params[:where], params[:where], params[:have], params[:want]]
 		ActiveRecord::Associations::Preloader.new.preload(@companies, :company)
 		@companies_map = ExchangeOperation.find_by_sql [sql_map, params[:where], params[:have], params[:want]]
 		ActiveRecord::Associations::Preloader.new.preload(@companies_map, :company)
-		render layout: "page_search"	
+
+		@offert = Offert.new
+
+		render layout: "page_search"
 	end
 
   protected
@@ -76,5 +79,5 @@ class PagesController < ApplicationController
     else
       "en"
     end
-  end	
+  end
 end
