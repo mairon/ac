@@ -35,7 +35,7 @@ class PagesController < ApplicationController
 						AND E.ACTIVE = TRUE
 						AND E.HAVE_ID = ?
 						AND E.WANT_ID = ?
-						ORDER BY 14 DESC, 6 #{order}"
+						ORDER BY 15 DESC, 6 #{order}"
 
 		sql_map = "SELECT C.ID AS COMPANY_ID,
 						      C.CITY_ID,
