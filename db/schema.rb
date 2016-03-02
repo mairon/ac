@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229045315) do
+ActiveRecord::Schema.define(version: 20160302005438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,27 +25,27 @@ ActiveRecord::Schema.define(version: 20160229045315) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string   "name",                limit: 50
-    t.string   "telephone",           limit: 20
-    t.string   "longitude",           limit: 20
-    t.string   "latitude",            limit: 20
+    t.string   "name",                    limit: 50
+    t.string   "telephone",               limit: 20
+    t.string   "longitude",               limit: 20
+    t.string   "latitude",                limit: 20
     t.integer  "city_id"
     t.integer  "country_id"
     t.integer  "state_id"
     t.text     "about"
-    t.string   "address",             limit: 150
-    t.string   "website",             limit: 150
+    t.string   "address",                 limit: 150
+    t.string   "website",                 limit: 150
     t.integer  "schedule_id"
     t.integer  "user_id"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "avatar_file_name",    limit: 50
-    t.string   "avatar_content_type", limit: 20
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "avatar_file_name",        limit: 50
+    t.string   "avatar_content_type",     limit: 20
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "telephone02",         limit: 20
+    t.string   "telephone02",             limit: 20
     t.integer  "currency_id"
-    t.integer  "unit",                            default: 0
+    t.integer  "unit",                                default: 0
     t.integer  "company_id"
     t.string   "pin_file_name"
     t.string   "pin_content_type"
@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(version: 20160229045315) do
     t.datetime "pin_updated_at"
     t.integer  "crawler_id"
     t.string   "crawler_url"
-    t.boolean  "status_ofert",                    default: false
-    t.string   "address_view",        limit: 80
-    t.boolean  "status",                          default: true
+    t.boolean  "status_ofert",                        default: false
+    t.string   "address_view",            limit: 80
+    t.boolean  "status",                              default: true
+    t.boolean  "status_schedule_service",             default: false
   end
 
   add_index "companies", ["city_id"], name: "c_search_city_id", using: :hash

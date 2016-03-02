@@ -86,10 +86,14 @@
 
         </tr>
         <tr>
+        	<td></td>
+        	<td colspan="2" align="right"> <%= f.check_box :status_schedule_service %> <strong>Mostrar Horario de funcionamento</strong></td>
+        </tr>
+        <tr>
           <td></td>
           <td colspan="4"> 
           <fieldset>
-             <legend>Horário de Atendimento</legend>           
+             <legend>Horário de Atendimento</legend>
             <%= render 'schedules', f: f %>
           </fieldset> 
           </td>
@@ -133,7 +137,7 @@
         <tr>
           <td align="right">Endereço Visivel:</td>
           <td>
-            <%= f.text_field :address_view, size: 60, placeholder: 'Ex. Rua x bairro X nº 00', class: 'txtEndereco' %><span class="f_req">*</span>
+            <%= f.text_field :address_view, size: 60, placeholder: 'Ex. Rua x bairro X nº 00' %><span class="f_req">*</span>
           </td>
         </tr>
 
@@ -168,8 +172,8 @@
           <tr>
             <td align="right">Url/Cod.empresa:</td>
             <td><%= f.text_field :crawler_url, size: 57 %></td>
+            <td colspan="2" align="right"> <%= f.check_box :status %> <strong>Crawler Ativo</strong></td>
           </tr>
-
         </table>
       </div>
 
