@@ -32,7 +32,7 @@
         </button>
         <br>
         <br>
-        <p class="aviso-botao-procurar">Os valores são atualizados <strong>exclusivamente pelas Casa de Câmbio</strong> e estão sujeitos à alterações a qualquer momento pelas mesmas.</p>
+        <p class="aviso-botao-procurar"><%= t('obs1') %></p>
       </div>
     </div>
   <% end %>
@@ -71,13 +71,13 @@
                   <br>
                   <% if Time.zone.now < (c.created_at + 3600) %>
                     <img src="/assets/pages/timer.png" height="15" alt="procurar">
-                    <span class="result-content-timer">Atualizado há <b><%= time_ago_in_words(c.created_at) %></b></span>
+                    <span class="result-content-timer"><%= t('update') %> <b><%= time_ago_in_words(c.created_at) %></b></span>
                   <% else %>
                     <div style="height: 15px;"></div>
                   <% end %>
                 </div>
                 <div align="right">
-                  <a href="" title="Ver no Mapa" data-coordenada="<%= c.latitude %>,<%= c.longitude %>,<%= c.unit_id %>" class='result-content-veja-mais ccBranchOfficeMap'>Ver no Mapa</a>
+                  <a href="" title="Ver no Mapa" data-coordenada="<%= c.latitude %>,<%= c.longitude %>,<%= c.unit_id %>" class='result-content-veja-mais ccBranchOfficeMap'><%= t('ver-map') %></a>
                   <% if c.status_ofert == true %>
                     <!-- <a href="" title="Fazer uma Oferta" data-toggle="modal" data-target="#ofert" data-whatever="getads" class='result-content-veja-mais'>Fazer Oferta</a> -->
                     <a href="" title="Fazer uma Oferta"

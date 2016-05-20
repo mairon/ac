@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Aqui Cambio</title>
+        <title>AquiCambio.com - <%= t('t-aba') %></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="/assets/pages/pin-aquicambio.png">
@@ -17,8 +17,7 @@
         <script>
           //* hide all elements & show preloader
           document.documentElement.className += 'js';
-        </script>  
-
+        </script>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -35,17 +34,6 @@
             <span class="icon-bar"></span>
           </button>
           <div class="navbar-brand menu-topo">
-            <% if user_signed_in? %>
-              <a href="#"><img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= current_user.email %></a> |
-              <i class="fa fa-sign-out"></i><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-            <% else %>
-              <%= link_to new_user_session_path do %>
-                <img src="../assets/pages/icon-user.png" height="16" alt="entrar"> <%= t('sign_in') %> |
-              <% end %>
-              <%= link_to new_user_registration_path do %>
-                <%= t('sign_up') %>
-              <% end %>
-            <% end %>
           </div>
         </div>
 
@@ -87,29 +75,23 @@
     <div class="container principal">
       <%= yield %>
     </div> <!-- /container -->
+
     <footer>
-    <p>As taxas são passíveis de alteração, confirme o preço junto à casa de câmbio. A tabela acima é uma média das operações registradas periodicamente pela equipe AquiCambio e serve apenas como indicativo, não somos responsáveis pelos 
-    referidos valores. Há diversos fatores que influenciam os valores praticados em determinado momento e que variam continuamente, tais como a taxa de câmbio, o valor da operação ou a tarifa praticada.</p>  
-    
-    <p><b>AquiCambio.com</b>  com sede na cidade de Ciudad del Este, Km 9,5, Alto Paraná, Paraguay / RUC 858555-76</p>
-    <br>
-    <p class="termos-de-uso"><img src="../assets/pages/icon-alert.png" height="25" alt="Termos de uso"> <a>TERMOS DE USO E CONDIÇÕES</a></p>
-    <div class="rows">
-      <div class="col-md-4 sugira" align="center">
-          <p>SENTIU FALTA DE ALGUMA CASA DE CÂMBIO?</p>
-          <p><a title="fale conosco"  data-toggle="modal" data-target="#adshere" data-whatever="getcontact" class="sugira"><img src="../assets/pages/icon-dedo.png" height="30" alt="sugira aqui" > SUGIRA AQUI</a></p>
+      <div class="container">
+        <p><%= t('info_footer1') %></p>
+        <p><%= t('info_footer2') %> <b>AquiCambio.com</b> <%= t('adress') %></p>
       </div>
-      <div class="col-md-4 logo-rodape" align="center">
-        <img src="../assets/pages/logo-horizontal.png" width="281" alt="">
+
+      <div class="rows">
+        <div class="col-md-4 sugira" align="center">
+        </div>
+        <div class="col-md-4 logo-rodape" align="center">
+          <img src="../assets/pages/logo-horizontal.png" width="281" alt="">
+          <br>
+        </div>
+        <div class="col-md-4" align="center">
+        </div>
       </div>
-      <div class="col-md-4" align="center">
-        <p>BAIXE NOSSO APP NO SEU SMARTFHONE <img src="../assets/pages/seta.png" height="30" alt=""></p>
-        <p>
-        <img src="../assets/pages/icon-googleplay.png" width="150" height="52" alt="" class="icon-gp">
-        <img class="espaco" src="../assets/pages/icon-appstore.png" width="150" alt="" class="icon-as">          
-        </p>
-      </div>
-    </div>
     </footer>
     <div class="barra-footer"></div>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>

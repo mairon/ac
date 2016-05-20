@@ -1,4 +1,5 @@
 en:
+  t-aba: "Now it's easy to compare exchanges rates!"
   sign_in: 'Sign In'
   sign_up: 'Sign Up'
   contact_us: 'CONTACT US'
@@ -14,6 +15,19 @@ en:
   select_city: 'Select the city'
   thank_newsletters: 'Thank you for registering!'
   obs1: 'The values are updated only by the Exchange House and are subject to change at any time for them.'
+  newsletters1: 'Receive email quotes of exchange '
+  newsletters2: 'houses, end' 
+  newsletters3: 'our news' 
+  newsletters4: ''
+  newsletters5: 'I agree to receive emails from'
+  digite-email: 'Type your e-mail'
+  send: 'SEND'
+  info_footer1: 'Rates can be altered any times, as the values of exchange offices. the result list is updated periodically by the staff of aquicambio.com and serves only as an indication, we are not responsible for different values. we replicate the exact information of the exchange offices. there are several factors that can influence a certain time and that vary continuously, sucha as the official exchange rate of each country, the value of the transaction or the rate practiced.'
+  info_footer2: 'The first platform in the world to offer multiple currency combinations.'  
+  adress: ''
+  update: 'Updated'
+  ver-map: 'View on Map'
+  best-rate: 'Best Rate'
   activerecord:
     errors:
       messages:

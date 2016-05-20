@@ -131,9 +131,11 @@ footer{
 	border-top: 2px solid #dbd9db;
 	background-color: #2a2f32;
 	display: table;
+	width: 100%;
 	color: #fff;
-	padding: 40px;
+	padding: 20px 0px 20px 0px;
 	font-size: 12px;
+	text-align: justify;
 }
 
 footer .rows{
@@ -173,7 +175,7 @@ footer a.sugira:hover{
 	padding: 15px 15px 15px 0;
 }
 .logo-rodape{
-	top:30px;
+	top: 20px;
 }
 .aviso-botao-procurar{
 	color:#bbb;
@@ -237,4 +239,5 @@ footer a.sugira:hover{
   color: #ecb31a;
   text-decoration: underline;
 }
+
 

@@ -52,15 +52,15 @@
         </button>
         <br>
         <br>
-        <p class="aviso-botao-procurar"><%= t('obs1')%></p>        
+        <p class="aviso-botao-procurar"><%= t('obs1') %></p>
       </div>
     </div>
   <% end %>
   <div class="row newsletter">
     <div class="col-md-6 newsletter-left">
       <img src="assets/pages/icon-newsletter.png" height="120" alt="">
-      <p>Receba por e-mail as cotações de nossas casas <br>
-      de câmbio, e as <span>nossas novidades</span> do site!</p>
+      <p><%= t('newsletters1')%><br>
+      <%= t('newsletters2')%> <span><%= t('newsletters3')%></span> <%= t('newsletters4')%></p>
     </div>
     <div class="col-md-6 form-email">
       <div id="newsletters">
@@ -72,6 +72,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="adshere" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
