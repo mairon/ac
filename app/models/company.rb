@@ -4,6 +4,7 @@ class Company < ActiveRecord::Base
   has_and_belongs_to_many :currencies
   belongs_to :user
   belongs_to :currency
+  after_save :get_unidade_central
 
 	accepts_nested_attributes_for :schedules
 
@@ -30,5 +31,9 @@ class Company < ActiveRecord::Base
 
   def avatar_url
     avatar.url(:thumb)
+  end
+
+  def get_unidade_central
+      self.company_id = self.id
   end
 end

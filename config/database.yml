@@ -8,8 +8,8 @@ development:
   database: aquicambio
   pool: 5
   username: postgres
-  password: w@789789
-  host: 162.243.6.58
+  password: zxcasdqwe123
+  host: 159.203.94.162
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -24,6 +24,6 @@ production:
   database: aquicambio
   pool: 5
   username: postgres
-  password: w@789789
-  host: 162.243.6.58
+  password: zxcasdqwe123
+  host: 159.203.94.162
   port: 5432

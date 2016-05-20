@@ -53,12 +53,12 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     session[:previous_url]
 
-  #   if current_user.role == 'admin'
-  #     admin_painel_path
-  #   elsif current_user.role == 'empresa'
-  #     pcompany_painel_path
-  #   elsif current_user.role == 'cliente'
-  #     pclient_painel_path
-  #   end
+    if current_user.role == 'admin'
+      admin_painel_path
+    elsif current_user.role == 'empresa'
+      pcompany_painel_path
+    elsif current_user.role == 'cliente'
+      pclient_painel_path
+    end
   end
 end

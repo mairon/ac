@@ -11,10 +11,9 @@
           </ul>
         </div>
       <% end %>
-      <h3 class="heading">NOVA EMPRESA</h3>
+      <h3 class="heading">NOVA EMPRESA<%= f.text_field :company_id, size: 5 %></h3>
       <div class="control-group formSep">  
       <table>
-
       <tr>
         <td align="right">Unidade:</td>
         <td colspan="4"><%= f.radio_button :unit, 0, class: 'filter_unit' %> Central <%= f.radio_button :unit, 1, class: 'filter_unit' %> Filial<span class="f_req">*</span></td>

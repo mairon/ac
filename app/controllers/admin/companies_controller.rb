@@ -11,7 +11,7 @@ class Admin::CompaniesController < AdminController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.includes(:currency,:user).select("id,unit,currency_id,name,user_id,telephone,avatar_file_name")
+    @companies = Company.includes(:currency,:user).select("id,unit,currency_id,name,user_id,telephone,avatar_file_name,status,company_id")
   end
 
   # GET /companies/1
@@ -77,6 +77,6 @@ class Admin::CompaniesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:status_ofert, :address_view, :crawler_id, :crawler_url, :unit, :company_id, :pin, :currency_id, :unit, :name, :avatar, :telephone, :longitude, :latitude, :city_id, :country_id, :state_id, :about, :address, :website, :schedule_id, :user_id, :telephone02, schedules_attributes: [:id, :weekday, :in, :to ], currency_ids: [])
+      params.require(:company).permit(:status, :status_ofert, :address_view, :crawler_id, :crawler_url, :unit, :company_id, :pin, :currency_id, :unit, :name, :avatar, :telephone, :longitude, :latitude, :city_id, :country_id, :state_id, :about, :address, :website, :schedule_id, :user_id, :telephone02, schedules_attributes: [:id, :weekday, :in, :to ], currency_ids: [])
     end
 end
