@@ -10,7 +10,7 @@ en:
   have: 'I HAVE'
   want: 'I WANT'
   where: 'WHERE?'
-  spare:   'SPARE'
+  spare:   'SAVE'
   select_currency: 'Select the currency'
   select_city: 'Select the city'
   thank_newsletters: 'Thank you for registering!'
@@ -28,6 +28,9 @@ en:
   update: 'Updated'
   ver-map: 'View on Map'
   best-rate: 'Best Rate'
+  open: 'Open'
+  close: 'Close'
+
   activerecord:
     errors:
       messages:

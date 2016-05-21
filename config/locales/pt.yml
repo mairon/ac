@@ -19,7 +19,7 @@ pt:
   newsletters2: 'de câmbio, e' 
   newsletters3: 'novidades' 
   newsletters4: 'da nossa plataforma!'
-  newsletters5: 'Aceito recebrr e-mails do'
+  newsletters5: 'Aceito receber e-mails do'
   digite-email: 'Digite seu e-mail'
   send: 'ENVIAR'
   info_footer1: 'As taxas são passíveis de alteração, confirme o preço junto às casas de câmbio. A lista de resultados é uma média das operações registradas periodicamente pela equipe AquiCambio.com e serve apenas como indicativo, não somos responsáveis pelos referidos valores. Replicamos a informação das correntistas. Há diversos fatores que influenciam os valores praticados em determinado momento e que variam continuamente, tais como a taxa de câmbio oficial de cada Pais, o valor da operação ou a tarifa praticada.'
@@ -27,7 +27,9 @@ pt:
   adress: 'com sede na cidade de Ciudad del Este, Km 9.5, Alto Paraná, Paraguai.'
   update: 'Atualizado há'
   ver-map: 'Ver no Mapa'
-  best-rate: 'Malhor Taxa'
+  best-rate: 'Melhor Taxa'
+  open: 'Aberto'
+  close: 'Fechado'
   activerecord:
     errors:
       messages:
@@ -99,14 +101,14 @@ pt:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: aproximadamente 1 hora
-        other: aproximadamente %{count} horas
+        one: aprox. 1 hora
+        other: aprox. %{count} horas
       about_x_months:
-        one: aproximadamente 1 mês
-        other: aproximadamente %{count} meses
+        one: aprox. 1 mês
+        other: aprox. %{count} meses
       about_x_years:
-        one: aproximadamente 1 ano
-        other: aproximadamente %{count} anos
+        one: aprox. 1 ano
+        other: aprox. %{count} anos
       almost_x_years:
         one: quase 1 ano
         other: quase %{count} anos

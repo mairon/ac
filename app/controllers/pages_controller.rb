@@ -9,7 +9,9 @@ class PagesController < ApplicationController
   end
 
 	def search
-		st = StandardExchange.select('od').where(currency_have: params[:have], currency_want: params[:want]).last
+		st   = StandardExchange.select('od').where(currency_have: params[:have], currency_want: params[:want]).last
+		dias = ["Sunday", "Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday"]
+		
 		order = "DESC" if st.od == 0
 		sql = "SELECT C.COMPANY_ID,
 						      C.ID,
@@ -25,7 +27,8 @@ class PagesController < ApplicationController
 						      (SELECT CC.ID FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ? LIMIT 1 ) AS UNIT_ID,
 						      (SELECT CC.LATITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ? LIMIT 1 ),
 						      (SELECT CC.LONGITUDE FROM COMPANIES CC WHERE CC.COMPANY_ID = C.ID AND CC.CITY_ID = ?  LIMIT 1 ),
-						      C.STATUS
+						      C.STATUS,
+						      (SELECT  COUNT(S.ID) FROM SCHEDULES S WHERE S.COMPANY_ID = C.ID AND WEEKDAY = ? and ? BETWEEN S.S_IN AND S.S_TO) AS OPEN_CLOSE
 						FROM EXCHANGE_OPERATIONS E
 						INNER JOIN COMPANIES C
 						ON C.ID = E.COMPANY_ID
@@ -49,7 +52,9 @@ class PagesController < ApplicationController
 						      E.ACTIVE,
 						      E.CREATED_AT,
 						      SC.DEF_FORMAT,
-						      C.STATUS_OFERT
+						      C.STATUS_OFERT,
+						      C.STATUS_SCHEDULE_SERVICE,
+						      (SELECT  COUNT(S.ID) FROM SCHEDULES S WHERE S.COMPANY_ID = C.ID AND WEEKDAY = ? and ? BETWEEN S.S_IN AND S.S_TO) AS OPEN_CLOSE
 						FROM EXCHANGE_OPERATIONS E
 						INNER JOIN COMPANIES C
 						ON C.COMPANY_ID = E.COMPANY_ID
@@ -60,9 +65,10 @@ class PagesController < ApplicationController
 						AND E.HAVE_ID = ?
 						AND E.WANT_ID = ?
 						ORDER BY 6"
-		@companies = ExchangeOperation.find_by_sql [sql, params[:where], params[:where], params[:where], params[:where], params[:have], params[:want]]
+		@companies = ExchangeOperation.find_by_sql [sql, params[:where], params[:where], params[:where], dias[Time.now.wday], Time.now.strftime("%H:%M:%S"), params[:where], params[:have], params[:want]]
 		ActiveRecord::Associations::Preloader.new.preload(@companies, :company)
-		@companies_map = ExchangeOperation.find_by_sql [sql_map, params[:where], params[:have], params[:want]]
+
+		@companies_map = ExchangeOperation.find_by_sql [sql_map, dias[Time.now.wday], Time.now.strftime("%H:%M:%S"), params[:where], params[:have], params[:want]]
 		ActiveRecord::Associations::Preloader.new.preload(@companies_map, :company)
 
 		@offert = Offert.new

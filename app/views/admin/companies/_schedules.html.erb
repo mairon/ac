@@ -7,9 +7,9 @@
       <tr>
         <td align="right"<%= t("#{d}") %>:</td>
         <td>
-          <%= schedule.time_field :in %>
+          <%= schedule.time_field :s_in %>
           até
-          <%= schedule.time_field :to %>
+          <%= schedule.time_field :s_to %>
         </td>
       </tr>
     <% end %>
@@ -21,15 +21,12 @@
         <td align="right"><%= t("#{company.weekday}") %>:</td>
         <td>
 
-          <%= schedule.time_field :in %>
+          <%= schedule.time_field :s_in %>
           até
-          <%= schedule.time_field :to %>
+          <%= schedule.time_field :s_to %>
         </td>
       </tr>
     <% end %>
   <% end %>
 <% end %>
 </table>
-
-
-

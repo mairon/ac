@@ -69,6 +69,6 @@ class Admin::SchedulesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:in, :to, :weekday, :company_id)
+      params.require(:schedule).permit(:in, :to, :weekday, :company_id, :s_in, :s_to)
     end
 end

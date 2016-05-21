@@ -28,6 +28,9 @@ es:
   update: 'Actualizado á'
   ver-map: 'Ver en Mapa'
   best-rate: 'Mejor Tasa'
+  open: 'Abierto'
+  close: 'Cerrado'
+
   activerecord:
     errors:
       messages:

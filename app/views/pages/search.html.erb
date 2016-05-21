@@ -56,14 +56,18 @@
                 <div class="result-content-name" align="center">
                   <%= c.company.name %>
                   <br>
-                  <span class="result-content-status"></span>
+                  <% if c.status_schedule_service == true %>
+                    <% if c.open_close == 0 %>
+                      <span class="result-content-status btn-danger"><%= t('close') %></span>
+                    <% else %>
+                      <span class="result-content-status btn-success"><%= t('open') %></span>
+                    <% end %>
+                  <% end %>                    
                 </div>
                 <div class="result-content-amount" align="center">
                   <% if Time.zone.now > (c.created_at + 3600) %>
                     <strong>
-                      <div style="font-size: 14px; margin-left:20px">
-                        Sob Consulta
-                      </div>
+                      <div style="font-size: 14px; margin-left:20px">Sob Consulta</div>
                     </strong>
                   <% else %>
                     <strong><%= number_to_currency(c.amount, :format=>' %n ', :precision => c.def_format ) %></strong>
@@ -73,7 +77,7 @@
                     <img src="/assets/pages/timer.png" height="15" alt="procurar">
                     <span class="result-content-timer"><%= t('update') %> <b><%= time_ago_in_words(c.created_at) %></b></span>
                   <% else %>
-                    <div style="height: 15px;"></div>
+                    <div style="height: 13px;"></div>
                   <% end %>
                 </div>
                 <div align="right">
