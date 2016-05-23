@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
-	has_many :schedules, dependent: :destroy, order: 'id'
-  has_many :companies_currencies, :dependent => :destroy
+	has_many :schedules, -> {order('id')}, dependent: :destroy
+  has_many :companies_currencies, dependent: :destroy
   has_and_belongs_to_many :currencies
   belongs_to :user
   belongs_to :currency
