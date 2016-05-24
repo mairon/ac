@@ -9,7 +9,7 @@ development:
   pool: 5
   username: postgres
   password: zxcasdqwe123
-  host: 162.243.115.232
+  host: 107.170.87.4
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -25,5 +25,5 @@ production:
   pool: 5
   username: postgres
   password: zxcasdqwe123
-  host: 162.243.115.232
+  host: 107.170.87.4
   port: 5432
