@@ -73,7 +73,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <%= link_to image_tag("pages/logo.png", class: 'logo', width: '300'), root_path %>
+        <%= link_to image_tag("pages/logo.png", class: 'logo'), root_path %>
         <div class="form-busca">
           <input type="text" id="search_companies" placeholder='<%= t("placeholder_search")%>'>
           <button type="submit"><%= t('search') %></button>
@@ -95,7 +95,7 @@
         <div class="col-md-4 sugira" align="center">
         </div>
         <div class="col-md-4 logo-rodape" align="center">
-          <img src="../assets/pages/logo-horizontal.png" width="281" alt="">
+          <img src="../assets/pages/logo-horizontal.png" alt="logo aquicambio">
           <br>
         </div>
         <div class="col-md-4" align="center">
@@ -103,6 +103,7 @@
       </div>
     </footer>
     <div class="barra-footer"></div>
+    <a href="#0" class="cd-top">Top</a>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <%= javascript_include_tag "page", 'data-turbolinks-track' => true %>
