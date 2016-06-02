@@ -34,6 +34,9 @@ class Company < ActiveRecord::Base
   end
 
   def get_unidade_central
+    if self.unit.to_i == 0
       self.company_id = self.id
+    end
   end
+    
 end

@@ -16,7 +16,7 @@ pt:
   select_currency: 'Selecione a moeda'
   select_city: 'Selecione a cidade'
   thank_newsletters: 'Obrigado por se cadastrar!'
-  obs1: 'Os valores são atualizados exclusivamente pelas Casa de Câmbio e estão sujeitos à alterações a qualquer momento pelas mesmas.'
+  obs1: 'Os valores são atualizados exclusivamente pelas Casas de Câmbio e estão sujeitos à alterações a qualquer momento pelas mesmas.'
   newsletters1: 'Receba por e-mail as cotações das casas'
   newsletters2: 'de câmbio, e' 
   newsletters3: 'novidades' 
